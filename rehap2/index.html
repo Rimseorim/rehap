@@ -467,7 +467,13 @@ function getPhaseData() {
   catch(e) { return {}; }
 }
 function savePhaseData(d) { localStorage.setItem('rehab_phase_data', JSON.stringify(d)); }
-function getPhaseKey() { return S.causeId || '_default'; }
+function getPhaseKey() {
+  const mv = S.movementId || '';
+  const ps = S.painSiteId || '';
+  const ca = S.causeId || '';
+  if (mv && ps && ca) return `${mv}-${ps}-${ca}`;
+  return '_default';
+}
 function getCurrentPhase() { return (getPhaseData()[getPhaseKey()] || {}).phase || 'A'; }
 function getPhaseStats() { return getPhaseData()[getPhaseKey()] || { phase: null, sessionCount: 0, comfortableCount: 0, lastSessionDate: null }; }
 function isPhaseSet() { return !!getPhaseData()[getPhaseKey()]; }
@@ -1891,7 +1897,10 @@ function selectChoice(next, choiceId) {
   if (q) {
     const c = q.choices.find(ch => ch.id === choiceId);
     if (c && c.setPhase) {
-      updatePhaseStats({ phase: c.setPhase, sessionCount: 0, comfortableCount: 0 });
+      // causeId 미확정 시점 → _pending에 임시 저장
+      const d = getPhaseData();
+      d['_pending'] = { phase: c.setPhase, sessionCount: 0, comfortableCount: 0, lastSessionDate: null };
+      savePhaseData(d);
     }
   }
   S.questionDepth++;
@@ -1906,6 +1915,13 @@ function selectChoice(next, choiceId) {
   } else if (next.startsWith('cause:')) {
     S.causeId = next.slice(6);
     S.testId = null;
+    // _pending → causeId 키로 이동
+    const d = getPhaseData();
+    if (d['_pending']) {
+      d[getPhaseKey()] = d['_pending'];
+      delete d['_pending'];
+      savePhaseData(d);
+    }
     go('cause');
   }
 }
@@ -1927,6 +1943,12 @@ function selectTestResult(next, outcome) {
   }
   if (next.startsWith('cause:')) {
     S.causeId = next.slice(6);
+    const d = getPhaseData();
+    if (d['_pending']) {
+      d[getPhaseKey()] = d['_pending'];
+      delete d['_pending'];
+      savePhaseData(d);
+    }
     go('cause');
   } else if (next.startsWith('test:')) {
     S.testId = next.slice(5);
