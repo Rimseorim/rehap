@@ -1,35 +1,35 @@
-# HANDOFF - 2026-06-01 23:00
+# HANDOFF - 2026-06-04 17:30
 
 ## 완료
-- recovery_test 컴포넌트 분리 (직접테스트 test()와 완전 독립) (6825581)
-- 4단계 고정 스텝바 추가: 기초재활→회복테스트→재평가→운동복귀 (route/recovery_test/complete 공통)
-- rehabProgressBar() 헬퍼 함수로 스텝바 통합, done 단계 클릭 시 해당 화면 복귀
-- recovery_complete 화면 신설: 회복테스트 pass → "2단계 완료!" → 3단계 재평가 시작
-- 재활 루트 퍼센트 4단계 기준 재계산 (updateProgress)
-- selectTestResult retestMode: pass→recovery_complete, fail→route(stageIndex=0)
-- 1단계 완료 화면: 텍스트("최소 3일 이상…") + 버튼 3개(지금 바로 테스트하기/내일 다시 오기/이 단계 운동 다시 보기)
-- recovery_complete 레이아웃 순서 수정 (f5cbb4e)
+- phase_q 감별 질문 전체 35개 pain site에 추가 (3a71a30)
+  - "운동 시작하자마자" → Phase A / "어느 정도 반복한 후" → Phase B / "쉬는 중에도" → danger
+  - timing형 q1 12개 제거 (phase_q로 통합), q1 내 중복 danger 선택지 16개 제거
+- coming_soon 화면 진입 차단 제거 — 데드리프트 등 접근 가능 (3a71a30)
+- phase 저장 키 `movementId-painSiteId-causeId` 조합으로 변경 (5be2d59)
+  - 기존 `_default` 단독 키 → 여러 부위 동시 재활 시 충돌 문제 수정
+  - _pending 임시 저장 → cause 확정 시 정식 키로 이동
+- session_feedback 진행바 퍼센트(95%)·라벨("재활 루트") 추가 (98bed71)
+- Phase B 업그레이드 모달 트리거 연결 (편함 2회 연속 + Phase A → 팝업)
 
 ## 진행중
 - 없음
 
 ## 대기
-- 카카오·구글 OAuth 백엔드 연동 (현재 "준비 중" 토스트)
-- 추이 탭 종목 관리 기능 (삭제·병합 등)
-- 기록 탭 수정 기능 (현재 삭제만 가능)
-- press-vertical.json elbow coming_soon 원복 여부 확인
-- 실제 운동 영상 URL 데이터 입력
-- recovery_test 없는 pain site(squat/shoulder, squat/hip 등) 처리 — 현재 토스트만 표시
+- BUNDLED 운동 데이터에 phase 필드 추가 (어떤 운동이 A/B인지 사용자가 결정 필요)
+  - 코드(필터링)는 준비됨, 데이터만 없는 상태
+- 대체 WOD "시작하기" 버튼 실제 기능 연결
+- 다른 cause들 실제 운동 데이터 추가 (squat/knee 외 대부분 비어있음)
+- 카카오·구글 OAuth 백엔드 연동
+- 실제 운동 영상 URL 입력
 
 ## 결정사항 / 주의
-- 배포 구조: rehap2(로컬 작업) → Copy-Item → rehap1/index.html + 루트 index.html → git add 두 파일 → push
-- 4단계 고정 매핑: stageIndex 0→1단계, recovery_test→2단계, stageIndex 1→3단계, stageIndex 2→4단계
-- stageToStep = { 0:0, 1:2, 2:3 } (0-based, updateProgress용)
-- rehabProgressBar()는 cause/route/complete/recovery_test 화면에서 호출, recovery_complete는 하드코딩 바 사용
-- recovery_test 하드코딩 바: 1 기초재활(button/done), 2 회복테스트(div/active), 3·4(div)
-- retestMode 플래그: goRetest()에서 true 설정, selectTestResult에서 소비 후 false
-- "기초 재활" stage name 하드코딩으로 needsRetest 분기 — 다른 이름 쓰면 미작동
-- 앱 이름: LogFit (로그핏), 주 색상: 차콜 #2C2C2C + 흰색 + 파란색 #4A7FC1
+- 앱은 index.html 안의 BUNDLED 데이터를 사용. rehab.json은 사용 안 함
+- 배포 구조: rehap2(작업) → Copy-Item → rehap1/index.html + 루트 index.html → git push
+- phase_q는 BUNDLED에 entry_question으로 추가됨. 기존 q1은 유지 (단, timing형 12개는 제거)
+- phase 키: `${movementId}-${painSiteId}-${causeId}` (예: squat-knee-cause-b)
+- BUNDLED 운동에 phase 필드 없으면 필터링 코드가 전부 통과시킴 (모든 운동 노출) → 의도된 임시 상태
+- 재활 단계: 기초재활→재평가→운동복귀 3단계 (BUNDLED 기준)
+- 회복테스트 버튼은 기초재활 단계면 항상 활성화 (조건 없음), 넛지 텍스트만 조건부
 
 ## 다음 세션 권장 첫 프롬프트
 `/resume`
