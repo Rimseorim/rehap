@@ -88,7 +88,12 @@
       "PowerShell(railway status *)",
       "PowerShell(Stop-Process *)",
       "PowerShell(\\(Get-FileHash \"index.html\"\\).Hash -eq \\(Get-FileHash \"rehap2\\\\index.html\"\\).Hash)",
-      "Skill(easy)"
+      "Skill(easy)",
+      "Skill(run)",
+      "Bash(PORT=8000 uvicorn backend.main:app --host 0.0.0.0 --port 8000)",
+      "PowerShell(\\(Get-Command npx\\).Source; npx --yes playwright install chromium 2>&1 | Select-Object -Last 5)",
+      "Bash(npm install *)",
+      "Bash(start *)"
     ]
   }
 }
