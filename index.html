@@ -496,12 +496,12 @@ function selectFeedback(type) {
     const m = document.getElementById('phase-upgrade-modal');
     if (m) { m.style.display = 'flex'; return; }
   }
-  go('complete');
+  goToComplete();
 }
 
 function confirmPhaseUpgradeAndContinue() {
   confirmPhaseUpgrade();
-  go('complete');
+  goToComplete();
 }
 
 function confirmPhaseUpgrade() {
@@ -638,7 +638,7 @@ async function doLogin(e) {
   const demo = DEMO_ACCOUNTS.find(a => a.email === email && a.password === password);
   if (demo) {
     saveUser({ token: 'demo', nickname: demo.nickname });
-    go('home');
+    goHome();
     return;
   }
 
@@ -647,7 +647,7 @@ async function doLogin(e) {
   try {
     const data = await apiPost('/auth/login', { email, password });
     saveUser(data);
-    go('home');
+    goHome();
   } catch(err) {
     errEl.textContent = '이메일 또는 비밀번호가 올바르지 않습니다.';
     showToast('로그인에 실패했습니다.');
@@ -667,7 +667,7 @@ async function doSignup(e) {
   try {
     const data = await apiPost('/auth/signup', { email, password, nickname });
     saveUser(data);
-    go('home');
+    goHome();
   } catch(err) {
     errEl.textContent = err.message;
     showToast('회원가입에 실패했습니다.');
@@ -690,7 +690,7 @@ async function resumeRecord(movementId, painSiteId, causeId, stageIndex) {
     S.painSiteId  = painSiteId;
     S.causeId     = causeId;
     S.stageIndex  = stageIndex;
-    go('route');
+    goToRoute();
   } catch(e) { showToast('데이터를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.'); }
 }
 
@@ -714,7 +714,7 @@ async function goMyRecords() {
   } else {
     MY_RECORDS = [];
   }
-  go('my_records');
+  goToMyRecords();
 }
 
 function my_records() {
@@ -736,7 +736,7 @@ function my_records() {
       <div class="card" style="text-align:center;color:var(--text-sub);padding:40px 20px">
         아직 저장된 기록이 없어요.<br>감별을 완료하면 여기에 기록됩니다.
       </div>
-      <button class="btn-primary" style="background:var(--dark-light)" onclick="go('home')">홈으로</button>`;
+      <button class="btn-primary" style="background:var(--dark-light)" onclick="goHome()">홈으로</button>`;
   }
 
   const byDate = {};
@@ -773,7 +773,7 @@ function my_records() {
   return `
     <div class="home-hero"><h1>내 기록</h1></div>
     ${cards}
-    <button class="btn-primary" style="background:var(--dark-light)" onclick="go('home')">홈으로</button>`;
+    <button class="btn-primary" style="background:var(--dark-light)" onclick="goHome()">홈으로</button>`;
 }
 
 async function saveRehabRecord(fromCause = false) {
@@ -996,7 +996,7 @@ function landing() {
         </div>`).join('')}
     </div>
 
-    <button class="btn-primary" style="font-size:var(--t2);padding:16px" onclick="go('login')">시작하기</button>
+    <button class="btn-primary" style="font-size:var(--t2);padding:16px" onclick="goToLogin()">시작하기</button>
 
     `;
 }
@@ -1086,7 +1086,7 @@ function lfLogsHtml() {
   }).join('');
 }
 function lfDeleteLog(id){ if(!confirm('삭제할까요?'))return; lfSaveLogs(lfGetLogs().filter(l=>l.id!==id)); render(); }
-function lfGoToCause(movementId, painSiteId, causeId){ S.movementId=movementId; S.painSiteId=painSiteId; S.causeId=causeId; go('cause'); }
+function lfGoToCause(movementId, painSiteId, causeId){ S.movementId=movementId; S.painSiteId=painSiteId; S.causeId=causeId; goToCause(); }
 
 /* ── 기록 쓰기 모달 ── */
 function lfOpenWrite(){
@@ -1206,7 +1206,7 @@ function lfStartDemo() {
       {id:8,type:'crossfit',date:d(-20),title:'',wods:[{content:'Deadlift 5×5',record:'',weights:[{movement:'Deadlift',weight:'110',unit:'kg'}]}],diary:''},
     ]);
   }
-  go('home');
+  goHome();
 }
 
 function lfUpdateChart(){
@@ -1290,7 +1290,7 @@ function home() {
       ${lastCard}
       ${wodCard()}
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
-        <button class="btn-primary" style="padding:16px;font-size:var(--t2)" onclick="go('pain_site')">지금 시작하기</button>
+        <button class="btn-primary" style="padding:16px;font-size:var(--t2)" onclick="goToPainSite()">지금 시작하기</button>
         <button class="btn-primary" style="background:var(--dark-light);padding:14px" onclick="goMyRecords()">내 기록 보기</button>
       </div>`,
     weight: (() => {
@@ -1335,7 +1335,7 @@ function login() {
 function signup() {
   return `
     <div style="display:flex;align-items:center;gap:8px;padding:8px 0">
-      <button onclick="go('login')" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-sub);padding:0">←</button>
+      <button onclick="goToLogin()" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-sub);padding:0">←</button>
       <h1 style="font-size:var(--t1);font-weight:700;color:var(--dark);margin:0">회원가입</h1>
     </div>
     <form class="card" style="display:flex;flex-direction:column;gap:12px" onsubmit="doSignup(event)">
@@ -1351,7 +1351,7 @@ function signup() {
       <p id="auth-error" style="color:var(--danger);font-size:var(--t4);margin:0"></p>
       <button type="submit" class="btn-primary">가입하기</button>
     </form>
-    <button class="btn-primary" style="background:transparent;color:var(--text-sub);border:1px solid var(--border)" onclick="go('login')">이미 계정이 있어요</button>`;
+    <button class="btn-primary" style="background:transparent;color:var(--text-sub);border:1px solid var(--border)" onclick="goToLogin()">이미 계정이 있어요</button>`;
 }
 
 const PAIN_ICONS = { knee: '🦵', 'lower-back': '🦴', ankle: '🦶', shoulder: '💪', wrist: '🤝', elbow: '🦾', hip: '🦯', chest: '🫀' };
@@ -1467,7 +1467,9 @@ function test() {
 
 function recovery_test() {
   const t = getTest();
-  if (!t) { showToast('테스트 데이터를 불러올 수 없습니다.'); go('complete'); return ''; }
+  if (!t) { showToast('테스트 데이터를 불러올 수 없습니다.'); goToComplete(); return ''; }
+  const passHandler = `selectRetestResult('pass')`;
+  const failHandler = `selectRetestResult('fail')`;
   const steps = t.steps.map((s, i) => `
     <div style="display:flex;gap:12px;align-items:flex-start">
       <span style="flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#2C2C2C;color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">${i+1}</span>
@@ -1495,10 +1497,10 @@ function recovery_test() {
     </div>
     <p class="t4" style="text-align:center;font-weight:600">결과를 선택하세요</p>
     <div class="choices">
-      <button class="choice-btn" onclick="selectTestResult('${t.pass_next}', 'pass')">
+      <button class="choice-btn" onclick="${passHandler}">
         <span>${t.pass_text}</span>
       </button>
-      <button class="choice-btn" onclick="selectTestResult('${t.fail_next}', 'fail')">
+      <button class="choice-btn" onclick="${failHandler}">
         <span>${t.fail_text}</span>
       </button>
     </div>
@@ -1512,7 +1514,7 @@ function rehabProgressBar() {
   else if (S.screen === 'route' || S.screen === 'complete') activeStep = stageToStep[S.stageIndex] ?? 1;
   const isComplete = S.screen === 'complete';
   const names = ['기초재활', '회복테스트', '재평가', '운동복귀'];
-  const stepNav = ['jumpToStage(0)', "go('recovery_test')", 'jumpToStage(1)', 'jumpToStage(2)'];
+  const stepNav = ['jumpToStage(0)', "goToRecoveryTest()", 'jumpToStage(1)', 'jumpToStage(2)'];
   const items = names.map((name, i) => {
     const n = i + 1;
     const done = isComplete ? n <= activeStep : n < activeStep;
@@ -1555,7 +1557,7 @@ function cause() {
       </div>
       <p style="margin:4px 0 0;font-size:var(--t4);color:var(--danger);font-weight:600">위 항목에 해당된다면 재활 전 전문의 진단을 먼저 받으세요.</p>
     </div>
-    <button class="btn-primary" onclick="go('route')">재활 루트 보기</button>`;
+    <button class="btn-primary" onclick="goToRoute()">재활 루트 보기</button>`;
 }
 
 function session_feedback() {
@@ -1576,12 +1578,12 @@ function session_feedback() {
       <h1 class="t1" style="margin-top:6px">오늘 재활이 어떻게 느껴졌나요?</h1>
     </div>
     <div class="choices">${choices}</div>
-    <button class="btn-primary" style="background:var(--dark-light)" onclick="go('complete')">계속 재활하기</button>`;
+    <button class="btn-primary" style="background:var(--dark-light)" onclick="goToComplete()">계속 재활하기</button>`;
 }
 
 function route() {
   const c  = getCause();
-  if (!c || !c.route) { go('home'); return ''; }
+  if (!c || !c.route) { goHome(); return ''; }
   const mv = getMovement();
   const ps = getPainSite();
   const stages = c.route.stages;
@@ -1624,7 +1626,7 @@ function route() {
         <p style="margin:4px 0 0;font-size:var(--t4);color:var(--danger)">✗ ${stage.fail_note}</p>
       </div>
     </div>
-    <button class="btn-primary" onclick="${isLast ? "go('complete')" : 'nextStage()'}" ${allChecked ? '' : 'disabled'} style="margin-top:24px;${allChecked ? '' : 'opacity:0.4;pointer-events:none'}">
+    <button class="btn-primary" onclick="${isLast ? "goToComplete()" : 'nextStage()'}" ${allChecked ? '' : 'disabled'} style="margin-top:24px;${allChecked ? '' : 'opacity:0.4;pointer-events:none'}">
       ${isLast ? '루트 완료' : '이 단계 완료'}
     </button>`;
   } else if (stage.type === 'tips') {
@@ -1686,7 +1688,7 @@ function route() {
       <span style="font-size:var(--t2);font-weight:var(--w2)">${stage.name}</span>${phaseBadge}
     </div>
     ${stageContent}
-    ${stage.type === 'reassessment' ? '' : `<button class="btn-primary" style="margin-top:24px" onclick="${isLast ? "go('complete')" : 'nextStage()'}">
+    ${stage.type === 'reassessment' ? '' : `<button class="btn-primary" style="margin-top:24px" onclick="${isLast ? "goToComplete()" : 'nextStage()'}">
       ${isLast ? '루트 완료' : '이 단계 완료'}
     </button>`}`;
 }
@@ -1699,7 +1701,7 @@ function coming_soon() {
       <h1 class="t1">${moveName} · ${siteName}<br>콘텐츠 준비 중입니다</h1>
       <p class="t3" style="margin-top:12px;color:var(--text-sub)">해당 콘텐츠는 곧 업데이트됩니다.<br>다른 동작을 먼저 이용해 보세요.</p>
     </div>
-    <button class="btn-primary" onclick="go('movement')">다른 동작 선택</button>`;
+    <button class="btn-primary" onclick="goToMovement()">다른 동작 선택</button>`;
 }
 
 function danger() {
@@ -1733,7 +1735,7 @@ function danger() {
 function recovery_complete() {
   const bar = `<div style="display:flex;width:100%;gap:4px">
     <button class="stage-item done" style="flex:1;text-align:center;padding:5px 4px;font-size:11px;cursor:pointer;font-family:inherit" onclick="jumpToStage(0)">1 기초재활</button>
-    <button class="stage-item done" style="flex:1;text-align:center;padding:5px 4px;font-size:11px;cursor:pointer;font-family:inherit" onclick="go('recovery_test')">2 회복테스트</button>
+    <button class="stage-item done" style="flex:1;text-align:center;padding:5px 4px;font-size:11px;cursor:pointer;font-family:inherit" onclick="goToRecoveryTest()">2 회복테스트</button>
     <div class="stage-item" style="flex:1;text-align:center;padding:5px 4px;font-size:11px">3 재평가</div>
     <div class="stage-item" style="flex:1;text-align:center;padding:5px 4px;font-size:11px">4 운동복귀</div>
   </div>`;
@@ -1750,7 +1752,7 @@ function recovery_complete() {
       </div>
       ${bar}
     </div>
-    <button class="btn-primary" onclick="go('route')">3단계 재평가 시작하기</button>`;
+    <button class="btn-primary" onclick="goToRoute()">3단계 재평가 시작하기</button>`;
 }
 
 function complete() {
@@ -1811,10 +1813,10 @@ function complete() {
     </div>
     ${needsRetest
       ? `<button class="btn-primary" onclick="goRetest()">지금 바로 테스트하기</button>
-         <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="go('home')">내일 다시 오기</button>
-         <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="go('route')">이 단계 운동 다시 보기</button>`
+         <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="goHome()">내일 다시 오기</button>
+         <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="goToRoute()">이 단계 운동 다시 보기</button>`
       : `<button class="btn-primary" onclick="goNextStageFromComplete()">다음 단계 시작</button>
-         <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="go('route')">이 단계 운동 다시 보기</button>
+         <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="goToRoute()">이 단계 운동 다시 보기</button>
          <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="reset()">처음으로 돌아가기</button>`}
     `;
 }
@@ -1852,6 +1854,26 @@ function go(screen) {
   render();
 }
 
+// ── 화면 이동 함수 (버튼 onclick에서 사용) ──────────────────────────
+// 어디로 가는지 한눈에 보이도록 go() 대신 이 함수들을 사용
+function goHome()              { go('home'); }
+function goToLogin()           { go('login'); }
+function goToSignup()          { go('signup'); }
+function goToPainSite()        { go('pain_site'); }
+function goToMovement()        { go('movement'); }
+function goToQuestion()        { go('question'); }
+function goToTest()            { go('test'); }
+function goToCause()           { go('cause'); }
+function goToRoute()           { go('route'); }
+function goToComplete()        { go('complete'); }
+function goToSessionFeedback() { go('session_feedback'); }
+function goToRecoveryTest()    { go('recovery_test'); }
+function goToRecoveryComplete(){ go('recovery_complete'); }
+function goToDanger()          { go('danger'); }
+function goToMyRecords()       { go('my_records'); }
+function goToComingSoon()      { go('coming_soon'); }
+// ────────────────────────────────────────────────────────────────────
+
 function switchTab(tab) {
   S.tab = tab;
   if (S.screen !== 'home') S.screen = 'home';
@@ -1865,7 +1887,7 @@ function selectPainSite(id) {
   S.causeId      = null;
   S.stageIndex   = 0;
   S.questionDepth = 0;
-  go('movement');
+  goToMovement();
 }
 
 
@@ -1889,7 +1911,7 @@ async function selectMovement(id) {
   const site = getPainSite();
   S.questionId   = site.entry_question;
   S.questionDepth = 0;
-  go('question');
+  goToQuestion();
 }
 
 
@@ -1906,13 +1928,13 @@ function selectChoice(next, choiceId) {
   }
   S.questionDepth++;
   if (next === 'danger') {
-    go('danger');
+    goToDanger();
   } else if (next.startsWith('q:')) {
     S.questionId = next.slice(2);
-    go('question');
+    goToQuestion();
   } else if (next.startsWith('test:')) {
     S.testId = next.slice(5);
-    go('test');
+    goToTest();
   } else if (next.startsWith('cause:')) {
     S.causeId = next.slice(6);
     S.testId = null;
@@ -1923,25 +1945,25 @@ function selectChoice(next, choiceId) {
       delete d['_pending'];
       savePhaseData(d);
     }
-    go('cause');
+    goToCause();
+  }
+}
+
+function selectRetestResult(outcome) {
+  S.retestMode = false;
+  if (outcome === 'pass') {
+    S.stageIndex++;
+    S.checkedItems = [];
+    saveRehabRecord();
+    goToRecoveryComplete();
+  } else {
+    S.stageIndex = 0;
+    S.checkedItems = [];
+    goToRoute();
   }
 }
 
 function selectTestResult(next, outcome) {
-  if (S.retestMode) {
-    S.retestMode = false;
-    if (outcome === 'pass') {
-      S.stageIndex++;
-      S.checkedItems = [];
-      saveRehabRecord();
-      go('recovery_complete');
-    } else {
-      S.stageIndex = 0;
-      S.checkedItems = [];
-      go('route');
-    }
-    return;
-  }
   if (next.startsWith('cause:')) {
     S.causeId = next.slice(6);
     const d = getPhaseData();
@@ -1950,12 +1972,12 @@ function selectTestResult(next, outcome) {
       delete d['_pending'];
       savePhaseData(d);
     }
-    go('cause');
+    goToCause();
   } else if (next.startsWith('test:')) {
     S.testId = next.slice(5);
-    go('test');
+    goToTest();
   } else if (next === 'danger') {
-    go('danger');
+    goToDanger();
   }
 }
 
@@ -1971,16 +1993,16 @@ function nextStage() {
   // 기초재활(stageIndex=0) 세션 완료 → 피드백 페이지 → complete
   if (S.stageIndex === 0) {
     S.sessionFeedbackType = null;
-    go('session_feedback');
+    goToSessionFeedback();
   } else {
-    go('complete');
+    goToComplete();
   }
 }
 
 function jumpToStage(i) {
   S.stageIndex = i;
   S.checkedItems = [];
-  go('route');
+  goToRoute();
 }
 
 function goRetest() {
@@ -1988,13 +2010,13 @@ function goRetest() {
   if (!tests?.length) { showToast('테스트 데이터가 없습니다.'); return; }
   S.testId = tests[0].id;
   S.retestMode = true;
-  go('recovery_test');
+  goToRecoveryTest();
 }
 
 function goNextStageFromComplete() {
   S.stageIndex++;
   saveRehabRecord();
-  go('route');
+  goToRoute();
 }
 
 function reset() {
