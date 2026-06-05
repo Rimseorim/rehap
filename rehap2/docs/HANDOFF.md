@@ -1,35 +1,28 @@
-# HANDOFF - 2026-06-04 17:30
+# HANDOFF - 2026-06-05 15:30
 
 ## 완료
-- phase_q 감별 질문 전체 35개 pain site에 추가 (3a71a30)
-  - "운동 시작하자마자" → Phase A / "어느 정도 반복한 후" → Phase B / "쉬는 중에도" → danger
-  - timing형 q1 12개 제거 (phase_q로 통합), q1 내 중복 danger 선택지 16개 제거
-- coming_soon 화면 진입 차단 제거 — 데드리프트 등 접근 가능 (3a71a30)
-- phase 저장 키 `movementId-painSiteId-causeId` 조합으로 변경 (5be2d59)
-  - 기존 `_default` 단독 키 → 여러 부위 동시 재활 시 충돌 문제 수정
-  - _pending 임시 저장 → cause 확정 시 정식 키로 이동
-- session_feedback 진행바 퍼센트(95%)·라벨("재활 루트") 추가 (98bed71)
-- Phase B 업그레이드 모달 트리거 연결 (편함 2회 연속 + Phase A → 팝업)
+- recovery_test() null 가드 추가 — 테스트 데이터 없을 때 조용히 죽던 버그 수정 (`rehap2/index.html`)
+- rehap2/Procfile 생성 (배포용)
+- 루트 구버전 파일 삭제 (backend/, data/, index.html, rehab.db)
 
 ## 진행중
-- 없음
+- rehap2 → 루트 구조 통합 작업
+  - 중단 지점: 루트 구버전 파일 삭제 완료, rehap1 폴더 삭제 미완료 (프로세스 점유)
+  - 다음 스텝: rehap1 수동 삭제 후 → rehap2 파일들 01.test 루트로 이동 → Claude Code 루트에서 재시작
 
 ## 대기
-- BUNDLED 운동 데이터에 phase 필드 추가 (어떤 운동이 A/B인지 사용자가 결정 필요)
-  - 코드(필터링)는 준비됨, 데이터만 없는 상태
+- BUNDLED 운동 데이터에 phase 필드 추가 (어떤 운동이 A/B인지 결정 필요)
 - 대체 WOD "시작하기" 버튼 실제 기능 연결
 - 다른 cause들 실제 운동 데이터 추가 (squat/knee 외 대부분 비어있음)
 - 카카오·구글 OAuth 백엔드 연동
 - 실제 운동 영상 URL 입력
 
 ## 결정사항 / 주의
-- 앱은 index.html 안의 BUNDLED 데이터를 사용. rehab.json은 사용 안 함
-- 배포 구조: rehap2(작업) → Copy-Item → rehap1/index.html + 루트 index.html → git push
-- phase_q는 BUNDLED에 entry_question으로 추가됨. 기존 q1은 유지 (단, timing형 12개는 제거)
-- phase 키: `${movementId}-${painSiteId}-${causeId}` (예: squat-knee-cause-b)
-- BUNDLED 운동에 phase 필드 없으면 필터링 코드가 전부 통과시킴 (모든 운동 노출) → 의도된 임시 상태
-- 재활 단계: 기초재활→재평가→운동복귀 3단계 (BUNDLED 기준)
-- 회복테스트 버튼은 기초재활 단계면 항상 활성화 (조건 없음), 넛지 텍스트만 조건부
+- rehap1 = 폐기 예정, git 미추적 상태, 삭제해도 무방
+- 앱은 rehap2/index.html의 BUNDLED 데이터 사용. data/rehab.json 미사용
+- 배포 구조 변경 중: rehap2(작업) → 루트로 통합 → git push
+- recovery_test 체인 구조 (elbow 등): retestMode에서 pass_next 무시하고 outcome만 처리 (의도된 동작)
+- GitHub remote: https://github.com/Rimseorim/rahap1.git
 
 ## 다음 세션 권장 첫 프롬프트
-`/resume`
+`/resume` — rehap1 수동 삭제 후 rehap2 파일들 루트로 이동 완료했는지 확인부터
