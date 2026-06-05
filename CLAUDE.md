@@ -31,3 +31,30 @@
 - 감별 완료율 60% 이상
 - 재활 루트 진입율 40% 이상
 - MAU 200명
+
+---
+
+## 프로젝트 구조
+
+```
+01.test/
+├── index.html          # 앱 메인 (BUNDLED 데이터 포함, 이게 실제 서비스)
+├── backend/            # FastAPI 백엔드 (auth, records)
+├── data/               # 운동 데이터 JSON (현재 앱에서 미사용, BUNDLED 데이터 우선)
+├── scripts/            # 데이터 빌드 스크립트
+├── docs/               # 기획서·디자인 스펙
+├── Procfile            # Railway 배포용
+└── requirements.txt
+```
+
+## 배포
+
+- **플랫폼**: Railway (`motivated-prosperity` 프로젝트)
+- **레포**: `github.com/Rimseorim/rehap` (main 브랜치 push → 자동 배포)
+- **URL**: `web-production-28002.up.railway.app`
+- main 브랜치에 push하면 Railway가 자동 배포
+
+## 주요 결정사항
+
+- 앱 데이터는 `index.html` 내부 BUNDLED 데이터 사용. `data/rehab.json`은 미사용.
+- recovery_test 체인(elbow 등): retestMode에서 pass_next 무시하고 outcome만 처리 (의도된 동작)

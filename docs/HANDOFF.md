@@ -1,35 +1,28 @@
-# HANDOFF - 2026-05-24 09:30
+# HANDOFF - 2026-06-05 15:30
 
 ## 완료
-- squat.json cause description 전문용어 제거·평문화 (1a3cc82)
-- squat.json priority_note 전문용어 제거 (fd57dfc 포함)
-- cause tag·name 전문용어 복원 (fd57dfc) — 평문으로 바꿨다가 사용자 지시로 원복
-- test·exercise name 전문용어 복원 (d829100)
+- recovery_test() null 가드 추가 — 테스트 데이터 없을 때 조용히 죽던 버그 수정 (`rehap2/index.html`)
+- rehap2/Procfile 생성 (배포용)
+- 루트 구버전 파일 삭제 (backend/, data/, index.html, rehab.db)
 
 ## 진행중
-- JSON 콘텐츠 개편 — squat.json description/purpose/why 평문화 완료
-  - 중단 지점: squat.json 완료. lunge.json 이후 미작업.
-  - 다음 스텝: lunge.json의 causes[].description, tests[].purpose, exercises[].why 평문화
+- rehap2 → 루트 구조 통합 작업
+  - 중단 지점: 루트 구버전 파일 삭제 완료, rehap1 폴더 삭제 미완료 (프로세스 점유)
+  - 다음 스텝: rehap1 수동 삭제 후 → rehap2 파일들 01.test 루트로 이동 → Claude Code 루트에서 재시작
 
 ## 대기
-- lunge·deadlift·pullup·kipping·press·row JSON description 평문화
-- 고관절 콘텐츠 (런지·데드리프트·풀업·키핑·로우에 고관절 없음)
-- PostgreSQL 전환 (현재 SQLite ephemeral)
-- 네이버 앱 검수 신청
-- 커뮤니티 기능
-- 복합 원인 케이스
-- 재평가 단계 체크박스 인터랙티브화 (현재 정적 텍스트)
+- BUNDLED 운동 데이터에 phase 필드 추가 (어떤 운동이 A/B인지 결정 필요)
+- 대체 WOD "시작하기" 버튼 실제 기능 연결
+- 다른 cause들 실제 운동 데이터 추가 (squat/knee 외 대부분 비어있음)
+- 카카오·구글 OAuth 백엔드 연동
+- 실제 운동 영상 URL 입력
 
 ## 결정사항 / 주의
-- **명칭 규칙 확정**: name/tag/tests[].name/exercises[].name → 전문용어 유지. description/purpose/why → 전문용어 없이 평문만. 이후 모든 JSON 작업에 적용.
-- API URL: `https://web-production-28002.up.railway.app`
-- 네이버 콜백 URL: `https://web-production-28002.up.railway.app/auth/naver/callback`
-- 로컬(localhost:8080)에서는 네이버 로그인 불가 — demo 계정으로 테스트 (kim@rehab.com / 1234)
-- JSON 수정은 Python 스크립트로만 (PowerShell 인코딩 깨짐)
-- 포인트 컬러: --navy #2C2C2C, --accent #4A7FC1
-- 동작 ID: squat, lunge, deadlift, pullup, kipping, press-vertical, press-horizontal, row
-- 통증 부위 ID: knee, lower-back, ankle, shoulder, wrist, elbow, hip, chest
-- 재활 루트 3단계: 기초 재활(exercises) · 재평가(type:reassessment, checklist) · 운동 복귀(type:tips, tips[])
+- rehap1 = 폐기 예정, git 미추적 상태, 삭제해도 무방
+- 앱은 rehap2/index.html의 BUNDLED 데이터 사용. data/rehab.json 미사용
+- 배포 구조 변경 중: rehap2(작업) → 루트로 통합 → git push
+- recovery_test 체인 구조 (elbow 등): retestMode에서 pass_next 무시하고 outcome만 처리 (의도된 동작)
+- GitHub remote: https://github.com/Rimseorim/rahap1.git
 
 ## 다음 세션 권장 첫 프롬프트
-`/resume` 후 "lunge.json description·purpose·why 평문화 시작해줘"
+`/resume` — rehap1 수동 삭제 후 rehap2 파일들 루트로 이동 완료했는지 확인부터

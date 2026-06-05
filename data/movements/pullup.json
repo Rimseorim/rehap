@@ -38,7 +38,7 @@
             {
               "id": "c2",
               "text": "아프지만 힘은 유지돼요",
-              "next": "cause:cause-dp"
+              "next": "test:test-shoulder-flex"
             }
           ]
         },
@@ -77,7 +77,7 @@
             {
               "id": "c1",
               "text": "한쪽 팔이 많이 제한되고 찝혀요",
-              "next": "cause:cause-dp"
+              "next": "test:test-shoulder-flex"
             },
             {
               "id": "c2",
@@ -92,7 +92,40 @@
           ]
         }
       ],
-      "tests": [],
+      "tests": [
+        {
+          "id": "test-shoulder-flex",
+          "name": "능동 어깨 굴곡 검사",
+          "purpose": "팔을 머리 위로 완전히 들 수 있는지 확인합니다. 풀업 시작 자세(데드 행) 진입에 필요한 기본 가동범위입니다.",
+          "steps": [
+            "양팔을 앞으로 뻗고 시작하세요",
+            "팔꿈치를 편 채 천천히 머리 위로 들어 올리세요",
+            "통증 없이 귀 옆까지 올라가는지 확인하세요"
+          ],
+          "note": "허리가 과도하게 젖혀지지 않도록 주의하세요.",
+          "pass_text": "통증 없이 귀 옆(180도)까지 올라가요",
+          "fail_text": "올리는 중 통증이 있거나 귀 옆까지 안 올라가요",
+          "pass_next": "cause:cause-case4",
+          "fail_next": "cause:cause-case1",
+          "video_url": ""
+        },
+        {
+          "id": "test-shoulder-hang",
+          "name": "데드 행(Dead Hang) 부하 검사",
+          "purpose": "바에 매달린 상태에서 어깨가 통증 없이 부하를 버티는지 확인합니다. 풀업 전 기본 어깨 안정성 검사입니다.",
+          "steps": [
+            "철봉이나 링에 오버핸드 그립으로 매달리세요",
+            "어깨를 귀 쪽으로 올리지 말고 자연스럽게 늘어뜨리세요",
+            "10~15초 유지하며 통증 여부를 확인하세요"
+          ],
+          "note": "발을 바닥에 살짝 딛어 체중을 일부 지지해도 됩니다.",
+          "pass_text": "15초 매달리는 동안 통증이 없어요",
+          "fail_text": "매달리는 즉시 또는 도중 어깨가 아파요",
+          "pass_next": "cause:cause-case2",
+          "fail_next": "cause:cause-dp",
+          "video_url": ""
+        }
+      ],
       "danger": {
         "title": "지금 바로 운동을 멈추세요",
         "reason": "Drop Arm(팔이 힘없이 떨어짐)은 회전근개 파열 신호입니다. 자가 재활을 진행하면 손상이 커질 수 있습니다.",
@@ -653,17 +686,17 @@
             {
               "id": "c1",
               "text": "바깥쪽 뼈 돌출부 (신전근 쪽)",
-              "next": "cause:cause-a"
+              "next": "test:test-elbow-lateral"
             },
             {
               "id": "c2",
               "text": "안쪽 뼈 돌출부 (굴곡근 쪽)",
-              "next": "cause:cause-b"
+              "next": "test:test-elbow-lateral"
             },
             {
               "id": "c3",
               "text": "앞쪽 (팔꿈치 접히는 부분)",
-              "next": "cause:cause-c"
+              "next": "test:test-elbow-lateral"
             },
             {
               "id": "c4",
@@ -673,7 +706,40 @@
           ]
         }
       ],
-      "tests": [],
+      "tests": [
+        {
+          "id": "test-elbow-lateral",
+          "name": "코젠(Cozen's) 검사 — 팔꿈치 바깥쪽",
+          "purpose": "풀업 시 팔꿈치 바깥쪽(가쪽) 통증을 재현합니다. 역수그립 당기기 동작이 손목 신전근에 반복 부하를 줘 외측상과염이 잘 생깁니다.",
+          "steps": [
+            "팔꿈치를 펴고 팔을 앞으로 뻗으세요",
+            "손목을 위로 꺾은 자세(손등 방향)를 유지하세요",
+            "반대 손으로 손등을 가볍게 눌러 저항을 주세요 (손목 신전에 저항)"
+          ],
+          "note": "팔꿈치 바깥쪽(가쪽 위관절융기) 통증이 있으면 양성입니다. 양쪽을 비교하세요.",
+          "pass_text": "저항 중 팔꿈치 바깥쪽에 통증이 없어요",
+          "fail_text": "저항 중 팔꿈치 바깥쪽이 찌릿하거나 아파요",
+          "pass_next": "test:test-elbow-medial",
+          "fail_next": "cause:cause-a",
+          "video_url": ""
+        },
+        {
+          "id": "test-elbow-medial",
+          "name": "역 코젠(Reverse Cozen's) 검사 — 팔꿈치 안쪽",
+          "purpose": "풀업 시 팔꿈치 안쪽 통증을 재현합니다. 오버핸드 당기기 동작이 손목 굴곡근과 원회내근에 부하를 줘 내측상과염이 발생합니다.",
+          "steps": [
+            "팔꿈치를 펴고 팔을 앞으로 뻗으세요",
+            "손목을 아래로 꺾은 자세(손바닥 방향)를 유지하세요",
+            "반대 손으로 손바닥을 가볍게 밀어 저항을 주세요 (손목 굴곡에 저항)"
+          ],
+          "note": "팔꿈치 안쪽(내측 위관절융기) 통증이 있으면 양성입니다. 양쪽을 비교하세요.",
+          "pass_text": "저항 중 팔꿈치 안쪽에 통증이 없어요",
+          "fail_text": "저항 중 팔꿈치 안쪽이 찌릿하거나 아파요",
+          "pass_next": "cause:cause-c",
+          "fail_next": "cause:cause-b",
+          "video_url": ""
+        }
+      ],
       "causes": [
         {
           "id": "cause-a",
@@ -961,17 +1027,17 @@
             {
               "id": "c1",
               "text": "손목을 뒤로 꺾을 때 앞쪽 당김",
-              "next": "cause:cause-a"
+              "next": "test:test-wrist-ext-mob"
             },
             {
               "id": "c2",
               "text": "손등 또는 팔뚝 바깥쪽 (신전근 쪽)",
-              "next": "cause:cause-b"
+              "next": "test:test-wrist-ext-mob"
             },
             {
               "id": "c3",
               "text": "새끼손가락 쪽 또는 안쪽 (굴곡근 쪽)",
-              "next": "cause:cause-c"
+              "next": "test:test-wrist-ext-mob"
             },
             {
               "id": "c4",
@@ -981,7 +1047,40 @@
           ]
         }
       ],
-      "tests": [],
+      "tests": [
+        {
+          "id": "test-wrist-ext-mob",
+          "name": "손목 신전 가동성 검사",
+          "purpose": "풀업 오버핸드 그립 시 손목이 충분히 신전되는지 확인합니다. 신전 범위 제한은 손목 전면 통증의 주요 원인입니다.",
+          "steps": [
+            "양 손바닥을 맞대고 기도하는 자세를 만드세요",
+            "손바닥을 붙인 채로 손목을 아래로 내려 손가락이 바닥을 향하게 하세요",
+            "손목이 90도(손가락이 완전히 아래)까지 통증 없이 내려가는지 확인하세요"
+          ],
+          "note": "손목을 억지로 꺾지 마세요. 통증이 느껴지는 각도를 기억해두세요.",
+          "pass_text": "90도까지 통증 없이 내려가요",
+          "fail_text": "내려가는 중 통증이 있거나 90도까지 안 내려가요",
+          "pass_next": "test:test-wrist-tfcc",
+          "fail_next": "cause:cause-a",
+          "video_url": ""
+        },
+        {
+          "id": "test-wrist-tfcc",
+          "name": "TFCC 압박 검사 — 새끼손가락 쪽 통증",
+          "purpose": "새끼손가락 쪽(척측) 손목에 압박을 주어 TFCC 손상 여부를 확인합니다. 풀업 그립 시 손목 척측이 과부하될 수 있습니다.",
+          "steps": [
+            "팔을 앞으로 뻗고 손바닥이 위를 향하게 하세요",
+            "손목을 새끼손가락 방향(척측)으로 비틀어 꺾으세요",
+            "반대 손 엄지로 손목 새끼손가락 쪽 뼈 아래를 가볍게 눌러보세요"
+          ],
+          "note": "새끼손가락 쪽 손목에서 찌릿하거나 욱신거리면 양성입니다.",
+          "pass_text": "새끼손가락 쪽에 통증이 없어요",
+          "fail_text": "새끼손가락 쪽 손목이 찌릿하거나 아파요",
+          "pass_next": "cause:cause-b",
+          "fail_next": "cause:cause-c",
+          "video_url": ""
+        }
+      ],
       "causes": [
         {
           "id": "cause-a",
@@ -1314,17 +1413,34 @@
             {
               "id": "c1",
               "text": "네, 배를 조이지 않으면 젖혀져요",
-              "next": "cause:cause-b"
+              "next": "test:test-back-hollow"
             },
             {
               "id": "c2",
               "text": "아니요, 자세는 괜찮아요",
-              "next": "cause:cause-a"
+              "next": "test:test-back-hollow"
             }
           ]
         }
       ],
-      "tests": [],
+      "tests": [
+        {
+          "id": "test-back-hollow",
+          "name": "할로우 바디(Hollow Body) 유지 검사",
+          "purpose": "풀업 매달린 자세에서 코어가 허리를 잡아주는지 확인합니다. 코어 약화 여부와 광배근 보상 패턴을 구별합니다.",
+          "steps": [
+            "바닥에 등을 대고 누워 허리를 바닥에 붙이세요",
+            "양팔을 귀 옆으로 뻗고 양 다리를 약 30도 들어 올리세요",
+            "허리가 바닥에서 떨어지지 않고 10초를 버티는지 확인하세요"
+          ],
+          "note": "허리가 바닥에서 뜨면 즉시 멈추세요. 다리 높이는 낮출수록 어렵습니다.",
+          "pass_text": "허리가 바닥에 붙은 채 10초를 버텨요",
+          "fail_text": "허리가 바닥에서 뜨거나 10초 버티기가 안 돼요",
+          "pass_next": "cause:cause-a",
+          "fail_next": "cause:cause-b",
+          "video_url": ""
+        }
+      ],
       "danger": {
         "title": "지금 바로 운동을 멈추세요",
         "reason": "안정 시에도 허리 통증이 지속되거나 다리로 저림·방사통이 있으면 추간판 탈출증 등 구조적 손상이 의심됩니다.",
