@@ -33,7 +33,7 @@ SCREENS.md 흐름 순서대로 화면을 순회하며 아래 기준으로 점검
 
 | 화면 ID | 항목 | 발견 내용 | 처리 |
 |---|---|---|---|
-| `route` | "이유를 붙인다" / ExerciseCard 스펙 | "왜 이 운동인가" 설명이 `<details>`로 접혀있음 (index.html:1672-1675). DESIGN.md ExerciseCard 스펙은 "접힘/펼침 없음 — 설명은 항상 노출"이라 명시. 사용자가 펼쳐보지 않으면 이유를 놓칠 수 있음 | 검토 필요 |
-| `test` | 어조/문구 일관성 | "챕터2 · 직접 테스트" 배지가 하드코딩(index.html:1447)되어 `LABEL['test']`(index.html:909)와 같은 문자열을 중복 정의. 두 곳이 따로 노는 구조라 드리프트 위험. "챕터1/챕터2" 용어도 감별 흐름에만 등장하고, 재활 흐름은 "기초재활/회복테스트/재평가/운동복귀"로 다른 명명 체계 사용 | 검토 필요 |
-| 전역 (ProgressBar) | DESIGN.md "진행 바 항상 노출" 원칙 | 실제로는 `landing/home/login/signup/my_records`에서 숨김(index.html:915). 의도된 예외로 보이나 DESIGN.md에 예외 명시 없어 스펙-코드 불일치 | 검토 필요 (스펙 문서 보완 또는 의도 확인) |
+| `route` | "이유를 붙인다" / ExerciseCard 스펙 | "왜 이 운동인가"가 `<details>`로 접혀있음(index.html:1667-1670) — 의도된 설계(정보 과다 방지, 정신없어서 일부러 접음). DESIGN.md 스펙 문구를 실제 동작에 맞게 수정 완료 | 해결 (스펙 문서 동기화) |
+| `test` | 어조/문구 일관성 | "챕터2 · 직접 테스트" 본문 배지(index.html:1442)가 진행바 라벨(`LABEL['test']`, index.html:904)과 동일 문구를 중복 표시. 비교 화면 `question`(챕터1)엔 이런 본문 배지가 없어 패턴 불일치 → 본문 배지 제거하여 통일 | 해결 |
+| 전역 (ProgressBar) | DESIGN.md "진행 바 항상 노출" 원칙 | `landing/home/login/signup/my_records`에서 숨김(index.html:910) — 감별 흐름이 아닌 화면이라 의도된 예외. DESIGN.md에 예외 명시 추가하여 동기화 완료 | 해결 |
 | `my_records` | 원인 라벨 표기 통일성 | `causeLabel()`(index.html:723-731)이 "Case A/B/C/D" 영문 표기를 자체 생성해 표시하지만, 실제 BUNDLED 데이터의 `label` 필드는 "원인 A", "원인 B", "DP 프로세스", "Case 1", "Case 2" 등으로 한글/영문이 혼용됨. (a) 데이터 자체의 명명 혼용, (b) `my_records`가 실제 `c.label`을 쓰지 않고 추측값을 표시 — 두 겹의 불일치 | 검토 필요 |
