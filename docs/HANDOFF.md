@@ -1,26 +1,23 @@
-# HANDOFF - 2026-06-09 00:00
+# HANDOFF - 2026-06-10 00:00
 
 ## 완료
-- `feat: 전문용어 ? 토글 기능 추가` (7db6d5a) — BUNDLED.glossary 추가, glossaryToggle() 구현, cause/route 화면 적용
-- `refactor: 본문 괄호 설명 제거` (9aac89b) — 용어집 중복 인라인 풀이 55건 제거
-- `feat: glossary 15개 추가` (bb7a3f1) — TFL·대퇴직근·거골·비복근·가자미근·FAI·TFCC·valgus 등
-- `feat: PAILs·RAILs·패킹 glossary 추가` (b96d7af) — 아치(arch)/팩킹 표기 통일
-- `fix: 본문 치환 164건 정상 적용` (56ed0ea) — 건측→통증 없는 쪽, 슬관절→무릎관절, 쏠림현상 등
-- glossary 최종 42개, 전체 괄호 설명 300+건 정리 완료
-- GitHub push 완료 (main), Railway 자동 배포 트리거됨
+- glossary ? 토글 동작 검증 완료 (Playwright로 직접 확인) — route 화면에서 정상 표시
+- `refactor: glossary 팝업 위치 고정 및 카드 크기 축소, 가동범위 제거` (2f11790) — push 완료, Railway 자동 배포 트리거됨
+  - ? 버튼을 details→absolute positioned popup으로 변경 (버튼이 아래로 안 밀림, 옆에 카드 오픈)
+  - 카드 크기 축소 (max-width 240px, font-size 11~12px)
+  - glossary에서 "가동범위" 항목 제거
 
 ## 진행중
 - 없음
 
 ## 대기
-- Railway 배포 완료 후 앱에서 ? 토글 동작 실제 확인
+- Railway 배포 완료 후 새 ? 팝업 위치/크기 실제 확인 (선택)
 
 ## 결정사항 / 주의
-- 룸바락(Lumbar Lock), RDL, 코젠·토마스 테스트 — 텍스트 그대로 유지
-- 전방경사·광배근·소흉근, 요추·흉추·견갑골·슬개골·족관절 — glossary 미추가 확정
-- 브레이싱→복압 통일. 단, 운동 이름 "복압 브레이싱 연습"은 유지
-- valgus 텍스트 → 쏠림현상 치환, glossary 키 valgus는 유지
-- Python 스크립트 주의: 텍스트 치환은 반드시 data 딕셔너리 내부 재귀 치환 후 json.dumps 할 것 (lines[3] 직접 치환 후 재직렬화하면 덮어씌워지는 버그 발생)
+- cause 화면 진단명(cause-tag/h2)에는 ? 버튼 추가 안 함 — 진단명은 전문용어 그대로 노출 의도
+- "기록 저장에 실패했습니다." 토스트는 데모모드 한정 동작 — 처리 불필요 (확인됨)
+- 검증 시 주의: Railway URL(`web-production-28002.up.railway.app`)은 백엔드 API 전용. 프론트엔드는 로컬 `index.html` 직접 열어서 확인 (`file:///...index.html` → 데모로 시작 → 재활 탭)
+- 레포가 `Rimseorim/rahap1` → `Rimseorim/rehap`로 이동됨 (push 시 안내 메시지 확인됨, origin은 그대로 유지됨)
 
 ## 다음 세션 권장 첫 프롬프트
-`/resume` — Railway 배포 확인 후 앱 QA 또는 다음 기능 작업
+`/resume`
