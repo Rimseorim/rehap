@@ -1,23 +1,22 @@
-# HANDOFF - 2026-06-10 00:00
+# HANDOFF - 2026-06-10 00:30
 
 ## 완료
-- glossary ? 토글 동작 검증 완료 (Playwright로 직접 확인) — route 화면에서 정상 표시
-- `refactor: glossary 팝업 위치 고정 및 카드 크기 축소, 가동범위 제거` (2f11790) — push 완료, Railway 자동 배포 트리거됨
-  - ? 버튼을 details→absolute positioned popup으로 변경 (버튼이 아래로 안 밀림, 옆에 카드 오픈)
-  - 카드 크기 축소 (max-width 240px, font-size 11~12px)
-  - glossary에서 "가동범위" 항목 제거
+- 회복테스트(goRetest) 로직 추가 개선 (c97b528): 원인을 fail(양성)로 직접 확인하는 검사가 있으면 그걸 우선 사용. 음성(pass)으로 빠져나와 도달한 원인의 경우 더 이상 의미 없는 동일 검사를 재반복하지 않음 (예: 팔꿈치 cause-c는 항상 이두건 유발검사로 회복테스트)
+- 8개 동작 전체 cause에 대해 retest 매핑 데이터 감사 완료 — 추가 수정 불필요 확인
+- push 완료 (3bef5ad), Railway 자동 배포 트리거됨
+- `.claude/settings.local.json` 권한 허용 목록 추가 커밋
 
 ## 진행중
 - 없음
 
 ## 대기
-- Railway 배포 완료 후 새 ? 팝업 위치/크기 실제 확인 (선택)
+- 없음
 
 ## 결정사항 / 주의
-- cause 화면 진단명(cause-tag/h2)에는 ? 버튼 추가 안 함 — 진단명은 전문용어 그대로 노출 의도
-- "기록 저장에 실패했습니다." 토스트는 데모모드 한정 동작 — 처리 불필요 (확인됨)
-- 검증 시 주의: Railway URL(`web-production-28002.up.railway.app`)은 백엔드 API 전용. 프론트엔드는 로컬 `index.html` 직접 열어서 확인 (`file:///...index.html` → 데모로 시작 → 재활 탭)
-- 레포가 `Rimseorim/rahap1` → `Rimseorim/rehap`로 이동됨 (push 시 안내 메시지 확인됨, origin은 그대로 유지됨)
+- goRetest 우선순위: ① 현재 testId가 해당 cause를 fail로 확정하는 검사면 유지 ② 아니면 그런 검사(confirm test)가 있으면 그걸로 교체 ③ 없으면 기존 로직(pass_next 매칭 또는 tests[0])
+- "confirm 검사가 아예 없는 cause" (발목 cause-d, 일부 허리 cause 등)는 가동성/컨디셔닝 진단이라 마지막 검사 재사용이 맞음 — 의도된 동작
+- "UNREACHED via tests" cause(질문에서 바로 cause로 분기, 검사 없음)는 retest 시 tests[0] 사용 — 기존부터 있던 동작, 이번 세션 범위 아님
+- 검증 시 주의: Railway URL은 백엔드 API 전용. 프론트엔드는 로컬 `index.html` 직접 열어서 확인
 
 ## 다음 세션 권장 첫 프롬프트
 `/resume`
