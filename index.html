@@ -2025,7 +2025,10 @@ function jumpToStage(i) {
 function goRetest() {
   const tests = getPainSite()?.tests;
   if (!tests?.length) { showToast('테스트 데이터가 없습니다.'); return; }
-  S.testId = tests[0].id;
+  if (!find(tests, S.testId)) {
+    const match = tests.find(t => t.fail_next === 'cause:' + S.causeId) || tests.find(t => t.pass_next === 'cause:' + S.causeId) || tests[0];
+    S.testId = match.id;
+  }
   S.retestMode = true;
   goToRecoveryTest();
 }
