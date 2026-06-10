@@ -123,7 +123,10 @@
       "PowerShell(New-Item *)",
       "PowerShell(python -m playwright --version 2>&1)",
       "PowerShell($content = [System.IO.File]::ReadAllText\\(\"C:\\\\dev\\\\exercisematerials\\\\01.test\\\\index.html\", [System.Text.Encoding]::UTF8\\); $idx = $content.IndexOf\\('\"glossary\":'\\); if \\($idx -ge 0\\) { $content.Substring\\($idx, 1000\\) } else { \"not found\" })",
-      "PowerShell($content = [System.IO.File]::ReadAllText\\(\"C:\\\\dev\\\\exercisematerials\\\\01.test\\\\index.html\", [System.Text.Encoding]::UTF8\\); $idx = $content.IndexOf\\('\"glossary\":'\\); $content.Substring\\($idx, 2500\\))"
+      "PowerShell($content = [System.IO.File]::ReadAllText\\(\"C:\\\\dev\\\\exercisematerials\\\\01.test\\\\index.html\", [System.Text.Encoding]::UTF8\\); $idx = $content.IndexOf\\('\"glossary\":'\\); $content.Substring\\($idx, 2500\\))",
+      "Bash(cat Procfile)",
+      "Bash(ls backend *)",
+      "Bash(ipconfig)"
     ]
   }
 }
