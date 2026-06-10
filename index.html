@@ -966,7 +966,7 @@ function render() {
   else releaseWakeLock();
   const screens = { landing, home, login, signup, my_records, pain_site, movement, question, test, recovery_test, recovery_complete, cause, session_feedback, route, danger, complete, coming_soon };
   el('main-screen').innerHTML = (screens[S.screen] || landing)();
-  const scrollableScreens = ['route', 'my_records', 'home'];
+  const scrollableScreens = ['route', 'my_records', 'home', 'test', 'recovery_test'];
   el('main-screen').classList.toggle('scrollable', scrollableScreens.includes(S.screen));
   const tabBar = el('tab-bar');
   if (S.screen === 'home') {
