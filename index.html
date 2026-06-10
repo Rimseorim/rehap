@@ -2025,9 +2025,14 @@ function jumpToStage(i) {
 function goRetest() {
   const tests = getPainSite()?.tests;
   if (!tests?.length) { showToast('테스트 데이터가 없습니다.'); return; }
-  if (!find(tests, S.testId)) {
-    const match = tests.find(t => t.fail_next === 'cause:' + S.causeId) || tests.find(t => t.pass_next === 'cause:' + S.causeId) || tests[0];
-    S.testId = match.id;
+  // 이 원인을 양성(통증 재현)으로 직접 확인하는 검사를 우선 사용.
+  // 현재 testId가 이미 그런 검사라면 유지하고, 아니라면(음성/제외 진단으로 도달) 해당 검사로 교체.
+  const current = find(tests, S.testId);
+  const isConfirm = t => t.fail_next === 'cause:' + S.causeId;
+  if (!current || !isConfirm(current)) {
+    const confirmTest = tests.find(isConfirm);
+    if (confirmTest) S.testId = confirmTest.id;
+    else if (!current) S.testId = (tests.find(t => t.pass_next === 'cause:' + S.causeId) || tests[0]).id;
   }
   S.retestMode = true;
   goToRecoveryTest();
