@@ -130,7 +130,10 @@
       "Bash(find .claude/skills -name SKILL.md)",
       "Bash(ls .claude/skills)",
       "Bash(git remote *)",
-      "Bash(npx --yes playwright --version)"
+      "Bash(npx --yes playwright --version)",
+      "Bash(node -e ' *)",
+      "Bash(node tmp_inspect_stage.js)",
+      "Bash(grep -oE 'test-[a-z0-9-]+ \\\\| [^|]+\\\\|' tmp_list_all_tests.js)"
     ]
   }
 }

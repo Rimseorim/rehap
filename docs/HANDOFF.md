@@ -1,31 +1,25 @@
-# HANDOFF - 2026-06-11 (세션 종료)
+# HANDOFF - 2026-06-14 17:26
 
 ## 완료
-- lunge/knee, lunge/lower-back, lunge/ankle의 phase 질문(q1)을 squat 패턴으로 통일
-  - "런지 내려갈 때"/"올라올 때 또는 내내" 등 → "운동 시작하자마자"/"어느 정도 반복한 후"
-  - cause 분기에는 영향 없음 (phase는 cause와 독립적, 전체 앱 공통 설계 확인됨)
-- 회복테스트 화면(`recovery_test()`, index.html line 1506) 문구 중립화
-  - "기초재활 전 같은 동작입니다. 처음보다 나아졌나요?" → "아래 동작으로 회복 정도를 확인해보세요."
-  - 사유: cause로 직행(테스트 미경험)한 사용자에게 "같은 동작"이라는 문구가 거짓이 되는 문제 수정
-- **미커밋 상태** — index.html 변경 2건, push 시 Railway 자동배포됨
+- 회복테스트(goRetest) 13건 신규 추가 (index.html 내 BUNDLED 데이터, 이번 커밋에 포함) — RETEST_AUDIT.md 13건 모두 [x] 처리, goRetest 시뮬레이션+Playwright 검증 완료
+- 13건 + 신규발견 1건(test-lowerback-overload-retest, x3 사용) = 총 14건에 대해 "정식검사+영상" 교체 매핑안 작성 → docs/RETEST_VALIDATED_TESTS.md
+- 전체 53개 고유 테스트 전수 점검·분류 완료
+  - A그룹(39개): 코젠스/토마스/FADIR/트렌델렌버그/Apley's/TFCC/Ober's/할로우바디/데드행 등 표준검사·표준동작 — 내용 변경 불필요, 영상 링크만 추가
+  - B그룹(룸바락 3종): "그대로 유지" 결정 존중, Seated Wall Angel test와 동작·메커니즘 일치 — 이름/내용 안 바꾸고 영상만 매칭
+  - C그룹(14건): 교체 필요 (위 매핑안)
 
 ## 진행중
-- 없음
+- 14건 교체 — 콘텐츠 작성/반영 아직 시작 안 함
+  - 중단 지점: docs/RETEST_VALIDATED_TESTS.md 매핑표. 14건 중 9건만 후보 URL 검색됨(McKenzie Press-up, Decline Step-Down, 싱글레그 힐레이즈, 싱글레그 디클라인 스쿼트, 흉추신전가동성, ASLR). #2/3 펙검사(길이/저항), #8-10 McGill 플랭크, #12 토터치/SFMA MSF는 URL 미확정. 찾은 URL도 검색결과 제목/링크일 뿐 실제 재생 검증 안 됨.
+  - 다음 스텝: 14건 전체 구체 영상 URL 확정(웹서치) → 접속 가능 여부 확인 → 사용자 승인 받고 index.html에 콘텐츠 작성/반영 (구조: pass_next/fail_next 유지, name/purpose/steps/note/pass_text/fail_text/video_url만 교체. 4·5는 디클라인 스텝다운 1개 검사 공유 가능, #1과 test-lowerback-overload-retest는 McKenzie 신전검사로 통합)
 
 ## 대기
-- **회복테스트(goRetest) tests[0] fallback 전체 감사 완료, 수정 여부 결정 대기**
-  - 1순위 (영향 최대, 7개 동작 × Case2/3/4 ≈ 14건): 어깨 공유 프로토콜
-    - q3(룸바락 검사)/q4(Apley's Scratch 검사)가 `questions`로만 존재하고 `tests` 배열엔 없어, goRetest가 이걸 못 찾고 무관한 tests[0](통증호/능동굴곡 검사)로 감
-    - 근본원인 1곳 → 수정 시 deadlift/kipping/press-h/press-v/pullup/row/squat 7개 동작에 동시 전파
-    - 수정 방향: q3/q4를 tests 배열에도 추가하거나, goRetest/recovery_test가 questions도 검색하도록 로직 확장
-  - 2순위 (3건): deadlift/press-h/press-v의 lower-back 원인C(과부하/과사용) — "방향성 없음"으로 도달했는데 retest는 방향성 검사(전굴후굴/토마스)로 감, 대안 테스트가 해당 부위에 아예 없음
-  - 3순위 (3건): deadlift/knee 원인C, lunge/knee 원인C, lunge/ankle 원인B — 개별 메커니즘 미스매치
-  - 수정불요로 확정: pullup/허리 cause-a 외 lunge/lower-back 원인C, row/lower-back 원인A, lunge/ankle 원인C, press-h/chest 원인C
+- A그룹(39개)·B그룹(3개) 영상 링크 추가 — 14건 작업 끝난 뒤, 별도 승인 받아 진행
 
 ## 결정사항 / 주의
-- pullup/허리 q1(phase 질문)은 row/허리와 동일 구조("당기는 동작 중"=A vs "정적 유지자세"=B) — 정상, 수정불요
-- retestMode가 outcome-only(fail 시 재진단 미분기)인 구조는 "어쩔 수 없는 트레이드오프"로 수용 확정 (memory `feedback_dont_repeat.md`에 기록됨)
-- 검증 시 주의: Railway URL은 백엔드 API 전용. 프론트엔드는 로컬 `index.html` 직접 열어서 확인
+- 13건 신규 회복테스트를 "정식검사+영상" 기준 재검토한 결과 절반 정도(#1,2,3,11,13)는 처음 제안한 SFMA/FMS 매핑이 부적합(과도한 부하/파트너 필요/메커니즘 불일치) → McKenzie 신전검사, 펙 길이검사/저항검사, ASLR, 흉추신전가동성 등으로 재매핑함
+- 신규 발견: test-lowerback-overload-retest(deadlift/press-h/press-v 허리, x3) — 13건의 #1(row 과부하)과 동일한 "증상설문형" → #1과 통합해 McKenzie 신전검사를 4개 동작이 공유하도록 제안
+- 룸바락(Lumbar Lock) 3종은 과거 세션에서 "그대로 유지"로 결정됨 — 이번에도 이름/내용은 안 바꾸고 Wall Angel 동작 영상만 매칭
 
 ## 다음 세션 권장 첫 프롬프트
-`/resume` → 1순위(어깨 공유 프로토콜 q3/q4 tests 배열 편입) 착수 여부부터 결정
+/resume
