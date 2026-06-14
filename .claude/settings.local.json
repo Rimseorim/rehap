@@ -135,7 +135,24 @@
       "Bash(node tmp_inspect_stage.js)",
       "Bash(grep -oE 'test-[a-z0-9-]+ \\\\| [^|]+\\\\|' tmp_list_all_tests.js)",
       "Bash(mkdir -p docs/archive)",
-      "Bash(mv docs/HANDOFF.md \"docs/archive/HANDOFF-2026-06-14.md\")"
+      "Bash(mv docs/HANDOFF.md \"docs/archive/HANDOFF-2026-06-14.md\")",
+      "Bash(grep -o '\"id\":\"lower-back\"[^}]\\\\{0,80\\\\}' index.html)",
+      "Bash(grep -o '.\\\\{50\\\\}아치 페이즈.\\\\{1\\\\}.\\\\{0,400\\\\}' index.html)",
+      "Bash(grep -o '.\\\\{30\\\\}코어플랭크.\\\\{0,200\\\\}' index.html)",
+      "Bash(grep -o '\"recovery_test\":{[^}]\\\\{0,500\\\\}' index.html)",
+      "Bash(grep -o '\"id\":\"lunge\"[^[]*\"lower-back\"[^]]\\\\{0,3000\\\\}' index.html)",
+      "Bash(grep -o '\"id\":\"test-[a-z-]*plank[a-z-]*\"[^}]\\\\{0,600\\\\}' index.html)",
+      "Bash(grep -o '\"id\":\"test-[a-z-]*core[a-z-]*\"[^}]\\\\{0,600\\\\}' index.html)",
+      "Bash(grep -o '.\\\\{30\\\\}\"id\":\"ankle\",\"name\":\"발목\".\\\\{4000\\\\}' index.html)",
+      "Bash(grep -o '\"id\":\"ankle\",\"name\":\"발목\".\\\\{6000\\\\}' index.html)",
+      "Bash(grep -o '\"id\":\"ankle\",\"name\":\"발목\",\"coming_soon\".\\\\{6000\\\\}' index.html)",
+      "Bash(grep -o '.\\\\{60\\\\}\"id\":\"ankle\",\"name\":\"발목\"' index.html)",
+      "Bash(grep -o '\"id\":\"cause-d\"[^}]\\\\{0,400\\\\}')",
+      "Bash(grep -o '\"id\":\"cause-d\"[^}]\\\\{0,2500\\\\}')",
+      "Bash(grep -o '\"id\":\"cause-c\",\"label\":\"원인 C\"[^}]\\\\{0,400\\\\}')",
+      "Bash(ls docs/*.md)",
+      "Bash(grep -c \"어깨\" docs/need/RETEST_CONTENT_REVIEW.md)",
+      "Bash(tail -5 docs/need/RETEST_REVIEW_HANDOFF.md)"
     ]
   }
 }
