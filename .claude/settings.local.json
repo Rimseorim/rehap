@@ -128,7 +128,9 @@
       "Bash(ls backend *)",
       "Bash(ipconfig)",
       "Bash(find .claude/skills -name SKILL.md)",
-      "Bash(ls .claude/skills)"
+      "Bash(ls .claude/skills)",
+      "Bash(git remote *)",
+      "Bash(npx --yes playwright --version)"
     ]
   }
 }
