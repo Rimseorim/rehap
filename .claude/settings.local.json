@@ -126,7 +126,9 @@
       "PowerShell($content = [System.IO.File]::ReadAllText\\(\"C:\\\\dev\\\\exercisematerials\\\\01.test\\\\index.html\", [System.Text.Encoding]::UTF8\\); $idx = $content.IndexOf\\('\"glossary\":'\\); $content.Substring\\($idx, 2500\\))",
       "Bash(cat Procfile)",
       "Bash(ls backend *)",
-      "Bash(ipconfig)"
+      "Bash(ipconfig)",
+      "Bash(find .claude/skills -name SKILL.md)",
+      "Bash(ls .claude/skills)"
     ]
   }
 }
