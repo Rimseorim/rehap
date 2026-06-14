@@ -133,7 +133,9 @@
       "Bash(npx --yes playwright --version)",
       "Bash(node -e ' *)",
       "Bash(node tmp_inspect_stage.js)",
-      "Bash(grep -oE 'test-[a-z0-9-]+ \\\\| [^|]+\\\\|' tmp_list_all_tests.js)"
+      "Bash(grep -oE 'test-[a-z0-9-]+ \\\\| [^|]+\\\\|' tmp_list_all_tests.js)",
+      "Bash(mkdir -p docs/archive)",
+      "Bash(mv docs/HANDOFF.md \"docs/archive/HANDOFF-2026-06-14.md\")"
     ]
   }
 }
