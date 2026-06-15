@@ -132,18 +132,176 @@ case2/3/4는 공유 질문분기(룸바락/Apley's Scratch 검사, 7동작 동�
 
 ---
 
-## 보류 — 추가 검토/결정 필요
+## 고관절 (스쿼트 → 런지 → 데드리프트) — 검토 완료
 
-(현재 보류 항목 없음)
+| 동작 | 원인 | 검사 (선별/회복) | 판정 |
+|---|---|---|---|
+| 스쿼트 | a. 고관절 임핀지먼트 (FAI, 가동성 부족) | FADIR 검사 | 일치 |
+| 스쿼트 | b. 고관절 굴곡근 긴장 (과긴장, 앞쪽 통증) | 토마스(Thomas) 검사 | 일치 (수정 완료) |
+| 스쿼트 | c. 중둔근·이상근 (근력 부족, 바깥쪽 통증) | 트렌델렌버그(Trendelenburg) 검사 | 일치 |
+| 런지 | a. 고관절 임핀지먼트 (FAI) | FADIR 검사 | 일치 |
+| 런지 | b. 고관절 굴곡근 긴장 | 토마스 검사 | 일치 (수정 완료) |
+| 런지 | c. 중둔근·이상근 | 트렌델렌버그 검사 | 일치 |
+| 데드리프트 | a. 햄스트링 부착부 건병증 (과부하, 좌골결절) | 앉아서 햄스트링 부하 검사 | 일치 |
+| 데드리프트 | b. 고관절 임핀지먼트 (FAI) | FADIR 검사 | 일치 |
+| 데드리프트 | c. 고관절 굴곡근 긴장 (과긴장, 앞쪽 통증) | 토마스 검사 | 일치 |
+
+### 수정 완료
+- **스쿼트/런지 test-hip-fadir / test-hip-thomas의 pass_next 교체**: 데드리프트(fadir-dl pass→cause-c 종료, thomas-dl pass→fadir-dl)와 동일한 패턴으로 통일.
+  - `test-hip-fadir` pass_next: `test:test-hip-thomas` → `cause:cause-c` (배제 기반 종료)
+  - `test-hip-thomas` pass_next: `cause:cause-c` → `test:test-hip-fadir`
+  사유: 기존엔 q1-c2(앞쪽 통증)→thomas pass 시 곧바로 메커니즘이 다른 cause-c(바깥쪽/뒤쪽)로 직행했음. fadir와 thomas가 서로를 가리키게 하면 둘 다 pass일 때 무한루프가 생기므로, 데드리프트처럼 fadir의 pass를 종료점(배제 기반)으로 두고 thomas의 pass는 fadir로 보내 FAI를 한 번 더 확인하도록 변경. 3원인 구조상 배제 기반 종료 1곳은 불가피.
+
+**고관절 결론**: 9개 원인(3동작×3원인) 전부 일치, 이슈 1건 수정 완료(루프 방지 포함). 보류 없음.
 
 ---
+
+## 손목 (데드리프트 → 풀업 → 키핑 → 로우 → 수직프레스 → 수평프레스) — 검토 완료
+
+6개 동작 모두 동일한 questions/tests/causes 구조 (문구만 동작별로 customize).
+
+| 원인 | 검사 (선별/회복) | 판정 |
+|---|---|---|
+| a. 손목 신전 가동성 부족 (가동성 부족, 앞쪽 통증) | 손목 신전 가동성 검사 | 일치 |
+| b. 손목 신전근 건병증 (과부하, 손등·팔뚝 바깥쪽) | 저항성 손목 신전 검사 | 일치 |
+| c. 손목 굴곡근 과부하/TFCC (과부하, 새끼손가락 쪽) | TFCC 압박검사 / 저항성 손목 굴곡 검사 (둘 다 fail_next=cause-c) | 일치 |
+
+### 수정 완료
+- **`test-wrist-flex-resist` pass_next (6동작 공통)**: `cause:cause-a`(손목 신전 가동성 부족, 앞쪽 통증) → `test:test-wrist-tfcc`로 수정.
+  사유: q1-c3 "새끼손가락 쪽/안쪽(굴곡근 쪽)" 통증 경로에서 호출되는 검사인데, 음성(pass) 시 위치·메커니즘이 다른 앞쪽/신전 가동성 원인(cause-a)으로 직행하고 있었음. 고관절 검토에서 수정한 패턴과 동일 — 검사(TFCC)로 라우팅해 cause-b/cause-c 중 적절한 쪽으로 분기되도록 변경.
+- **수직프레스(press-vertical) 태그/이름 표기 통일**: cause-a 태그 "관절 가동범위 제한"→"가동성 부족", name "요측수근신전 가동범위 제한 (손목 신전 가동성 부족)"→"손목 신전 가동성 부족". cause-b/c 태그 "건병증·과부하"→"과부하", name을 나머지 5동작과 동일하게 통일.
+  사유: 다른 5동작과 동일한 메커니즘인데 press-v만 다른 태그 체계를 사용 — 어깨 검토에서 처리한 press-v 표기 통일과 같은 종류의 이슈.
+
+**손목 결론**: 6개 동작 × 3원인 = 18개 전부 일치, 이슈 1건(6동작 공통 수정) + 표기 통일 1건 완료. 보류 없음.
+
+---
+
+## 팔꿈치 (풀업 → 키핑 → 로우 → 수직프레스 → 수평프레스) — 검토 완료
+
+5개 동작 모두 동일한 questions/tests/causes 구조.
+
+| 원인 | 검사 (선별/회복) | 판정 |
+|---|---|---|
+| a. 외측 상과염 (테니스엘보, 바깥쪽, 과부하) | Cozen's test (test-elbow-lateral, fail→cause-a) | 일치 |
+| b. 내측 상과염 (골퍼엘보, 안쪽, 과부하) | Reverse Cozen's test (test-elbow-medial, fail→cause-b) | 일치 |
+| c. 이두건 건병증 (앞쪽, 과부하) | 이두건 유발검사 (test-elbow-anterior, fail→cause-c) | 일치 |
+
+goRetest(fail-based) 전부 존재: cause-a↔lateral, cause-b↔medial, cause-c↔anterior. route.stages why도 description과 부합 (cause-a 샘플 확인).
+
+**팔꿈치 결론**: 5개 동작 × 3원인 = 15개 전부 일치. 보류 1건(아래 공통 보류 항목 참조).
+
+---
+
+## 흉근 (수평프레스만) — 검토 완료
+
+| 원인 | 검사 (선별/회복) | 판정 |
+|---|---|---|
+| a. 대흉근 건병증 (하강 시 과부하) | 소흉근 길이 테스트 pass(소흉근 정상)→cause-a / 회복테스트: Pec Major Stretch Test (fail→cause-a) | 일치 |
+| b. 소흉근 과긴장 (가슴 전면·어깨 전방 당김) | 소흉근 길이 테스트 fail(비대칭·짧음)→cause-b | 일치 |
+| c. 과사용 (볼륨·빈도 급증) | q2 직접 라우팅 ("전체적으로 뻐근하고 무거움") / 회복테스트: test-chest-overuse-retest (fail→cause-c) | 일치 |
+
+goRetest(fail-based) 전부 존재. 위치 세분화 없는 단일 부위(흉근)라 funnel 위치 미스매치 해당 없음.
+
+**흉근 결론**: 1개 동작 × 3원인 = 3개 전부 일치. 보류 없음.
+
+---
+
+## 수정 완료 — funnel 위치 미스매치 (고관절·손목·팔꿈치)
+
+N개 원인 + N개 검사가 funnel 구조로 연결될 때, 일부 검사의 `pass_next`가 q1 진입 위치와 메커니즘상 다른 cause로 종료되던 문제. 각 부위에 **cause-d("특이 소견 없음 — OOO 컨디셔닝 부족")**를 신규 추가하고, 진단 검사를 **독립 라우팅**(검사별 fail→자기 위치에 맞는 원인, pass→cause-d)으로 재배선해 위치 미스매치와 funnel 순환을 동시에 해소.
+
+- **고관절** (스쿼트·런지·데드리프트, cause-a/b/c + 신규 cause-d):
+  - fadir/thomas/trendelenburg (데드리프트: hamstring/fadir-dl/thomas-dl) 각각 fail→자기 원인, pass→cause-d
+- **손목** (6동작, cause-a/b/c + 신규 cause-d):
+  - ext-mob/ext-resist/flex-resist 각각 fail→자기 원인, pass→cause-d
+  - test-wrist-tfcc는 cause-c 재검사(retest)용으로 재배치 (fail→cause-c, pass→cause-d)
+- **팔꿈치** (5동작, cause-a/b/c + 신규 cause-d):
+  - lateral/medial/anterior 각각 fail→자기 원인, pass→cause-d
+
+cause-d는 발목의 기존 "특이소견없음" 패턴을 일반화한 형태로, route.stages(기초재활/재평가/운동복귀) 전체 포함. index.html 반영 및 analyze_retest.js로 25개 템플릿 정상 파싱 검증 완료 (8개 동작 전체 데이터 존재).
+
+---
+
+## 추가 완료 — cause-d/e 안전망 (무릎, "앞쪽" 진입 경로)
+
+스쿼트/런지/데드리프트 무릎 항목은 funnel 미스매치 버그는 없었으나, "검사상 특이 소견 없음"으로 끝나는 안전망이 없어 모든 양성(pass) 사용자가 특정 진단(과부하/PFS/슬개대퇴압박)으로 과잉부여되는 문제가 있었음. 각 동작의 "앞쪽(슬개골 주변)" 진입 경로에 새 디클라인 스텝다운류 검사 + cause-d(또는 cause-e)를 추가해 해소.
+
+- **스쿼트-무릎** (cause-a/b/c + 신규 cause-d):
+  - test-single-leg.pass → 신규 `test-knee-pf-provocation`(디클라인 싱글레그 스쿼트) → pass: cause-d(특이소견없음-컨디셔닝부족) / fail: cause-c(기존 훈련 볼륨 과부하)
+- **런지-무릎** (cause-a/b/c/d + 신규 cause-e):
+  - test-valgus.pass → 신규 `test-knee-pf-provocation-lunge`(디클라인 스텝다운) → pass: cause-e(특이소견없음-컨디셔닝부족, 신규) / fail: cause-d(기존 슬개대퇴증후군)
+- **데드리프트-무릎** (cause-a/b/c + 신규 cause-d):
+  - test-valgus.pass → 신규 `test-knee-pf-provocation-deadlift`(디클라인 스텝다운) → pass: cause-d(특이소견없음-컨디셔닝부족, 신규) / fail: cause-a(기존 슬개대퇴 압박과부하)
+
+신규 cause-d/e는 모두 route.stages(기초재활 4종/재평가/운동복귀) 풀세트 포함. index.html 반영 및 analyze_retest.js로 25개 템플릿 정상 파싱, 8개 동작 pain_sites 카운트 변동 없음 검증 완료.
+
+**보류 해소 — 런지·데드리프트 "바깥쪽(외측)" 진입 경로**:
+
+런지·데드리프트 무릎의 "바깥쪽" 진입은 검사 없이 곧장 cause-c(IT밴드/TFL 긴장)로 직행하던 과잉부여 문제가 있었음. 기존 cause-c 재평가용 `test-itband-retest`(오버 테스트)를 모델로 신규 초기 검사를 추가해 해소.
+
+- **런지-무릎**: "바깥쪽" 선택 → 신규 `test-itband-ober-lunge`(오버 테스트) → pass(당김 없음): cause-e(특이소견없음-컨디셔닝부족) / fail(긴장 확인): cause-c(IT밴드/TFL 긴장, 기존)
+- **데드리프트-무릎**: "바깥쪽" 선택 → 신규 `test-itband-ober-deadlift`(오버 테스트) → pass: cause-d(특이소견없음-컨디셔닝부족) / fail: cause-c(IT밴드/TFL 긴장, 기존)
+
+index.html 반영 및 analyze_retest.js로 25개 템플릿 정상 파싱, 8개 동작 pain_sites 카운트 변동 없음 검증 완료. 이로써 무릎 항목(앞쪽·바깥쪽 진입 경로 모두)의 cause-d/e 안전망 작업이 완전히 종료됨.
+
+---
+
+## 추가 완료 — cause-d 안전망 (허리, 4개 동작)
+
+허리는 8개 동작 중 4개(스쿼트/런지/수직프레스/수평프레스)에서 "검사 pass가 검증 없이 곧장 다른 메커니즘의 cause로 직행"하는 과잉부여 패턴이 있었음. 각 동작에 새 진단 검사 + cause-d(특이소견없음-컨디셔닝부족)를 추가해 해소. (데드리프트/풀업/키핑/로우 4개는 기존 binary 방향성 검사로 이미 적절히 분기되어 변경 없음.)
+
+- **스쿼트-허리** (cause-a/b/c + 신규 cause-d):
+  - test-lbs-hip-flex.pass / test-lbs-plank.pass → 둘 다 신규 `test-tspine-extension`(흉추 신전 가동성 검사, Heel Sit)로 라우팅 → pass: cause-d(특이소견없음-컨디셔닝부족, 신규) / fail: cause-b(기존 흉추 가동성 부족)
+  - 엔트리 질문 q3.c2/q4.c2("말려요"/"60초 이상 유지")도 동일하게 `test-tspine-extension`으로 변경
+- **런지-허리** (cause-a/b/c + 신규 cause-d):
+  - test-hip-flexor.pass → 신규 `test-core-sideplank`(사이드 플랭크 안정성 검사) → pass: cause-d(신규) / fail: cause-b(기존 코어 약화)
+- **수직프레스-허리** (cause-a/b/c + 신규 cause-d): 런지와 동일 패턴
+  - test-hip-flexor.pass → 신규 `test-core-sideplank` → pass: cause-d(신규) / fail: cause-b(기존 코어 약화)
+- **수평프레스-허리** (cause-a/b/c + 신규 cause-d): 런지와 동일 패턴
+  - test-hip-flexor.pass → 신규 `test-core-sideplank` → pass: cause-d(신규) / fail: cause-b(기존 코어 약화)
+
+신규 cause-d는 모두 route.stages(기초재활 4종/재평가/운동복귀) 풀세트 포함, 동작별 맞춤 워밍업(맨몸 스쿼트/런지/PVC 오버헤드 프레스 등). index.html 반영 및 analyze_retest.js로 25개 템플릿 정상 파싱, 8개 동작 pain_sites 카운트 변동 없음 검증 완료.
+
+---
+
+## 추가 완료 — cause-d 안전망 (어깨, 7개 동작)
+
+어깨는 7개 동작이 cause-dp/case1~4 공유 구조를 쓰는데, 2차 검사의 "pass"가 검증 없이 곧장 다른 케이스(case2 또는 case4)로 직행하는 과잉부여 패턴이 전 동작에 있었음. 어깨에는 기존에 "특이소견없음" 계열 cause가 전혀 없어 신규 cause-d를 7동작 전체에 추가.
+
+- **스쿼트** (cause-dp/case1~4 + 신규 cause-d):
+  - `test-shoulder-ext-rot`(외회전 가동성).pass → 신규 `test-shoulder-scapula`(견갑골 안정성, Wall Slide) → pass: cause-d(신규) / fail: cause-case4(견갑골 익상, 기존)
+- **데드리프트/풀업/키핑/로우/수직프레스/수평프레스** (cause-dp/case1~4 + 신규 cause-d, 동일 패턴):
+  - 2차 검사(`int-rot`/`hang`/`ext`/`h-abd`/`empty-can`/`h-add`).pass → 신규 `test-shoulder-core`(코어-상지 분리, Lumbar Lock) → pass: cause-d(신규) / fail: cause-case2(코어-상지 분리 실패, 기존)
+
+신규 cause-d("특이 소견 없음 — 어깨 컨디셔닝 부족")는 7동작 모두 route.stages 풀세트 포함 (밴드 외회전/Y-레이즈/데드버그/PVC 패스 스루 + 동작별 맞춤 워밍업·체크리스트·팁). 7동작 반복 작업 특성상 Edit 대신 node 스크립트로 BUNDLED JSON을 직접 변환·재기록(JSON.stringify round-trip). analyze_retest.js로 25개 템플릿 정상 파싱, 8개 동작 pain_sites 카운트 변동 없음 검증 완료.
+
+---
+
+## 추가 완료 — cause-d 안전망 (흉근, 수평프레스)
+
+흉근(수평프레스만)에도 동일한 과잉부여 패턴이 있었음: `test-pec-length`(소흉근 길이 테스트)의 "pass"(소흉근 정상)가 검증 없이 곧장 cause-a(대흉근 건병증)로 직행. 소흉근이 정상이라는 것이 대흉근 건병증이 있다는 근거는 아님.
+
+- **수평프레스-흉근** (cause-a/b/c + 신규 cause-d):
+  - `test-pec-length`.pass → 신규 `test-pec-tendinopathy`(대흉근 길이검사, Pec Major Stretch Test — 기존 retest를 초기 검사로 재구성) → pass: cause-d(특이소견없음-흉근 컨디셔닝부족, 신규) / fail: cause-a(대흉근 건병증, 기존)
+  - `test-pec-length`.fail(소흉근 단축)은 변경 없이 cause-b(소흉근 과긴장)로 유지
+
+신규 cause-d는 route.stages 풀세트 포함 (폼롤러 대흉근 이완/도어웨이 스트레칭/밴드 풀 어파트/맨몸 벤치프레스 워밍업 + 재평가·운동복귀). analyze_retest.js로 25개 템플릿 정상 파싱, 8개 동작 pain_sites 카운트 변동 없음 검증 완료.
+
+---
+
+## cause-d 적용 검토 — 전체 완료
+
+- [x] 무릎 (위 섹션 참고)
+- [x] 허리 (위 섹션 참고)
+- [x] 어깨 (위 섹션 참고)
+- [x] 흉근 (위 섹션 참고)
 
 ## 진행 예정
 
 - [x] 허리 (스쿼트→런지→데드리프트→풀업→키핑→로우→수직프레스→수평프레스)
 - [x] 발목
 - [x] 어깨
-- [ ] 고관절
-- [ ] 손목
-- [ ] 팔꿈치
-- [ ] 흉근
+- [x] 고관절
+- [x] 손목
+- [x] 팔꿈치
+- [x] 흉근
