@@ -524,7 +524,7 @@ function selectFeedback(type) {
   if (type === 'easy') { comfortableCount++; } else { comfortableCount = 0; }
   updatePhaseStats({ sessionCount, comfortableCount, lastSessionDate: today, firstSessionDate: stats.firstSessionDate || today });
   S.sessionFeedbackType = type;
-  if (type === 'easy' && comfortableCount >= 2 && (stats.phase === 'A' || stats.phase === null)) {
+  if (type === 'easy' && comfortableCount >= 3 && (stats.phase === 'A' || stats.phase === null)) {
     const m = document.getElementById('phase-upgrade-modal');
     if (m) { m.style.display = 'flex'; return; }
   }
@@ -1826,8 +1826,8 @@ function complete() {
     const phase = ps.phase || 'A';
     const sess = ps.sessionCount || 0;
     const comfortable = ps.comfortableCount || 0;
-    const readyForB = phase === 'A' && sess >= 3 && comfortable >= 2;
-    const readyForTest = phase === 'B' && comfortable >= 2;
+    const readyForB = phase === 'A' && sess >= 3 && comfortable >= 3;
+    const readyForTest = phase === 'B' && comfortable >= 3;
     if (readyForB) return `<p class="t4" style="margin-top:8px;color:#16a34a;font-weight:600">Phase B로 넘어갈 준비가 됐어요!</p>`;
     if (readyForTest) return `<p class="t4" style="margin-top:8px;color:#16a34a;font-weight:600">회복테스트로 넘어갈 준비가 됐어요!</p>`;
     if (phase === 'B') return `<p class="t4" style="margin-top:8px;color:var(--text-sub)">아직 Phase B를 더 하는 걸 권장해요</p>`;
