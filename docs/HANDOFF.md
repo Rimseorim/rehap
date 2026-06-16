@@ -1,25 +1,27 @@
-# HANDOFF - 2026-06-14 20:10
+# HANDOFF - 2026-06-16
 
 ## 완료
-- 어깨 공유 프로토콜(cause-dp, case1~4) 콘텐츠 품질 개선 3건, index.html 반영·검증 완료 (미커밋)
-  - case3 표준화: tag="가동성 부족", name/description/priority_note에 "회전근개" 포함, 기존 3가지 변형(A 5개/B 1개/C 1개) → 7동작 통일
-  - cause-dp stage-1에 "바텀업 케틀벨 홀드" 운동 추가 (7동작)
-  - case2 stage-1에 "오프셋 파머스 캐리" 운동 추가 (7동작, press-v의 "견갑골을 패킹한" 변형 포함)
-  - 모두 원본 자료(`C:\Users\tjfla\OneDrive\Desktop\메모\재활\어깨 재활 프로그램.txt`)와 grep 검증 완료 (7x/7x/7x)
+- deadlift/허리 cause-d(복합형: 굴곡·신전 모두 통증) 신설, test-flexion extra_choice → cause-d 연결
+- test() 렌더 함수에 범용 3번째 버튼(extra_choice) 지원 추가
+- 용어 탭 ? 버튼 색상 → var(--accent) (회색→강조색)
+- 진행 추적 기능 추가: firstSessionDate/retestLog 저장, 내 기록 카드 N일째 배지, 재평가 화면 지난시도 표시
+- cause-d(특이소견없음) 28곳 검토: 라우팅 정상, 문구 유지 결정
 
 ## 진행중
-- 어깨 방향2(동작별 원인 재설계) 진행 여부 미정
-  - 중단 지점: AC관절(빗장뼈-어깨 끝) 통증 갭 조사 완료 → "6번째 공유원인 추가는 불필요"로 결론 (dp 경로가 안전하게 캐치)
-  - 다음 스텝: 방향2(동작별 재설계) 자체를 진행할지 사용자에게 먼저 확인. 진행 안 한다면 어깨 작업 종료 → 고관절로 이동
-- docs/need/RETEST_CONTENT_REVIEW.md에 이번 3건(case3/dp/case2) 변경사항 미반영
-  - 다음 스텝: feedback_review_doc_workflow에 따라 채팅에 변경 요약 먼저 보여주고 승인 후 문서 반영
+- **b. 훈련 볼륨/빈도 정량 질문 추가**
+  - 중단 지점: 착수 전
+  - 다음 스텝: 과부하 계열 cause 분기에 "최근 훈련량 급격히 늘었나요?" 질문 노드 추가. 동작x통증부위 범위 먼저 파악 필요.
+- **c. 동작별 스케일링 옵션 추가** (밴드 강도, 박스 높이 등)
+  - 중단 지점: 착수 전
+  - 다음 스텝: exercise 객체에 scaling 필드 추가할지 vs cue 필드 활용할지 방향 결정 필요.
 
 ## 대기
-- 고관절 → 손목 → 팔꿈치 → 흉근 회복테스트/직접테스트 리뷰 (docs/need/RETEST_REVIEW_HANDOFF.md 참고, 어깨 작업 종료 후 착수)
+- 어깨 방향2 동작별 원인 재설계 (진행 여부 미정)
+- 영상 URL 백로그 17/145 (외부 콘텐츠 제작 의존)
 
 ## 결정사항 / 주의
-- AC관절 통증은 별도 원인으로 분류하지 않음 — case2 h-add 테스트 fail 시 cause-dp(보호/진정 프로세스)로 라우팅되어 안전하게 처리됨
-- docs/need/ 폴더에 RETEST_CONTENT_REVIEW.md, RETEST_REVIEW_HANDOFF.md, glossary_draft.md 있음 (미커밋, 이전 세션에서 이동된 상태로 추정 — 이번 세션 작업 아님)
+- extra_choice는 test-flexion 유일. 향후 양방향 비교 테스트 추가 시 재사용 가능.
+- 진행 추적 데이터는 기존 rehab_phase_data localStorage 하위 저장. 백엔드 변경 없음.
+- b/c 항목은 콘텐츠 작업량 크므로 착수 전 범위 재확인 권장.
 
-## 다음 세션 권장 첫 프롬프트
-`/resume`
+## 다음 세션 권장 첫 프롬프트: /resume
