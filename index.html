@@ -450,6 +450,8 @@ const S = {
   stageIndex: 0,
   checkedItems: [],
   questionDepth: 0,
+  questionHistory: [],
+  testHistory: [],
   isRedFlagDanger: false,
   retestMode: false,
   sessionFeedbackType: null,
@@ -1877,6 +1879,16 @@ const BACK_MAP = {
   recovery_complete: 'recovery_test'
 };
 function goBack() {
+  if (S.screen === 'question' && S.questionHistory.length > 0) {
+    S.questionId = S.questionHistory.pop();
+    go('question');
+    return;
+  }
+  if (S.screen === 'test' && S.testHistory.length > 0) {
+    S.testId = S.testHistory.pop();
+    go('test');
+    return;
+  }
   let dest = BACK_MAP[S.screen];
   if (S.screen === 'cause') dest = S.testId ? 'test' : 'question';
   if (dest) go(dest);
@@ -1932,6 +1944,8 @@ function selectPainSite(id) {
   S.causeId      = null;
   S.stageIndex   = 0;
   S.questionDepth = 0;
+  S.questionHistory = [];
+  S.testHistory = [];
   goToMovement();
 }
 
@@ -1956,6 +1970,8 @@ async function selectMovement(id) {
   const site = getPainSite();
   S.questionId   = site.entry_question;
   S.questionDepth = 0;
+  S.questionHistory = [];
+  S.testHistory = [];
   goToQuestion();
 }
 
@@ -1975,9 +1991,11 @@ function selectChoice(next, choiceId) {
   if (next === 'danger') {
     goToDanger();
   } else if (next.startsWith('q:')) {
+    S.questionHistory.push(S.questionId);
     S.questionId = next.slice(2);
     goToQuestion();
   } else if (next.startsWith('test:')) {
+    S.testHistory = [];
     S.testId = next.slice(5);
     goToTest();
   } else if (next.startsWith('cause:')) {
@@ -2030,6 +2048,7 @@ function selectTestResult(next, outcome) {
     }
     goToCause();
   } else if (next.startsWith('test:')) {
+    S.testHistory.push(S.testId);
     S.testId = next.slice(5);
     goToTest();
   } else if (next === 'danger') {
