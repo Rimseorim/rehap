@@ -1,28 +1,29 @@
-# HANDOFF - 2026-06-19
+# HANDOFF - 2026-06-20
 
 ## 완료
-- 허리/스쿼트 cause-a Phase A/B 작성 → `data/phase-exercises.json`
-- 허리/스쿼트 cause-b Phase A/B 작성 → `data/phase-exercises.json`
-- 멀티모델 토론 파이프라인 구축 → `scripts/debate.py` (Gemma + GPT-OSS, OpenRouter 무료)
-- 메모리 업데이트 (토론 파이프라인 + 진행 현황 + 규칙 전면 갱신)
+- 허리/스쿼트 cause-a~d Phase A/B (c56a26b 이전)
+- 허리/런지 cause-a~d Phase A/B (cb53288)
+- 허리/데드리프트 cause-a~d Phase A/B (c56a26b)
+- 체크리스트 예외 조항 추가: 천장관절 예외1, 데드리프트 예외2, 과부하 recovery_note 규칙
+- 메모리 전면 갱신 (feedback_phase_exercise_rules.md)
 
 ## 진행중
-- **허리/스쿼트 cause-c (코어 안정화 부족)** Phase A/B 설계
-  - 중단 지점: cause-b 완료 후 세션 종료
-  - 다음 스텝: debate_history.md 초기화 → 설계안 작성 → `python scripts/debate.py`
+- **허리/데드리프트 cause-c** `recovery_note` + `priority_note` 휴식 가이드 추가 완료
+- 다음 작업: **허리/풀업** cause 수 확인 후 설계 시작
 
 ## 대기
-- 허리/스쿼트 cause-c
-- 허리 전체 동작: 런지 → 데드 → 풀업 → 키핑 → 로우 → 수직프레스 → 수평프레스
+- 허리/풀업 → 허리/키핑 → 허리/로우 → 허리/수직프레스 → 허리/수평프레스
 - 발목, 어깨, 고관절, 손목, 팔꿈치, 흉근 전 cause
 
 ## 결정사항 / 주의
-- **토론 파이프라인**: `scripts/debate.py` → OpenRouter API (OPENROUTER_API_KEY 환경변수 등록됨)
-- **사용 모델**: Gemma (google/gemma-4-31b-it:free) + GPT-OSS (openai/gpt-oss-120b:free)
-- **Phase B set 키 없음**: 실제 DB 구조 확인됨. Phase B에 set 표기 불필요
-- **새 cause 시작 시** debate_history.md 초기화 필수: `Set-Content "scripts\debate_history.md" -Value "# 토론 히스토리 — [부위/동작 cause-x]" -Encoding utf8`
-- **체크리스트 경로**: `C:\Users\tjfla\OneDrive\Desktop\재활앱_설계_표준_체크리스트.md`
-- **스크립트 파일들 미커밋 상태**: debate.py, add_lower_back_squat_cause_a.py, add_lower_back_squat_cause_b.py
+- **debate.py**: 사용자가 직접 PowerShell에서 실행, 결과 붙여넣기. 반박문은 내가 작성해서 전달
+- **PVC 오버헤드**: 웬만하면 넣지 말 것 (케틀벨·덤벨·빈 바벨 우선)
+- **박스 동작 금지** (박스 스쿼트 등)
+- **데드리프트 Phase B**: 맨몸 힙 힌지→맨몸 RDL→덤벨 RDL→빈 바벨 (예외 조항 2)
+- **소제목 형식**: "[핵심타겟] 최종 통합 테스트"로 통일
+- **과부하 cause**: recovery_note + priority_note 휴식 가이드 필수
+- **DB**: `DB/허리_db_extracted/inner/*.csv` — cause-b부터 why/cue에 반영
+- Gemma rate limit 자주 걸림 → GPT-OSS 단독 합의로도 진행 가능
 
 ## 다음 세션 권장 첫 프롬프트
-`/resume` 후 "허리/스쿼트 cause-c 설계 시작해줘"
+`/resume` 후 "허리/풀업 cause 확인하고 설계 시작해줘"
