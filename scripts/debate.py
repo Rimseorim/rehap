@@ -193,7 +193,10 @@ def main():
         lines = []
         empty_count = 0
         while True:
-            line = input()
+            try:
+                line = input()
+            except EOFError:
+                break
             if line == "":
                 empty_count += 1
                 if empty_count >= 2:
