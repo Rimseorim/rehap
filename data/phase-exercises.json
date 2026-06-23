@@ -1939,7 +1939,7 @@
                         "set": "a",
                         "order": 2,
                         "type": "스트레칭",
-                        "name": "Calf and Toes Stretch",
+                        "name": "종아리·발바닥 복합 스트레칭",
                         "equipment": "없음",
                         "target_area": "비복근, 가자미근, 족저근막, 장무지굴근",
                         "why": "족저근막과 종아리를 동시에 이완합니다. 전방 연부조직 긴장을 완화해 발목 배측굴곡 범위를 확보합니다.",
@@ -1975,7 +1975,7 @@
                         "set": "a",
                         "order": 4,
                         "type": "활성화",
-                        "name": "Ankle Circles",
+                        "name": "발목 원형 돌리기",
                         "equipment": "없음",
                         "target_area": "전경골근, 비복근, 가자미근, 발목 관절낭",
                         "why": "발목 전 방향 관절 유연성과 관절낭 이완을 유도합니다.",
@@ -1992,7 +1992,7 @@
                         "set": "a_b",
                         "order": 1,
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "고관절과 발목을 동시에 가동시킵니다. 런지 자세에서 발목 배측굴곡을 유도해 스쿼트 동작과 연결됩니다.",
@@ -2009,7 +2009,7 @@
                         "set": "a_b",
                         "order": 2,
                         "type": "스트레칭",
-                        "name": "Calf Stretch (비복근)",
+                        "name": "종아리 스트레칭 (비복근)",
                         "equipment": "없음 (벽 활용)",
                         "target_area": "비복근, 가자미근",
                         "why": "비복근을 이완합니다. 배측굴곡 ROM 확보에 필수적인 스트레칭입니다.",
@@ -2026,7 +2026,7 @@
                         "set": "a_b",
                         "order": 3,
                         "type": "활성화",
-                        "name": "Ankle Dorsiflexion",
+                        "name": "발목 배측굴곡 운동",
                         "equipment": "없음",
                         "target_area": "전경골근",
                         "why": "전경골근을 활성화합니다. 발목을 능동적으로 들어 올리는 근육을 강화해 스쿼트 하강 시 배측굴곡 패턴을 지지합니다.",
@@ -2043,7 +2043,7 @@
                         "set": "a_b",
                         "order": 4,
                         "type": "활성화",
-                        "name": "Single Leg Balance",
+                        "name": "한 발 균형 서기",
                         "equipment": "없음",
                         "target_area": "지면 수용기, 비골근, 후경골근, 발목 심부 안정화 고유감각",
                         "why": "발목 심부 안정화와 고유감각을 훈련합니다. 충돌 이후 발목 주변 감각 회복에 효과적입니다.",
@@ -2170,7 +2170,7 @@
                         "set": "a",
                         "order": 2,
                         "type": "스트레칭",
-                        "name": "Calf and Toes Stretch",
+                        "name": "종아리·발바닥 복합 스트레칭",
                         "equipment": "없음",
                         "target_area": "비복근, 가자미근, 족저근막, 장무지굴근",
                         "why": "족저근막 이완 중심. 발가락 굽힘근이 주타겟이라 아킬레스건 직접 신장이 최소화됩니다.",
@@ -2187,7 +2187,7 @@
                         "set": "a",
                         "order": 3,
                         "type": "활성화",
-                        "name": "Ankle Circles",
+                        "name": "발목 원형 돌리기",
                         "equipment": "없음",
                         "target_area": "전경골근, 비복근, 가자미근, 발목 관절낭",
                         "why": "아킬레스건 회복 중 발목 관절 가동성을 유지합니다.",
@@ -2203,7 +2203,7 @@
                         "set": "a",
                         "order": 4,
                         "type": "활성화",
-                        "name": "Towel Pick Up",
+                        "name": "수건 발가락 집기",
                         "equipment": "없음 (수건 활용)",
                         "target_area": "발바닥 내재근, 장지굴근",
                         "why": "발바닥 내재근을 활성화합니다. 발바닥 지지 강화로 아킬레스건 부하를 분산시킵니다.",
@@ -2220,7 +2220,7 @@
                         "set": "a_b",
                         "order": 1,
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "고관절과 발목을 동시에 이완합니다. 아킬레스건 스트레스를 분산시킵니다.",
@@ -2237,7 +2237,7 @@
                         "set": "a_b",
                         "order": 2,
                         "type": "스트레칭",
-                        "name": "Ankle Eversion (비골근 활성화 준비)",
+                        "name": "발목 외번 운동 (비골근 활성화 준비)",
                         "equipment": "저항 밴드",
                         "target_area": "장비골근, 단비골근",
                         "why": "비골근(외번근) 인지 및 활성화. 외측 지지사슬을 강화해 아킬레스건 부하 균형을 맞춥니다.",
@@ -2254,7 +2254,7 @@
                         "set": "a_b",
                         "order": 3,
                         "type": "활성화",
-                        "name": "Band Dorsiflexion",
+                        "name": "밴드 배측굴곡",
                         "equipment": "저항 밴드",
                         "target_area": "전경골근",
                         "why": "전경골근을 활성화합니다. 아킬레스건 길항근 강화로 발목 부하를 균형 있게 분산합니다.",
@@ -2271,7 +2271,7 @@
                         "set": "a_b",
                         "order": 4,
                         "type": "활성화",
-                        "name": "Single Leg Balance",
+                        "name": "한 발 균형 서기",
                         "equipment": "없음",
                         "target_area": "지면 수용기, 비골근, 후경골근, 발목 심부 안정화",
                         "why": "발목 안정화와 고유감각을 유지합니다. 아킬레스건 회복 중에도 기능적 안정성을 훈련합니다.",
@@ -2379,7 +2379,7 @@
                         "set": "a",
                         "order": 1,
                         "type": "스트레칭",
-                        "name": "Calf Stretch (비복근)",
+                        "name": "종아리 스트레칭 (비복근)",
                         "equipment": "없음 (벽 활용)",
                         "target_area": "비복근, 가자미근",
                         "why": "비복근을 이완합니다. 외측 인대 긴장과 연관된 종아리 경직을 완화합니다.",
@@ -2396,7 +2396,7 @@
                         "set": "a",
                         "order": 2,
                         "type": "스트레칭",
-                        "name": "Ankle Eversion (비골근 활성화)",
+                        "name": "발목 외번 운동 (비골근 활성화)",
                         "equipment": "저항 밴드",
                         "target_area": "장비골근, 단비골근",
                         "why": "비골근(외번근)을 활성화합니다. 외측 불안정의 주원인인 비골근 약화를 직접 해결합니다.",
@@ -2413,7 +2413,7 @@
                         "set": "a",
                         "order": 3,
                         "type": "활성화",
-                        "name": "Single Leg Balance",
+                        "name": "한 발 균형 서기",
                         "equipment": "없음",
                         "target_area": "지면 수용기, 비골근, 후경골근, 발목 심부 안정화",
                         "why": "고유감각과 발목 심부 안정화를 훈련합니다. 만성 외측 불안정에서 가장 근거가 강한 훈련입니다.",
@@ -2430,7 +2430,7 @@
                         "set": "a",
                         "order": 4,
                         "type": "활성화",
-                        "name": "Ankle Circles",
+                        "name": "발목 원형 돌리기",
                         "equipment": "없음",
                         "target_area": "전경골근, 비복근, 가자미근, 발목 관절낭",
                         "why": "발목 전 방향 유연성을 유지합니다.",
@@ -2446,7 +2446,7 @@
                         "set": "a_b",
                         "order": 1,
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "발목과 고관절을 동시에 가동시킵니다. 홀수날 Calf Stretch와 다른 복합 타겟입니다.",
@@ -2463,7 +2463,7 @@
                         "set": "a_b",
                         "order": 2,
                         "type": "스트레칭",
-                        "name": "Calf and Toes Stretch",
+                        "name": "종아리·발바닥 복합 스트레칭",
                         "equipment": "없음",
                         "target_area": "비복근, 가자미근, 족저근막",
                         "why": "족저근막과 종아리를 복합 이완합니다. 홀수날 Calf Stretch와 다른 타겟으로 차별화됩니다.",
@@ -2479,7 +2479,7 @@
                         "set": "a_b",
                         "order": 3,
                         "type": "활성화",
-                        "name": "Band Dorsiflexion",
+                        "name": "밴드 배측굴곡",
                         "equipment": "저항 밴드",
                         "target_area": "전경골근",
                         "why": "전경골근을 활성화합니다. 발목 전방 안정화를 강화합니다.",
@@ -2495,7 +2495,7 @@
                         "set": "a_b",
                         "order": 4,
                         "type": "활성화",
-                        "name": "Towel Pick Up",
+                        "name": "수건 발가락 집기",
                         "equipment": "없음 (수건 활용)",
                         "target_area": "발바닥 내재근, 장지굴근",
                         "why": "발바닥 내재근을 활성화합니다. 발바닥 지지 기반을 강화해 발목 안정성에 기여합니다.",
@@ -2604,7 +2604,7 @@
                         "set": "a",
                         "order": 1,
                         "type": "스트레칭",
-                        "name": "Calf Stretch (비복근)",
+                        "name": "종아리 스트레칭 (비복근)",
                         "equipment": "없음 (벽 활용)",
                         "target_area": "비복근, 가자미근",
                         "why": "비복근을 이완합니다. 발목 전반 가동성 확보의 기초입니다.",
@@ -2621,7 +2621,7 @@
                         "set": "a",
                         "order": 2,
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "발목과 고관절을 복합 이완합니다.",
@@ -2638,7 +2638,7 @@
                         "set": "a",
                         "order": 3,
                         "type": "활성화",
-                        "name": "Single Leg Balance",
+                        "name": "한 발 균형 서기",
                         "equipment": "없음",
                         "target_area": "지면 수용기, 비골근, 후경골근, 발목 심부 안정화",
                         "why": "발목 안정화와 고유감각을 훈련합니다.",
@@ -2654,7 +2654,7 @@
                         "set": "a",
                         "order": 4,
                         "type": "활성화",
-                        "name": "Ankle Dorsiflexion",
+                        "name": "발목 배측굴곡 운동",
                         "equipment": "없음",
                         "target_area": "전경골근",
                         "why": "전경골근을 활성화합니다. 스쿼트 하강 시 배측굴곡 패턴을 지지합니다.",
@@ -2671,7 +2671,7 @@
                         "set": "a_b",
                         "order": 1,
                         "type": "스트레칭",
-                        "name": "Calf and Toes Stretch",
+                        "name": "종아리·발바닥 복합 스트레칭",
                         "equipment": "없음",
                         "target_area": "비복근, 가자미근, 족저근막",
                         "why": "족저근막과 종아리를 복합 이완합니다. 홀수날 Calf Stretch와 다른 복합 타겟입니다.",
@@ -2687,7 +2687,7 @@
                         "set": "a_b",
                         "order": 2,
                         "type": "스트레칭",
-                        "name": "Ankle Eversion",
+                        "name": "발목 외번 운동",
                         "equipment": "저항 밴드",
                         "target_area": "장비골근, 단비골근",
                         "why": "비골근을 활성화합니다. 홀수날과 다른 타겟으로 발목 측면 안정성을 강화합니다.",
@@ -2703,7 +2703,7 @@
                         "set": "a_b",
                         "order": 3,
                         "type": "활성화",
-                        "name": "Band Dorsiflexion",
+                        "name": "밴드 배측굴곡",
                         "equipment": "저항 밴드",
                         "target_area": "전경골근",
                         "why": "전경골근을 강화합니다. 발목 전반 안정성을 높입니다.",
@@ -2719,7 +2719,7 @@
                         "set": "a_b",
                         "order": 4,
                         "type": "활성화",
-                        "name": "Towel Pick Up",
+                        "name": "수건 발가락 집기",
                         "equipment": "없음 (수건 활용)",
                         "target_area": "발바닥 내재근, 장지굴근",
                         "why": "발바닥 내재근을 활성화합니다. 발바닥 지지 기반 강화로 전반적인 발목 안정성에 기여합니다.",
@@ -2950,7 +2950,7 @@
                     "phase_a": [
                       {
                         "type": "스트레칭",
-                        "name": "90/90 Stretch",
+                        "name": "90/90 스트레칭",
                         "equipment": "없음",
                         "target_area": "고관절 외회전근, 심부이상근, 내회전근",
                         "why": "고관절 외회전근과 내회전근 복합 가동성을 확보합니다.",
@@ -2967,7 +2967,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hip Flexor Rock Back",
+                        "name": "고관절 굴곡근 락백",
                         "equipment": "없음",
                         "target_area": "장요근, 둔근, 고관절 관절낭",
                         "why": "고관절 굴곡 가동범위를 확보합니다. 충돌 없이 깊이 앉을 수 있는 범위를 만듭니다.",
@@ -2985,7 +2985,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Clamshell",
+                        "name": "클램셸",
                         "equipment": "없음",
                         "target_area": "중둔근 후부 섬유, 고관절 심부 외회전근",
                         "why": "중둔근 후부와 고관절 심부 외회전근을 활성화합니다.",
@@ -3002,7 +3002,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Glute Bridge",
+                        "name": "글루트 브릿지",
                         "equipment": "없음",
                         "target_area": "대둔근, 햄스트링",
                         "why": "대둔근을 활성화합니다.",
@@ -3020,7 +3020,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Deep Squat Rotation",
+                        "name": "딥 스쿼트 상체 회전",
                         "equipment": "없음",
                         "target_area": "흉추, 고관절 외회전근, 발목 가자미근",
                         "why": "흉추와 고관절 외회전 복합 가동성을 확보합니다. 스쿼트 하강 시 고관절이 자유롭게 열릴 수 있도록 준비합니다.",
@@ -3037,7 +3037,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "내전근과 고관절 관절낭을 이완합니다.",
@@ -3054,7 +3054,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Side-lying Hip Abduction",
+                        "name": "사이드라잉 힙 어브덕션",
                         "equipment": "없음",
                         "target_area": "중둔근, 대퇴근막장근",
                         "why": "중둔근과 TFL을 강화합니다. 고관절 외전 근력을 확보합니다.",
@@ -3072,7 +3072,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Bird Dog",
+                        "name": "버드 독",
                         "equipment": "없음",
                         "target_area": "척추기립근, 다열근, 대둔근",
                         "why": "심부 안정근을 활성화합니다. 스쿼트 중 골반 안정성을 유지합니다.",
@@ -3216,7 +3216,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Glute Bridge",
+                        "name": "글루트 브릿지",
                         "equipment": "없음",
                         "target_area": "대둔근, 햄스트링",
                         "why": "대둔근을 활성화합니다.",
@@ -3234,7 +3234,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Dead Bug",
+                        "name": "데드 버그",
                         "equipment": "없음",
                         "target_area": "복직근, 복사근, 장요근",
                         "why": "코어 안정화를 훈련합니다. 굴곡근 과긴장의 보상 패턴(허리 과신전)을 방지합니다.",
@@ -3251,7 +3251,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hip Flexor Rock Back",
+                        "name": "고관절 굴곡근 락백",
                         "equipment": "없음",
                         "target_area": "장요근, 둔근, 고관절 관절낭",
                         "why": "고관절 굴곡 가동범위를 확보합니다. 충돌 없이 깊이 앉을 수 있는 범위를 만듭니다.",
@@ -3269,7 +3269,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "내전근과 고관절 관절낭을 이완합니다.",
@@ -3286,7 +3286,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Bird Dog",
+                        "name": "버드 독",
                         "equipment": "없음",
                         "target_area": "척추기립근, 다열근, 대둔근",
                         "why": "심부 안정근을 활성화합니다. 스쿼트 중 골반 안정성을 유지합니다.",
@@ -3304,7 +3304,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Straight Leg Raise",
+                        "name": "스트레이트 레그 레이즈",
                         "equipment": "없음",
                         "target_area": "대퇴직근, 장요근, 복근",
                         "why": "대퇴직근과 장요근을 기능적으로 강화합니다. 회복 후 굴곡근을 재활성화합니다.",
@@ -3411,7 +3411,7 @@
                     "phase_a": [
                       {
                         "type": "스트레칭",
-                        "name": "90/90 Stretch",
+                        "name": "90/90 스트레칭",
                         "equipment": "없음",
                         "target_area": "고관절 외회전근, 심부이상근, 내회전근",
                         "why": "이상근과 고관절 심부 외회전근을 이완합니다. 이상근 과긴장을 직접 해소합니다.",
@@ -3428,7 +3428,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hip Flexor Rock Back",
+                        "name": "고관절 굴곡근 락백",
                         "equipment": "없음",
                         "target_area": "장요근, 둔근, 고관절 관절낭",
                         "why": "고관절 굴곡 가동범위를 확보합니다. 충돌 없이 깊이 앉을 수 있는 범위를 만듭니다.",
@@ -3446,7 +3446,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Clamshell",
+                        "name": "클램셸",
                         "equipment": "없음",
                         "target_area": "중둔근 후부 섬유, 고관절 심부 외회전근",
                         "why": "중둔근 후부와 고관절 심부 외회전근을 활성화합니다.",
@@ -3463,7 +3463,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Glute Bridge",
+                        "name": "글루트 브릿지",
                         "equipment": "없음",
                         "target_area": "대둔근, 햄스트링",
                         "why": "대둔근을 활성화합니다.",
@@ -3481,7 +3481,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "내전근과 고관절 관절낭을 이완합니다.",
@@ -3498,7 +3498,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Sidelying Abduction",
+                        "name": "사이드라잉 힙 어브덕션",
                         "equipment": "없음",
                         "target_area": "중둔근",
                         "why": "중둔근 외전 방향으로 고립 훈련합니다.",
@@ -3515,7 +3515,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Side-lying Hip Abduction",
+                        "name": "사이드라잉 힙 어브덕션",
                         "equipment": "없음",
                         "target_area": "중둔근, 대퇴근막장근",
                         "why": "중둔근과 TFL을 강화합니다. 고관절 외전 근력을 확보합니다.",
@@ -3533,7 +3533,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Bird Dog",
+                        "name": "버드 독",
                         "equipment": "없음",
                         "target_area": "척추기립근, 다열근, 대둔근",
                         "why": "심부 안정근을 활성화합니다. 스쿼트 중 골반 안정성을 유지합니다.",
@@ -3641,7 +3641,7 @@
                     "phase_a": [
                       {
                         "type": "스트레칭",
-                        "name": "90/90 Stretch",
+                        "name": "90/90 스트레칭",
                         "equipment": "없음",
                         "target_area": "고관절 외회전근, 심부이상근, 내회전근",
                         "why": "고관절 외회전근과 내회전근 복합 가동성을 확보합니다.",
@@ -3658,7 +3658,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hip Flexor Rock Back",
+                        "name": "고관절 굴곡근 락백",
                         "equipment": "없음",
                         "target_area": "장요근, 둔근, 고관절 관절낭",
                         "why": "고관절 굴곡 가동범위를 확보합니다. 충돌 없이 깊이 앉을 수 있는 범위를 만듭니다.",
@@ -3676,7 +3676,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Glute Bridge",
+                        "name": "글루트 브릿지",
                         "equipment": "없음",
                         "target_area": "대둔근, 햄스트링",
                         "why": "대둔근을 활성화합니다.",
@@ -3694,7 +3694,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Clamshell",
+                        "name": "클램셸",
                         "equipment": "없음",
                         "target_area": "중둔근 후부 섬유, 고관절 심부 외회전근",
                         "why": "중둔근 후부와 고관절 심부 외회전근을 활성화합니다.",
@@ -3711,7 +3711,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "내전근과 고관절 관절낭을 이완합니다.",
@@ -3728,7 +3728,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hamstring Stretch",
+                        "name": "햄스트링 스트레칭",
                         "equipment": "없음",
                         "target_area": "햄스트링",
                         "why": "햄스트링을 이완합니다. 고관절 신전 제한을 보완합니다.",
@@ -3746,7 +3746,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Bird Dog",
+                        "name": "버드 독",
                         "equipment": "없음",
                         "target_area": "척추기립근, 다열근, 대둔근",
                         "why": "심부 안정근을 활성화합니다. 스쿼트 중 골반 안정성을 유지합니다.",
@@ -3764,7 +3764,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Dead Bug",
+                        "name": "데드 버그",
                         "equipment": "없음",
                         "target_area": "복직근, 복사근, 장요근",
                         "why": "코어 안정화를 훈련합니다. 굴곡근 과긴장의 보상 패턴(허리 과신전)을 방지합니다.",
@@ -5057,7 +5057,7 @@
                     "phase_a": [
                       {
                         "type": "스트레칭",
-                        "name": "90/90 Stretch",
+                        "name": "90/90 스트레칭",
                         "equipment": "없음",
                         "target_area": "고관절 외회전근, 심부이상근, 내회전근",
                         "why": "고관절 외회전근과 내회전근 복합 가동성을 확보합니다.",
@@ -5074,7 +5074,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hip Flexor Rock Back",
+                        "name": "고관절 굴곡근 락백",
                         "equipment": "없음",
                         "target_area": "장요근, 둔근, 고관절 관절낭",
                         "why": "고관절 굴곡 가동범위를 확보합니다. 런지 하강 시 고관절이 충분히 열릴 수 있는 범위를 만듭니다.",
@@ -5092,7 +5092,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Clamshell",
+                        "name": "클램셸",
                         "equipment": "없음",
                         "target_area": "중둔근 후부 섬유, 고관절 심부 외회전근",
                         "why": "중둔근 후부와 고관절 심부 외회전근을 활성화합니다.",
@@ -5109,7 +5109,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Side-lying Hip Abduction",
+                        "name": "사이드라잉 힙 어브덕션",
                         "equipment": "없음",
                         "target_area": "중둔근, 대퇴근막장근",
                         "why": "중둔근을 강화합니다. 연구에 따르면 약 80% MVIC를 달성하는 핵심 중둔근 훈련 동작입니다.",
@@ -5127,7 +5127,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Deep Squat Rotation",
+                        "name": "딥 스쿼트 상체 회전",
                         "equipment": "없음",
                         "target_area": "흉추, 고관절 외회전근, 발목 가자미근",
                         "why": "흉추와 고관절 외회전 복합 가동성을 확보합니다.",
@@ -5144,7 +5144,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "내전근과 고관절 관절낭을 이완합니다.",
@@ -5161,7 +5161,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Glute Bridge",
+                        "name": "글루트 브릿지",
                         "equipment": "없음",
                         "target_area": "대둔근, 햄스트링",
                         "why": "대둔근을 활성화합니다.",
@@ -5179,7 +5179,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Bird Dog",
+                        "name": "버드 독",
                         "equipment": "없음",
                         "target_area": "척추기립근, 다열근, 대둔근",
                         "why": "심부 안정근을 활성화합니다.",
@@ -5323,7 +5323,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Glute Bridge",
+                        "name": "글루트 브릿지",
                         "equipment": "없음",
                         "target_area": "대둔근, 햄스트링",
                         "why": "대둔근을 활성화합니다.",
@@ -5341,7 +5341,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Dead Bug",
+                        "name": "데드 버그",
                         "equipment": "없음",
                         "target_area": "복직근, 복사근, 장요근",
                         "why": "코어 안정화를 훈련합니다. 굴곡근 과긴장의 보상 패턴(허리 과신전)을 방지합니다.",
@@ -5358,7 +5358,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hip Flexor Rock Back",
+                        "name": "고관절 굴곡근 락백",
                         "equipment": "없음",
                         "target_area": "장요근, 둔근, 고관절 관절낭",
                         "why": "고관절 굴곡 가동범위를 확보합니다. 런지 하강 시 고관절이 충분히 열릴 수 있는 범위를 만듭니다.",
@@ -5376,7 +5376,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "내전근과 고관절 관절낭을 이완합니다.",
@@ -5393,7 +5393,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Bird Dog",
+                        "name": "버드 독",
                         "equipment": "없음",
                         "target_area": "척추기립근, 다열근, 대둔근",
                         "why": "심부 안정근을 활성화합니다.",
@@ -5411,7 +5411,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Side-lying Hip Abduction",
+                        "name": "사이드라잉 힙 어브덕션",
                         "equipment": "없음",
                         "target_area": "중둔근, 대퇴근막장근",
                         "why": "중둔근 강화. 고관절 굴곡근 과부하 케이스에서 길항근 강화로 부하 분산.",
@@ -5517,7 +5517,7 @@
                     "phase_a": [
                       {
                         "type": "스트레칭",
-                        "name": "90/90 Stretch",
+                        "name": "90/90 스트레칭",
                         "equipment": "없음",
                         "target_area": "고관절 외회전근, 심부이상근, 내회전근",
                         "why": "이상근과 고관절 심부 외회전근을 이완합니다. 이상근 과긴장을 직접 해소합니다.",
@@ -5534,7 +5534,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hip Flexor Rock Back",
+                        "name": "고관절 굴곡근 락백",
                         "equipment": "없음",
                         "target_area": "장요근, 둔근, 고관절 관절낭",
                         "why": "고관절 굴곡 가동범위를 확보합니다. 런지 하강 시 고관절이 충분히 열릴 수 있는 범위를 만듭니다.",
@@ -5552,7 +5552,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Clamshell",
+                        "name": "클램셸",
                         "equipment": "없음",
                         "target_area": "중둔근 후부 섬유, 고관절 심부 외회전근",
                         "why": "중둔근 후부와 고관절 심부 외회전근을 활성화합니다.",
@@ -5569,7 +5569,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Glute Bridge",
+                        "name": "글루트 브릿지",
                         "equipment": "없음",
                         "target_area": "대둔근, 햄스트링",
                         "why": "대둔근을 활성화합니다.",
@@ -5587,7 +5587,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "내전근과 고관절 관절낭을 이완합니다.",
@@ -5622,7 +5622,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Side-lying Hip Abduction",
+                        "name": "사이드라잉 힙 어브덕션",
                         "equipment": "없음",
                         "target_area": "중둔근, 대퇴근막장근",
                         "why": "중둔근을 강화합니다. 약 80% MVIC를 달성하는 핵심 훈련 동작입니다.",
@@ -5640,7 +5640,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Bird Dog",
+                        "name": "버드 독",
                         "equipment": "없음",
                         "target_area": "척추기립근, 다열근, 대둔근",
                         "why": "심부 안정근을 활성화합니다.",
@@ -5748,7 +5748,7 @@
                     "phase_a": [
                       {
                         "type": "스트레칭",
-                        "name": "Hip Flexor Rock Back",
+                        "name": "고관절 굴곡근 락백",
                         "equipment": "없음",
                         "target_area": "장요근, 둔근, 고관절 관절낭",
                         "why": "고관절 굴곡 가동범위를 확보합니다. 런지 하강 시 고관절이 충분히 열릴 수 있는 범위를 만듭니다.",
@@ -5766,7 +5766,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "내전근과 고관절 관절낭을 이완합니다.",
@@ -5783,7 +5783,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Glute Bridge",
+                        "name": "글루트 브릿지",
                         "equipment": "없음",
                         "target_area": "대둔근, 햄스트링",
                         "why": "대둔근을 활성화합니다.",
@@ -5801,7 +5801,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Clamshell",
+                        "name": "클램셸",
                         "equipment": "없음",
                         "target_area": "중둔근 후부 섬유, 고관절 심부 외회전근",
                         "why": "중둔근 후부와 고관절 심부 외회전근을 활성화합니다.",
@@ -5818,7 +5818,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Deep Squat Rotation",
+                        "name": "딥 스쿼트 상체 회전",
                         "equipment": "없음",
                         "target_area": "흉추, 고관절 외회전근, 발목 가자미근",
                         "why": "흉추와 고관절 외회전 복합 가동성을 확보합니다.",
@@ -5835,7 +5835,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Hamstring Stretch",
+                        "name": "햄스트링 스트레칭",
                         "equipment": "없음",
                         "target_area": "햄스트링",
                         "why": "햄스트링을 이완합니다. 고관절 신전 제한을 보완합니다.",
@@ -5853,7 +5853,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Side-lying Hip Abduction",
+                        "name": "사이드라잉 힙 어브덕션",
                         "equipment": "없음",
                         "target_area": "중둔근, 대퇴근막장근",
                         "why": "중둔근을 강화합니다. 연구에 따르면 약 80% MVIC를 달성하는 핵심 중둔근 훈련 동작입니다.",
@@ -5871,7 +5871,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Bird Dog",
+                        "name": "버드 독",
                         "equipment": "없음",
                         "target_area": "척추기립근, 다열근, 대둔근",
                         "why": "심부 안정근을 활성화합니다.",
@@ -6945,7 +6945,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Calf and Toes Stretch",
+                        "name": "종아리·발바닥 복합 스트레칭",
                         "equipment": "없음",
                         "target_area": "비복근, 가자미근, 족저근막",
                         "why": "족저근막과 종아리를 동시에 이완합니다. 배측굴곡 제한 완화에 기여합니다.",
@@ -6979,7 +6979,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Ankle Circles",
+                        "name": "발목 원형 돌리기",
                         "equipment": "없음",
                         "target_area": "전경골근, 비복근, 가자미근, 발목 관절낭",
                         "why": "발목 전 방향 관절 유연성을 유지합니다.",
@@ -6995,7 +6995,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "런지 자세에서 발목 배측굴곡을 유도합니다. 고관절과 발목을 동시에 가동시킵니다.",
@@ -7012,7 +7012,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Calf Stretch (비복근)",
+                        "name": "종아리 스트레칭 (비복근)",
                         "equipment": "없음 (벽 활용)",
                         "target_area": "비복근, 가자미근",
                         "why": "비복근을 이완합니다. 배측굴곡 ROM 확보에 필수적입니다.",
@@ -7029,7 +7029,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Ankle Dorsiflexion",
+                        "name": "발목 배측굴곡 운동",
                         "equipment": "없음",
                         "target_area": "전경골근",
                         "why": "전경골근을 활성화합니다. 런지 시 발목 배측굴곡 패턴을 지지합니다.",
@@ -7046,7 +7046,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Single Leg Balance",
+                        "name": "한 발 균형 서기",
                         "equipment": "없음",
                         "target_area": "지면 수용기, 비골근, 후경골근, 발목 심부 안정화",
                         "why": "발목 심부 안정화와 고유감각을 훈련합니다.",
@@ -7152,7 +7152,7 @@
                     "phase_a": [
                       {
                         "type": "스트레칭",
-                        "name": "Calf Stretch (비복근)",
+                        "name": "종아리 스트레칭 (비복근)",
                         "equipment": "없음 (벽 활용)",
                         "target_area": "비복근, 가자미근",
                         "why": "비복근을 이완합니다. 배측굴곡 ROM 확보에 필수적입니다.",
@@ -7169,7 +7169,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Ankle Eversion (비골근 활성화)",
+                        "name": "발목 외번 운동 (비골근 활성화)",
                         "equipment": "저항 밴드",
                         "target_area": "장비골근, 단비골근",
                         "why": "비골근(외번근)을 활성화합니다. 외측 불안정의 주원인인 비골근 약화를 직접 해결합니다.",
@@ -7186,7 +7186,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Single Leg Balance",
+                        "name": "한 발 균형 서기",
                         "equipment": "없음",
                         "target_area": "지면 수용기, 비골근, 후경골근, 발목 심부 안정화",
                         "why": "발목 심부 안정화와 고유감각을 훈련합니다.",
@@ -7202,7 +7202,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Ankle Circles",
+                        "name": "발목 원형 돌리기",
                         "equipment": "없음",
                         "target_area": "전경골근, 비복근, 가자미근, 발목 관절낭",
                         "why": "발목 전 방향 관절 유연성을 유지합니다.",
@@ -7218,7 +7218,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "런지 자세에서 발목 배측굴곡을 유도합니다. 고관절과 발목을 동시에 가동시킵니다.",
@@ -7235,7 +7235,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Calf and Toes Stretch",
+                        "name": "종아리·발바닥 복합 스트레칭",
                         "equipment": "없음",
                         "target_area": "비복근, 가자미근, 족저근막",
                         "why": "족저근막과 종아리를 동시에 이완합니다. 배측굴곡 제한 완화에 기여합니다.",
@@ -7251,7 +7251,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Band Dorsiflexion",
+                        "name": "밴드 배측굴곡",
                         "equipment": "저항 밴드",
                         "target_area": "전경골근",
                         "why": "전경골근을 강화합니다. 발목 전방 안정화에 기여합니다.",
@@ -7267,7 +7267,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Towel Pick Up",
+                        "name": "수건 발가락 집기",
                         "equipment": "없음 (수건 활용)",
                         "target_area": "발바닥 내재근, 장지굴근",
                         "why": "발바닥 내재근을 활성화합니다. 발바닥 지지 기반 강화로 발목 안정성에 기여합니다.",
@@ -7392,7 +7392,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Calf and Toes Stretch",
+                        "name": "종아리·발바닥 복합 스트레칭",
                         "equipment": "없음",
                         "target_area": "비복근, 가자미근, 족저근막",
                         "why": "족저근막과 종아리를 동시에 이완합니다. 배측굴곡 제한 완화에 기여합니다.",
@@ -7408,7 +7408,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Ankle Circles",
+                        "name": "발목 원형 돌리기",
                         "equipment": "없음",
                         "target_area": "전경골근, 비복근, 가자미근, 발목 관절낭",
                         "why": "발목 전 방향 관절 유연성을 유지합니다.",
@@ -7424,7 +7424,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Towel Pick Up",
+                        "name": "수건 발가락 집기",
                         "equipment": "없음 (수건 활용)",
                         "target_area": "발바닥 내재근, 장지굴근",
                         "why": "발바닥 내재근을 활성화합니다. 발바닥 지지 기반 강화로 발목 안정성에 기여합니다.",
@@ -7441,7 +7441,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Open Half Kneeling Shift",
+                        "name": "오픈 하프닐링 시프트",
                         "equipment": "없음",
                         "target_area": "내전근, 고관절 관절낭, 발목 관절",
                         "why": "런지 자세에서 발목 배측굴곡을 유도합니다. 고관절과 발목을 동시에 가동시킵니다.",
@@ -7458,7 +7458,7 @@
                       },
                       {
                         "type": "스트레칭",
-                        "name": "Ankle Eversion (비골근 활성화)",
+                        "name": "발목 외번 운동 (비골근 활성화)",
                         "equipment": "저항 밴드",
                         "target_area": "장비골근, 단비골근",
                         "why": "비골근(외번근)을 활성화합니다. 외측 불안정의 주원인인 비골근 약화를 직접 해결합니다.",
@@ -7475,7 +7475,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Band Dorsiflexion",
+                        "name": "밴드 배측굴곡",
                         "equipment": "저항 밴드",
                         "target_area": "전경골근",
                         "why": "전경골근을 강화합니다. 발목 전방 안정화에 기여합니다.",
@@ -7491,7 +7491,7 @@
                       },
                       {
                         "type": "활성화",
-                        "name": "Single Leg Balance",
+                        "name": "한 발 균형 서기",
                         "equipment": "없음",
                         "target_area": "지면 수용기, 비골근, 후경골근, 발목 심부 안정화",
                         "why": "발목 심부 안정화와 고유감각을 훈련합니다.",
