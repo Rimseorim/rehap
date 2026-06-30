@@ -1,29 +1,35 @@
-# HANDOFF - 2026-06-20
+# HANDOFF - 2026-06-30
 
 ## 완료
-- 허리/스쿼트 cause-a~d Phase A/B (c56a26b 이전)
-- 허리/런지 cause-a~d Phase A/B (cb53288)
-- 허리/데드리프트 cause-a~d Phase A/B (c56a26b)
-- 체크리스트 예외 조항 추가: 천장관절 예외1, 데드리프트 예외2, 과부하 recovery_note 규칙
-- 메모리 전면 갱신 (feedback_phase_exercise_rules.md)
+
+- cause-case3 (후방 관절낭·회전근개 경직, 내회전·수평 내전 제한, 가동성 부족형) Phase A+B — **8동작 전부 완료**
+  - back-squat ✓ (25fcb21)
+  - deadlift ✓ (dc35bf9)
+  - pullup ✓ (e2dd7c1)
+  - kipping ✓ (03d75f5)
+  - row ✓ (2780643)
+  - vertical-press ✓ (bcbc920)
+  - horizontal-press ✓ (5421145)
+  - lunge — 이전 세션에서 완료 여부 불명확, data/phase-exercises.json에서 확인 필요
+- origin/main push 완료 (5421145)
 
 ## 진행중
-- **허리/데드리프트 cause-c** `recovery_note` + `priority_note` 휴식 가이드 추가 완료
-- 다음 작업: **허리/풀업** cause 수 확인 후 설계 시작
+
+없음
 
 ## 대기
-- 허리/풀업 → 허리/키핑 → 허리/로우 → 허리/수직프레스 → 허리/수평프레스
-- 발목, 어깨, 고관절, 손목, 팔꿈치, 흉근 전 cause
+
+- **lunge/shoulder/cause-case3**: data/phase-exercises.json 확인 후 미완료 시 작성
+- **cause-case4 (전거근·하부 승모근 약화, 근력 부족형)**: 8동작 전부
+- **cause-d (특이소견 없음)**: 8동작 전부
 
 ## 결정사항 / 주의
-- **debate.py**: 사용자가 직접 PowerShell에서 실행, 결과 붙여넣기. 반박문은 내가 작성해서 전달
-- **PVC 오버헤드**: 웬만하면 넣지 말 것 (케틀벨·덤벨·빈 바벨 우선)
-- **박스 동작 금지** (박스 스쿼트 등)
-- **데드리프트 Phase B**: 맨몸 힙 힌지→맨몸 RDL→덤벨 RDL→빈 바벨 (예외 조항 2)
-- **소제목 형식**: "[핵심타겟] 최종 통합 테스트"로 통일
-- **과부하 cause**: recovery_note + priority_note 휴식 가이드 필수
-- **DB**: `DB/허리_db_extracted/inner/*.csv` — cause-b부터 why/cue에 반영
-- Gemma rate limit 자주 걸림 → GPT-OSS 단독 합의로도 진행 가능
 
-## 다음 세션 권장 첫 프롬프트
-`/resume` 후 "허리/풀업 cause 확인하고 설계 시작해줘"
+- 설계안 채팅 포맷: 운동마다 `**출처** / **target** / **why** / **sets** / **cue** / **how**` 전부 상세하게. Phase B는 `**탈출 경로** / **progression_note**` 추가
+- 출처 필수 명시: txt(어깨 재활 프로그램.txt) / 어깨 DB / 흉근 DB / 웹서치 / 모델 지식
+- 토론(debate.py)은 사용자가 명시적으로 요청할 때만 실행. 기본 흐름 = 설계안 채팅 → 피드백 → 스크립트
+- 반박 없으면 반박이 없는 이유도 설명
+- cause-case3 Phase B 무게 기준: 30~40% (가동성 부족형)
+- 세이프티 바 가이드: 바벨 벤치 3~4단계는 반드시 인라인으로 세이프티 바 세팅 명시
+
+## 다음 세션 권장 첫 프롬프트: /resume
