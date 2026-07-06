@@ -1,0 +1,399 @@
+
+##### TEMPLATE 1 — movements: 스쿼트(squat) #####
+causes: cause-a=족관절 배측굴곡 가동성 제한 [족관절 배측굴곡 가동성 제한] | cause-b=대둔근·내전근 활성 저하 [대둔근·내전근 활성 저하] | cause-c=훈련 볼륨 과부하 [과부하]
+entry choices -> :
+  [운동 시작하자마자>네, 얕게 앉으면 괜찮아요] -> test:test-ankle-df
+  [운동 시작하자마자>아니요, 깊이와 상관없어요] -> test:test-single-leg
+  [어느 정도 반복한 후>네, 얕게 앉으면 괜찮아요] -> test:test-ankle-df
+  [어느 정도 반복한 후>아니요, 깊이와 상관없어요] -> test:test-single-leg
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-ankle-df: pass->cause:cause-b  fail->cause:cause-a
+  test-single-leg: pass->cause:cause-c  fail->cause:cause-b
+  test-knee-volume-overload-retest: pass->cause:cause-c  fail->cause:cause-c
+
+##### TEMPLATE 2 — movements: 스쿼트(squat) #####
+causes: cause-a=고관절 가동성 부족 → 허리 굴곡 보상 [가동성 부족] | cause-b=흉추 가동성 부족 → 요추(허리 척추) 과부하 [가동성 부족] | cause-c=코어 안정화 부족 [안정화 부족]
+entry choices -> :
+  [운동 시작하자마자>네, 다리까지 내려가요] -> danger
+  [운동 시작하자마자>아니요, 허리에만 있어요>네, 아래로 내려갈수록 말려요>네, 얕으면 괜찮아요] -> test:test-lbs-hip-flex
+  [운동 시작하자마자>아니요, 허리에만 있어요>네, 아래로 내려갈수록 말려요>아니요, 깊이와 상관없이 말려요] -> cause:cause-b
+  [운동 시작하자마자>아니요, 허리에만 있어요>아니요, 허리가 꼿꼿해요>60초 전에 허리가 내려앉아요] -> test:test-lbs-plank
+  [운동 시작하자마자>아니요, 허리에만 있어요>아니요, 허리가 꼿꼿해요>60초 이상 유지돼요] -> cause:cause-b
+  [어느 정도 반복한 후>네, 다리까지 내려가요] -> danger
+  [어느 정도 반복한 후>아니요, 허리에만 있어요>네, 아래로 내려갈수록 말려요>네, 얕으면 괜찮아요] -> test:test-lbs-hip-flex
+  [어느 정도 반복한 후>아니요, 허리에만 있어요>네, 아래로 내려갈수록 말려요>아니요, 깊이와 상관없이 말려요] -> cause:cause-b
+  [어느 정도 반복한 후>아니요, 허리에만 있어요>아니요, 허리가 꼿꼿해요>60초 전에 허리가 내려앉아요] -> test:test-lbs-plank
+  [어느 정도 반복한 후>아니요, 허리에만 있어요>아니요, 허리가 꼿꼿해요>60초 이상 유지돼요] -> cause:cause-b
+  [쉬는 중에도] -> danger
+tests:
+  test-lbs-hip-flex: pass->cause:cause-b  fail->cause:cause-a
+  test-lbs-plank: pass->cause:cause-b  fail->cause:cause-c
+  test-tspine-extension-retest: pass->cause:cause-b  fail->cause:cause-b
+
+##### TEMPLATE 3 — movements: 스쿼트(squat) #####
+causes: cause-a=발목 전방 충돌 증후군 [관절 충돌] | cause-b=아킬레스건 과부하 [과부하] | cause-c=만성 외측 발목 불안정 [불안정] | cause-d=특이 소견 없음 — 발목 컨디셔닝 부족 [컨디셔닝 부족]
+entry choices -> :
+  [운동 시작하자마자>네, 부어있거나 멍이 있어요] -> danger
+  [운동 시작하자마자>아니요, 외관상 정상이에요>발목 앞쪽 (하강 시 콕 찌름)>네, 깊이 내려갈 때만 아파요] -> test:test-ba-ankle-df
+  [운동 시작하자마자>아니요, 외관상 정상이에요>발목 앞쪽 (하강 시 콕 찌름)>아니요, 얕아도 아파요] -> danger
+  [운동 시작하자마자>아니요, 외관상 정상이에요>발목 뒤쪽·아킬레스 쪽] -> test:test-ba-heel-raise
+  [운동 시작하자마자>아니요, 외관상 정상이에요>발목 바깥쪽·접질렸던 부위] -> test:test-ba-balance
+  [어느 정도 반복한 후>네, 부어있거나 멍이 있어요] -> danger
+  [어느 정도 반복한 후>아니요, 외관상 정상이에요>발목 앞쪽 (하강 시 콕 찌름)>네, 깊이 내려갈 때만 아파요] -> test:test-ba-ankle-df
+  [어느 정도 반복한 후>아니요, 외관상 정상이에요>발목 앞쪽 (하강 시 콕 찌름)>아니요, 얕아도 아파요] -> danger
+  [어느 정도 반복한 후>아니요, 외관상 정상이에요>발목 뒤쪽·아킬레스 쪽] -> test:test-ba-heel-raise
+  [어느 정도 반복한 후>아니요, 외관상 정상이에요>발목 바깥쪽·접질렸던 부위] -> test:test-ba-balance
+  [쉬는 중에도] -> danger
+tests:
+  test-ba-ankle-df: pass->cause:cause-d  fail->cause:cause-a
+  test-ba-heel-raise: pass->cause:cause-d  fail->cause:cause-b
+  test-ba-balance: pass->cause:cause-d  fail->cause:cause-c
+
+##### TEMPLATE 4 — movements: 스쿼트(squat) #####
+causes: cause-dp=충돌증후군 — 통증 있는 상태 (보호 우선) [통증 조절] | cause-case1=광배근·흉추 경직 (어깨 굴곡 공간 부족) [가동성 부족] | cause-case2=코어-상지 분리 실패 (팔 들 때 허리가 따라감) [조절 실패] | cause-case3=후방 관절낭·회전근개 경직 (내회전·수평 내전 제한) [가동성 부족] | cause-case4=전거근·하부 승모근 약화 (견갑골 익상) [근력 부족]
+entry choices -> :
+  [네, 통증이 있어요>운동 시작하자마자] -> test:test-shoulder-arc
+  [네, 통증이 있어요>어느 정도 반복한 후] -> test:test-shoulder-arc
+  [네, 통증이 있어요>쉬는 중에도] -> danger
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>한쪽 팔이 많이 제한되고 찝혀요] -> cause:cause-dp
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>팔 범위는 어느 정도 되지만 한쪽이 훨씬 뻑뻑해요] -> cause:cause-case3
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>대칭으로 잘 돼요] -> cause:cause-case4
+  [아니요, 동작만 안 돼요>팔이 안 닿거나 팔꿈치가 구부러져요] -> cause:cause-case1
+  [아니요, 동작만 안 돼요>허리가 벽에서 떨어져요] -> cause:cause-case2
+  [아니요, 동작만 안 돼요>견갑골가 날개처럼 튀어나와요] -> cause:cause-case4
+tests:
+  test-shoulder-arc: pass->test:test-shoulder-ext-rot  fail->cause:cause-dp
+  test-shoulder-ext-rot: pass->cause:cause-case4  fail->cause:cause-case3
+  test-shoulder-lumbarlock-rom: pass->cause:cause-case1  fail->cause:cause-case1
+  test-shoulder-lumbarlock-core: pass->cause:cause-case2  fail->cause:cause-case2
+  test-shoulder-apleys-retest: pass->cause:cause-case3  fail->cause:cause-case3
+  test-shoulder-lumbarlock-scapula: pass->cause:cause-case4  fail->cause:cause-case4
+
+##### TEMPLATE 5 — movements: 스쿼트(squat), 런지(lunge) #####
+causes: cause-a=고관절 임핀지먼트 (FAI) — 사타구니 찝힘 [가동성 부족] | cause-b=고관절 굴곡근 긴장 (앞쪽 통증) [과긴장] | cause-c=중둔근·이상근 긴장 (바깥쪽·엉덩이 통증) [근력 부족]
+entry choices -> :
+  [운동 시작하자마자>사타구니 안쪽 (구부릴 때 찝힘)] -> test:test-hip-fadir
+  [운동 시작하자마자>고관절 앞쪽 (허벅지 위 당김)] -> test:test-hip-thomas
+  [운동 시작하자마자>엉덩이 바깥쪽 또는 뒤쪽] -> test:test-hip-trendelenburg
+  [어느 정도 반복한 후>사타구니 안쪽 (구부릴 때 찝힘)] -> test:test-hip-fadir
+  [어느 정도 반복한 후>고관절 앞쪽 (허벅지 위 당김)] -> test:test-hip-thomas
+  [어느 정도 반복한 후>엉덩이 바깥쪽 또는 뒤쪽] -> test:test-hip-trendelenburg
+  [쉬는 중에도] -> danger
+tests:
+  test-hip-fadir: pass->cause:cause-c  fail->cause:cause-a
+  test-hip-thomas: pass->test:test-hip-fadir  fail->cause:cause-b
+  test-hip-trendelenburg: pass->test:test-hip-fadir  fail->cause:cause-c
+
+##### TEMPLATE 6 — movements: 런지(lunge) #####
+causes: cause-a=발목 배측굴곡 제한 [가동성 부족] | cause-b=고관절 외전근 약화 (무릎 안쪽 쏠림) [근력 부족] | cause-c=IT밴드/TFL 긴장 (외측 무릎 통증) [과긴장] | cause-d=슬개대퇴 증후군 (대퇴사두근 과부하) [과부하]
+entry choices -> :
+  [운동 시작하자마자>앞쪽 (슬개골 주변)] -> test:test-ankle-df
+  [운동 시작하자마자>바깥쪽] -> cause:cause-c
+  [어느 정도 반복한 후>앞쪽 (슬개골 주변)] -> test:test-ankle-df
+  [어느 정도 반복한 후>바깥쪽] -> cause:cause-c
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-ankle-df: pass->test:test-valgus  fail->cause:cause-a
+  test-valgus: pass->cause:cause-d  fail->cause:cause-b
+  test-itband-retest: pass->cause:cause-c  fail->cause:cause-c
+  test-quad-overload-retest: pass->cause:cause-d  fail->cause:cause-d
+
+##### TEMPLATE 7 — movements: 런지(lunge) #####
+causes: cause-a=고관절 굴곡근 단축 (요추 과신전) [가동성 부족] | cause-b=코어 약화 (요추 중립 유지 불가) [근력 부족] | cause-c=천장관절 부하 불균형 [관절 부하]
+entry choices -> :
+  [운동 시작하자마자>허리 중앙 (척추 주변)] -> test:test-hip-flexor
+  [운동 시작하자마자>허리 한쪽 (엉덩이 위쪽)] -> cause:cause-c
+  [어느 정도 반복한 후>허리 중앙 (척추 주변)] -> test:test-hip-flexor
+  [어느 정도 반복한 후>허리 한쪽 (엉덩이 위쪽)] -> cause:cause-c
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-hip-flexor: pass->cause:cause-b  fail->cause:cause-a
+  test-core-plank-retest: pass->cause:cause-b  fail->cause:cause-b
+  test-si-joint-retest: pass->cause:cause-c  fail->cause:cause-c
+
+##### TEMPLATE 8 — movements: 런지(lunge) #####
+causes: cause-a=발목 배측굴곡 제한 [가동성 부족] | cause-a-mild=발목 배측굴곡 경미한 제한 [가동성 부족] | cause-b=발목 외측 인대 불안정성 [불안정성] | cause-c=아킬레스건 과부하 [과부하]
+entry choices -> :
+  [운동 시작하자마자>발목 앞쪽 (구부릴 때 막히는 느낌)] -> test:test-ankle-df
+  [운동 시작하자마자>발목 바깥쪽 또는 복숭아뼈 주변] -> cause:cause-b
+  [운동 시작하자마자>발뒤꿈치 위 또는 종아리 아래] -> cause:cause-c
+  [어느 정도 반복한 후>발목 앞쪽 (구부릴 때 막히는 느낌)] -> test:test-ankle-df
+  [어느 정도 반복한 후>발목 바깥쪽 또는 복숭아뼈 주변] -> cause:cause-b
+  [어느 정도 반복한 후>발뒤꿈치 위 또는 종아리 아래] -> cause:cause-c
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-ankle-df: pass->cause:cause-a-mild  fail->cause:cause-a
+  test-ankle-stability-retest: pass->cause:cause-b  fail->cause:cause-b
+  test-achilles-overload-retest: pass->cause:cause-c  fail->cause:cause-c
+
+##### TEMPLATE 9 — movements: 데드리프트(deadlift) #####
+causes: cause-a=슬개대퇴 압박 과부하 [과부하] | cause-b=고관절 외전근 약화 (무릎 안쪽 쏠림) [근력 부족] | cause-c=IT밴드/TFL 긴장 (외측 무릎 통증) [과긴장]
+entry choices -> :
+  [바닥에서 바를 들어 올릴 때>앞쪽 (슬개골 주변)] -> test:test-valgus
+  [바닥에서 바를 들어 올릴 때>바깥쪽] -> cause:cause-c
+  [바가 무릎을 지나갈 때>앞쪽 (슬개골 주변)] -> test:test-valgus
+  [바가 무릎을 지나갈 때>바깥쪽] -> cause:cause-c
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-valgus: pass->cause:cause-a  fail->cause:cause-b
+  test-itband-retest: pass->cause:cause-c  fail->cause:cause-c
+  test-pf-compression-retest: pass->cause:cause-a  fail->cause:cause-a
+
+##### TEMPLATE 10 — movements: 데드리프트(deadlift) #####
+causes: cause-a=요추 굴곡 패턴 (Round Back) [기술 오류] | cause-b=요추 과신전 (허리 과도하게 젖힘) [가동성 부족] | cause-c=과부하/과사용 (급격한 볼륨·무게 증가) [과부하]
+entry choices -> :
+  [바닥에서 들어 올릴 때>허리가 당기고 뻐근해요] -> test:test-flexion
+  [바닥에서 들어 올릴 때>다리로 저리거나 찌릿해요] -> danger
+  [바닥에서 들어 올릴 때>특별히 당기거나 저린 느낌 없이 전체적으로 뻐근하고 피로해요] -> cause:cause-c
+  [내려놓을 때 또는 내내>허리가 당기고 뻐근해요] -> test:test-flexion
+  [내려놓을 때 또는 내내>다리로 저리거나 찌릿해요] -> danger
+  [내려놓을 때 또는 내내>특별히 당기거나 저린 느낌 없이 전체적으로 뻐근하고 피로해요] -> cause:cause-c
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-flexion: pass->cause:cause-a  fail->cause:cause-b
+  test-lowerback-overload-retest: pass->cause:cause-c  fail->cause:cause-c
+
+##### TEMPLATE 11 — movements: 데드리프트(deadlift) #####
+causes: cause-dp=충돌증후군 — 통증 있는 상태 (보호 우선) [통증 조절] | cause-case1=광배근·흉추 경직 (어깨 굴곡 공간 부족) [가동성 부족] | cause-case2=코어-상지 분리 실패 (팔 들 때 허리가 따라감) [조절 실패] | cause-case3=후방 관절낭·회전근개 경직 (내회전·수평 내전 제한) [가동성 부족] | cause-case4=전거근·하부 승모근 약화 (견갑골 익상) [근력 부족]
+entry choices -> :
+  [네, 통증이 있어요>운동 시작하자마자] -> test:test-shoulder-arc
+  [네, 통증이 있어요>어느 정도 반복한 후] -> test:test-shoulder-arc
+  [네, 통증이 있어요>쉬는 중에도] -> danger
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>한쪽 팔이 많이 제한되고 찝혀요] -> cause:cause-dp
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>팔 범위는 어느 정도 되지만 한쪽이 훨씬 뻑뻑해요] -> cause:cause-case3
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>대칭으로 잘 돼요] -> cause:cause-case4
+  [아니요, 동작만 안 돼요>팔이 안 닿거나 팔꿈치가 구부러져요] -> cause:cause-case1
+  [아니요, 동작만 안 돼요>허리가 벽에서 떨어져요] -> cause:cause-case2
+  [아니요, 동작만 안 돼요>견갑골가 날개처럼 튀어나와요] -> cause:cause-case4
+tests:
+  test-shoulder-arc: pass->test:test-shoulder-int-rot  fail->cause:cause-dp
+  test-shoulder-int-rot: pass->cause:cause-case2  fail->cause:cause-dp
+  test-shoulder-lumbarlock-rom: pass->cause:cause-case1  fail->cause:cause-case1
+  test-shoulder-lumbarlock-core: pass->cause:cause-case2  fail->cause:cause-case2
+  test-shoulder-apleys-retest: pass->cause:cause-case3  fail->cause:cause-case3
+  test-shoulder-lumbarlock-scapula: pass->cause:cause-case4  fail->cause:cause-case4
+
+##### TEMPLATE 12 — movements: 데드리프트(deadlift), 풀업(pullup), 키핑(kipping), 로우(row), 수직 프레스(press-vertical), 수평 프레스(press-horizontal) #####
+causes: cause-a=손목 신전 가동성 부족 [가동성 부족] | cause-b=손목 신전근 건병증 (손등·팔뚝 바깥쪽 통증) [과부하] | cause-c=손목 굴곡근 과부하 / TFCC (새끼손가락 쪽 통증) [과부하]
+entry choices -> :
+  [운동 시작하자마자>손목을 뒤로 꺾을 때 앞쪽 당김] -> test:test-wrist-ext-mob
+  [운동 시작하자마자>손등 또는 팔뚝 바깥쪽 (신전근 쪽)] -> test:test-wrist-ext-resist
+  [운동 시작하자마자>새끼손가락 쪽 또는 안쪽 (굴곡근 쪽)] -> test:test-wrist-flex-resist
+  [어느 정도 반복한 후>손목을 뒤로 꺾을 때 앞쪽 당김] -> test:test-wrist-ext-mob
+  [어느 정도 반복한 후>손등 또는 팔뚝 바깥쪽 (신전근 쪽)] -> test:test-wrist-ext-resist
+  [어느 정도 반복한 후>새끼손가락 쪽 또는 안쪽 (굴곡근 쪽)] -> test:test-wrist-flex-resist
+  [쉬는 중에도] -> danger
+tests:
+  test-wrist-ext-mob: pass->test:test-wrist-tfcc  fail->cause:cause-a
+  test-wrist-tfcc: pass->cause:cause-b  fail->cause:cause-c
+  test-wrist-ext-resist: pass->test:test-wrist-ext-mob  fail->cause:cause-b
+  test-wrist-flex-resist: pass->test:test-wrist-tfcc  fail->cause:cause-c
+
+##### TEMPLATE 13 — movements: 데드리프트(deadlift) #####
+causes: cause-a=햄스트링 부착부 건병증 (좌골결절 통증) [과부하] | cause-b=고관절 임핀지먼트 (FAI) — 사타구니 찝힘 [가동성 부족] | cause-c=고관절 굴곡근 긴장 (앞쪽 통증) [과긴장]
+entry choices -> :
+  [운동 시작하자마자>엉덩이 아래 (앉으면 닿는 뼈 주변)] -> test:test-hip-hamstring
+  [운동 시작하자마자>사타구니 안쪽 (셋업 시 찝힘)] -> test:test-hip-fadir-dl
+  [운동 시작하자마자>고관절 앞쪽 (허벅지 위 당김)] -> test:test-hip-thomas-dl
+  [어느 정도 반복한 후>엉덩이 아래 (앉으면 닿는 뼈 주변)] -> test:test-hip-hamstring
+  [어느 정도 반복한 후>사타구니 안쪽 (셋업 시 찝힘)] -> test:test-hip-fadir-dl
+  [어느 정도 반복한 후>고관절 앞쪽 (허벅지 위 당김)] -> test:test-hip-thomas-dl
+  [쉬는 중에도] -> danger
+tests:
+  test-hip-hamstring: pass->test:test-hip-fadir-dl  fail->cause:cause-a
+  test-hip-fadir-dl: pass->cause:cause-c  fail->cause:cause-b
+  test-hip-thomas-dl: pass->test:test-hip-fadir-dl  fail->cause:cause-c
+
+##### TEMPLATE 14 — movements: 풀업(pullup) #####
+causes: cause-dp=충돌증후군 — 통증 있는 상태 (보호 우선) [통증 조절] | cause-case1=광배근·흉추 경직 (어깨 굴곡 공간 부족) [가동성 부족] | cause-case2=코어-상지 분리 실패 (팔 들 때 허리가 따라감) [조절 실패] | cause-case3=후방 관절낭·회전근개 경직 (내회전·수평 내전 제한) [가동성 부족] | cause-case4=전거근·하부 승모근 약화 (견갑골 익상) [근력 부족]
+entry choices -> :
+  [네, 통증이 있어요>운동 시작하자마자] -> test:test-shoulder-flex
+  [네, 통증이 있어요>어느 정도 반복한 후] -> test:test-shoulder-flex
+  [네, 통증이 있어요>쉬는 중에도] -> danger
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>한쪽 팔이 많이 제한되고 찝혀요] -> cause:cause-dp
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>팔 범위는 어느 정도 되지만 한쪽이 훨씬 뻑뻑해요] -> cause:cause-case3
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>대칭으로 잘 돼요] -> cause:cause-case4
+  [아니요, 동작만 안 돼요>팔이 안 닿거나 팔꿈치가 구부러져요] -> cause:cause-case1
+  [아니요, 동작만 안 돼요>허리가 벽에서 떨어져요] -> cause:cause-case2
+  [아니요, 동작만 안 돼요>견갑골가 날개처럼 튀어나와요] -> cause:cause-case4
+tests:
+  test-shoulder-flex: pass->test:test-shoulder-hang  fail->cause:cause-case1
+  test-shoulder-hang: pass->cause:cause-case2  fail->cause:cause-dp
+  test-shoulder-lumbarlock-rom: pass->cause:cause-case1  fail->cause:cause-case1
+  test-shoulder-lumbarlock-core: pass->cause:cause-case2  fail->cause:cause-case2
+  test-shoulder-apleys-retest: pass->cause:cause-case3  fail->cause:cause-case3
+  test-shoulder-lumbarlock-scapula: pass->cause:cause-case4  fail->cause:cause-case4
+
+##### TEMPLATE 15 — movements: 풀업(pullup), 키핑(kipping), 로우(row), 수직 프레스(press-vertical), 수평 프레스(press-horizontal) #####
+causes: cause-a=외측 상과염 (테니스 엘보 — 팔꿈치 바깥쪽) [과부하] | cause-b=내측 상과염 (골퍼 엘보 — 팔꿈치 안쪽) [과부하] | cause-c=이두건 건병증 (팔꿈치 앞쪽 통증) [과부하]
+entry choices -> :
+  [운동 시작하자마자>바깥쪽 뼈 돌출부 (신전근 쪽)] -> test:test-elbow-lateral
+  [운동 시작하자마자>안쪽 뼈 돌출부 (굴곡근 쪽)] -> test:test-elbow-medial
+  [운동 시작하자마자>앞쪽 (팔꿈치 접히는 부분)] -> test:test-elbow-anterior
+  [어느 정도 반복한 후>바깥쪽 뼈 돌출부 (신전근 쪽)] -> test:test-elbow-lateral
+  [어느 정도 반복한 후>안쪽 뼈 돌출부 (굴곡근 쪽)] -> test:test-elbow-medial
+  [어느 정도 반복한 후>앞쪽 (팔꿈치 접히는 부분)] -> test:test-elbow-anterior
+  [쉬는 중에도] -> danger
+tests:
+  test-elbow-lateral: pass->test:test-elbow-medial  fail->cause:cause-a
+  test-elbow-medial: pass->cause:cause-c  fail->cause:cause-b
+  test-elbow-anterior: pass->test:test-elbow-medial  fail->cause:cause-c
+
+##### TEMPLATE 16 — movements: 풀업(pullup) #####
+causes: cause-a=광배근 약화에 의한 요추 과신전 보상 [보상 패턴] | cause-b=코어 약화 (매달린 자세에서 요추 과신전) [근력 부족]
+entry choices -> :
+  [풀업 당기는 동작 중>네, 배를 조이지 않으면 젖혀져요] -> test:test-back-hollow
+  [풀업 당기는 동작 중>아니요, 자세는 괜찮아요] -> cause:cause-a
+  [매달려 있을 때>네, 배를 조이지 않으면 젖혀져요] -> test:test-back-hollow
+  [매달려 있을 때>아니요, 자세는 괜찮아요] -> cause:cause-a
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-back-hollow: pass->cause:cause-a  fail->cause:cause-b
+
+##### TEMPLATE 17 — movements: 키핑(kipping) #####
+causes: cause-dp=충돌증후군 — 통증 있는 상태 (보호 우선) [통증 조절] | cause-case1=광배근·흉추 경직 (어깨 굴곡 공간 부족) [가동성 부족] | cause-case2=코어-상지 분리 실패 (팔 들 때 허리가 따라감) [조절 실패] | cause-case3=후방 관절낭·회전근개 경직 (내회전·수평 내전 제한) [가동성 부족] | cause-case4=전거근·하부 승모근 약화 (견갑골 익상) [근력 부족]
+entry choices -> :
+  [네, 통증이 있어요>운동 시작하자마자] -> test:test-shoulder-flex
+  [네, 통증이 있어요>어느 정도 반복한 후] -> test:test-shoulder-flex
+  [네, 통증이 있어요>쉬는 중에도] -> danger
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>한쪽 팔이 많이 제한되고 찝혀요] -> cause:cause-dp
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>팔 범위는 어느 정도 되지만 한쪽이 훨씬 뻑뻑해요] -> cause:cause-case3
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>대칭으로 잘 돼요] -> cause:cause-case4
+  [아니요, 동작만 안 돼요>팔이 안 닿거나 팔꿈치가 구부러져요] -> cause:cause-case1
+  [아니요, 동작만 안 돼요>허리가 벽에서 떨어져요] -> cause:cause-case2
+  [아니요, 동작만 안 돼요>견갑골가 날개처럼 튀어나와요] -> cause:cause-case4
+tests:
+  test-shoulder-flex: pass->test:test-shoulder-ext  fail->cause:cause-case1
+  test-shoulder-ext: pass->cause:cause-case2  fail->cause:cause-case3
+  test-shoulder-lumbarlock-rom: pass->cause:cause-case1  fail->cause:cause-case1
+  test-shoulder-lumbarlock-core: pass->cause:cause-case2  fail->cause:cause-case2
+  test-shoulder-apleys-retest: pass->cause:cause-case3  fail->cause:cause-case3
+  test-shoulder-lumbarlock-scapula: pass->cause:cause-case4  fail->cause:cause-case4
+
+##### TEMPLATE 18 — movements: 키핑(kipping) #####
+causes: cause-a=아치 페이즈 요추 과신전 [과부하] | cause-b=코어 약화 (코어 안정성 부족) [근력 부족]
+entry choices -> :
+  [스윙(아치) 동작 중>네, 유지할 수 있어요] -> test:test-back-ext
+  [스윙(아치) 동작 중>아니요, 허리가 젖혀져요] -> cause:cause-b
+  [풀업 당기는 순간>네, 유지할 수 있어요] -> test:test-back-ext
+  [풀업 당기는 순간>아니요, 허리가 젖혀져요] -> cause:cause-b
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-back-ext: pass->cause:cause-b  fail->cause:cause-a
+
+##### TEMPLATE 19 — movements: 로우(row) #####
+causes: cause-a=요추 굴곡 과부하 (라운드 백) [기술 오류] | cause-b=고관절 굴곡근 단축 (로우 자세 유지 어려움) [가동성 부족] | cause-c=과부하/과사용 [과부하]
+entry choices -> :
+  [당기는 동작 중>네, 등이 둥글어져요] -> cause:cause-a
+  [당기는 동작 중>아니요, 자세는 괜찮아요] -> test:test-hip-flexor
+  [앞으로 숙인 자세를 유지할 때>네, 등이 둥글어져요] -> cause:cause-a
+  [앞으로 숙인 자세를 유지할 때>아니요, 자세는 괜찮아요] -> test:test-hip-flexor
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-hip-flexor: pass->cause:cause-c  fail->cause:cause-b
+  test-row-overload-retest: pass->cause:cause-c  fail->cause:cause-c
+  test-row-flexion-retest: pass->cause:cause-a  fail->cause:cause-a
+
+##### TEMPLATE 20 — movements: 로우(row) #####
+causes: cause-dp=충돌증후군 — 통증 있는 상태 (보호 우선) [통증 조절] | cause-case1=광배근·흉추 경직 (어깨 굴곡 공간 부족) [가동성 부족] | cause-case2=코어-상지 분리 실패 (팔 들 때 허리가 따라감) [조절 실패] | cause-case3=후방 관절낭·회전근개 경직 (내회전·수평 내전 제한) [가동성 부족] | cause-case4=전거근·하부 승모근 약화 (견갑골 익상) [근력 부족]
+entry choices -> :
+  [네, 통증이 있어요>운동 시작하자마자] -> test:test-shoulder-arc
+  [네, 통증이 있어요>어느 정도 반복한 후] -> test:test-shoulder-arc
+  [네, 통증이 있어요>쉬는 중에도] -> danger
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>한쪽 팔이 많이 제한되고 찝혀요] -> cause:cause-dp
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>팔 범위는 어느 정도 되지만 한쪽이 훨씬 뻑뻑해요] -> cause:cause-case3
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>대칭으로 잘 돼요] -> cause:cause-case4
+  [아니요, 동작만 안 돼요>팔이 안 닿거나 팔꿈치가 구부러져요] -> cause:cause-case1
+  [아니요, 동작만 안 돼요>허리가 벽에서 떨어져요] -> cause:cause-case2
+  [아니요, 동작만 안 돼요>견갑골가 날개처럼 튀어나와요] -> cause:cause-case4
+tests:
+  test-shoulder-arc: pass->test:test-shoulder-h-abd  fail->cause:cause-dp
+  test-shoulder-h-abd: pass->cause:cause-case2  fail->cause:cause-dp
+  test-shoulder-lumbarlock-rom: pass->cause:cause-case1  fail->cause:cause-case1
+  test-shoulder-lumbarlock-core: pass->cause:cause-case2  fail->cause:cause-case2
+  test-shoulder-apleys-retest: pass->cause:cause-case3  fail->cause:cause-case3
+  test-shoulder-lumbarlock-scapula: pass->cause:cause-case4  fail->cause:cause-case4
+
+##### TEMPLATE 21 — movements: 수직 프레스(press-vertical) #####
+causes: cause-dp=견관절 충돌증후군 — 건병증 급성기 (통증 보호 우선) [통증 보호 단계] | cause-case1=광배근·흉추 경직 (어깨 굴곡 공간 부족) [가동성 부족] | cause-case2=요추-골반-상지 신경근 조절 실패 (팔 동작 시 요추 연동) [신경근 조절 실패] | cause-case3=후방 관절낭·회전근개 경직 (내회전·수평 내전 제한) [가동성 부족] | cause-case4=전거근·하부 승모근 근력 저하 (견갑골 익상) [근력·안정화 부족]
+entry choices -> :
+  [네, 통증이 있어요>운동 시작하자마자] -> test:test-shoulder-flex
+  [네, 통증이 있어요>어느 정도 반복한 후] -> test:test-shoulder-flex
+  [네, 통증이 있어요>쉬는 중에도] -> danger
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>한쪽 팔이 많이 제한되고 찝혀요] -> cause:cause-dp
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>팔 범위는 어느 정도 되지만 한쪽이 훨씬 뻑뻑해요] -> cause:cause-case3
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>대칭으로 잘 돼요] -> cause:cause-case4
+  [아니요, 동작만 안 돼요>팔이 안 닿거나 팔꿈치가 구부러져요] -> cause:cause-case1
+  [아니요, 동작만 안 돼요>허리가 벽에서 떨어져요] -> cause:cause-case2
+  [아니요, 동작만 안 돼요>견갑골가 날개처럼 튀어나와요] -> cause:cause-case4
+tests:
+  test-shoulder-flex: pass->test:test-shoulder-empty-can  fail->cause:cause-case1
+  test-shoulder-empty-can: pass->cause:cause-case2  fail->cause:cause-dp
+  test-shoulder-lumbarlock-rom: pass->cause:cause-case1  fail->cause:cause-case1
+  test-shoulder-lumbarlock-core: pass->cause:cause-case2  fail->cause:cause-case2
+  test-shoulder-apleys-retest: pass->cause:cause-case3  fail->cause:cause-case3
+  test-shoulder-lumbarlock-scapula: pass->cause:cause-case4  fail->cause:cause-case4
+
+##### TEMPLATE 22 — movements: 수직 프레스(press-vertical) #####
+causes: cause-a=장요근·대퇴직근 단축 → 요추 과신전 (전만 증가) [관절 가동범위 제한] | cause-b=코어 약화 (프레스 시 요추 중립 유지 불가) [근력 부족] | cause-c=과부하/과사용 [과부하]
+entry choices -> :
+  [바를 머리 위로 밀 때>네, 뒤로 많이 젖혀져요] -> test:test-hip-flexor
+  [바를 머리 위로 밀 때>아니요, 자세는 괜찮아요] -> cause:cause-c
+  [내려올 때 또는 내내>네, 뒤로 많이 젖혀져요] -> test:test-hip-flexor
+  [내려올 때 또는 내내>아니요, 자세는 괜찮아요] -> cause:cause-c
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-hip-flexor: pass->cause:cause-b  fail->cause:cause-a
+  test-lowerback-overload-retest: pass->cause:cause-c  fail->cause:cause-c
+  test-core-plank-retest: pass->cause:cause-b  fail->cause:cause-b
+
+##### TEMPLATE 23 — movements: 수평 프레스(press-horizontal) #####
+causes: cause-dp=충돌증후군 — 통증 있는 상태 (보호 우선) [통증 조절] | cause-case1=광배근·흉추 경직 (어깨 굴곡 공간 부족) [가동성 부족] | cause-case2=코어-상지 분리 실패 (팔 들 때 허리가 따라감) [조절 실패] | cause-case3=후방 관절낭·회전근개 경직 (내회전·수평 내전 제한) [가동성 부족] | cause-case4=전거근·하부 승모근 약화 (견갑골 익상) [근력 부족]
+entry choices -> :
+  [네, 통증이 있어요>운동 시작하자마자] -> test:test-shoulder-arc
+  [네, 통증이 있어요>어느 정도 반복한 후] -> test:test-shoulder-arc
+  [네, 통증이 있어요>쉬는 중에도] -> danger
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>한쪽 팔이 많이 제한되고 찝혀요] -> cause:cause-dp
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>팔 범위는 어느 정도 되지만 한쪽이 훨씬 뻑뻑해요] -> cause:cause-case3
+  [아니요, 동작만 안 돼요>네, 양쪽 모두 닿아요>대칭으로 잘 돼요] -> cause:cause-case4
+  [아니요, 동작만 안 돼요>팔이 안 닿거나 팔꿈치가 구부러져요] -> cause:cause-case1
+  [아니요, 동작만 안 돼요>허리가 벽에서 떨어져요] -> cause:cause-case2
+  [아니요, 동작만 안 돼요>견갑골가 날개처럼 튀어나와요] -> cause:cause-case4
+tests:
+  test-shoulder-arc: pass->test:test-shoulder-h-add  fail->cause:cause-dp
+  test-shoulder-h-add: pass->cause:cause-case2  fail->cause:cause-dp
+  test-shoulder-lumbarlock-rom: pass->cause:cause-case1  fail->cause:cause-case1
+  test-shoulder-lumbarlock-core: pass->cause:cause-case2  fail->cause:cause-case2
+  test-shoulder-apleys-retest: pass->cause:cause-case3  fail->cause:cause-case3
+  test-shoulder-lumbarlock-scapula: pass->cause:cause-case4  fail->cause:cause-case4
+
+##### TEMPLATE 24 — movements: 수평 프레스(press-horizontal) #####
+causes: cause-a=고관절 굴곡근 단축 → 요추 과신전 [가동성 부족] | cause-b=코어 약화 (프레스 시 요추 중립 유지 불가) [근력 부족] | cause-c=과부하/과사용 [과부하]
+entry choices -> :
+  [바를 머리 위로 밀 때>네, 뒤로 많이 젖혀져요] -> test:test-hip-flexor
+  [바를 머리 위로 밀 때>아니요, 자세는 괜찮아요] -> cause:cause-c
+  [내려올 때 또는 내내>네, 뒤로 많이 젖혀져요] -> test:test-hip-flexor
+  [내려올 때 또는 내내>아니요, 자세는 괜찮아요] -> cause:cause-c
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-hip-flexor: pass->cause:cause-b  fail->cause:cause-a
+  test-lowerback-overload-retest: pass->cause:cause-c  fail->cause:cause-c
+  test-core-plank-retest: pass->cause:cause-b  fail->cause:cause-b
+
+##### TEMPLATE 25 — movements: 수평 프레스(press-horizontal) #####
+causes: cause-a=대흉근 건병증 (하강 시 과부하) [과부하] | cause-b=소흉근 과긴장 (가슴 전면·어깨 전방 당김) [과긴장] | cause-c=과사용 (볼륨·빈도 급증) [과사용]
+entry choices -> :
+  [바를 내릴 때 (가슴이 늘어날 때)>'뚝' 소리 나거나 날카롭게 찢어지는 느낌이 있었어요] -> danger
+  [바를 내릴 때 (가슴이 늘어날 때)>특별히 당기는 느낌 없이 전체적으로 뻐근하고 무거워요] -> cause:cause-c
+  [바를 내릴 때 (가슴이 늘어날 때)>가슴 근육이 당기거나 뻐근해요] -> test:test-pec-length
+  [밀어 올릴 때 또는 내내>'뚝' 소리 나거나 날카롭게 찢어지는 느낌이 있었어요] -> danger
+  [밀어 올릴 때 또는 내내>특별히 당기는 느낌 없이 전체적으로 뻐근하고 무거워요] -> cause:cause-c
+  [밀어 올릴 때 또는 내내>가슴 근육이 당기거나 뻐근해요] -> test:test-pec-length
+  [쉬는 중에도 욱신거린다] -> danger
+tests:
+  test-pec-length: pass->cause:cause-a  fail->cause:cause-b
+  test-pec-tendinopathy-retest: pass->cause:cause-a  fail->cause:cause-a
+  test-chest-overuse-retest: pass->cause:cause-c  fail->cause:cause-c
+
+TOTAL TEMPLATES: 25
