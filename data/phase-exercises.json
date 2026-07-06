@@ -32495,8 +32495,8 @@
                           "배꼽을 당기고 갈비뼈를 닫아 할로우 포지션을 만드세요",
                           "20~30초 유지 · 3세트"
                         ],
-                        "advancement_criteria": "2회 연속 세션 통증 없이 수행",
-                        "video_url": "TBD"
+                        "video_url": "TBD",
+                        "progression_note": "2회 연속 세션 통증 없이 수행"
                       },
                       {
                         "order": 2,
@@ -32513,8 +32513,8 @@
                           "다시 할로우로 돌아오세요",
                           "스윙 범위는 통증 없는 범위 내에서만"
                         ],
-                        "advancement_criteria": "2회 연속 세션 통증 없이 수행",
-                        "video_url": "TBD"
+                        "video_url": "TBD",
+                        "progression_note": "2회 연속 세션 통증 없이 수행"
                       },
                       {
                         "order": 3,
@@ -32531,8 +32531,8 @@
                           "올라갈 때 팔이 귀 옆 공간을 유지하는지 확인하세요",
                           "내려올 때 철봉을 부드럽게 밀어내며 아치로 전환하세요"
                         ],
-                        "advancement_criteria": "2회 연속 세션 통증 없이 수행",
-                        "video_url": "TBD"
+                        "video_url": "TBD",
+                        "progression_note": "2회 연속 세션 통증 없이 수행"
                       },
                       {
                         "order": 4,
@@ -32549,8 +32549,8 @@
                           "주차별 10~20%씩 볼륨을 늘리세요",
                           "다음 날 통증이 악화되면 볼륨을 이전 단계로 되돌리세요"
                         ],
-                        "advancement_criteria": "부상 전 볼륨 100% 통증 없이 수행",
-                        "video_url": "TBD"
+                        "video_url": "TBD",
+                        "progression_note": "부상 전 볼륨 100% 통증 없이 수행"
                       }
                     ]
                   }
