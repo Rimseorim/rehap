@@ -522,17 +522,9 @@ function selectFeedback(type) {
   const sessionCount = (stats.sessionCount || 0) + 1;
   let comfortableCount = (stats.comfortableCount || 0);
   if (type === 'easy') { comfortableCount++; } else { comfortableCount = 0; }
-  updatePhaseStats({ sessionCount, comfortableCount, lastSessionDate: today, firstSessionDate: stats.firstSessionDate || today });
+  const stageEasyStreak = type === 'easy' ? (stats.stageEasyStreak || 0) + 1 : 0;
+  updatePhaseStats({ sessionCount, comfortableCount, stageEasyStreak, lastSessionDate: today, firstSessionDate: stats.firstSessionDate || today });
   S.sessionFeedbackType = type;
-  if (type === 'easy' && S.stageIndex === 0 && getPhaseBStage() < 4) {
-    const c = getCause();
-    const phaseB = c && c.route && c.route.stages[0].phase_b;
-    const currentEx = (phaseB || []).find(ex => ex.order === getPhaseBStage());
-    if (currentEx && currentEx.progression_note) {
-      openPhaseBAdvanceModal(currentEx.progression_note);
-      return;
-    }
-  }
   goToComplete();
 }
 
@@ -548,14 +540,20 @@ function confirmPhaseBAdvance() {
   const m = document.getElementById('phaseb-advance-modal');
   if (m) m.style.display = 'none';
   const next = Math.min(getPhaseBStage() + 1, 4);
-  updatePhaseStats({ phaseBStage: next });
+  updatePhaseStats({ phaseBStage: next, stageEasyStreak: 0 });
   showToast(`${next}단계로 진급했어요!`);
-  goToComplete();
+  render();
 }
 function dismissPhaseBAdvance() {
   const m = document.getElementById('phaseb-advance-modal');
   if (m) m.style.display = 'none';
-  goToComplete();
+  updatePhaseStats({ stageEasyStreak: 0 });
+}
+function revertPhaseBStage() {
+  const prev = Math.max(getPhaseBStage() - 1, 1);
+  updatePhaseStats({ phaseBStage: prev, stageEasyStreak: 0 });
+  showToast(`${prev}단계로 되돌아갔어요`);
+  render();
 }
 
 /* ── 대체 WOD 카드 ── */
@@ -1744,6 +1742,11 @@ function route() {
       const phaseBList = (stage.phase_b || []).filter(ex => ex.order === getPhaseBStage());
 
       if (S.phasePage !== 'b') {
+        const stats = getPhaseStats();
+        if ((stats.stageEasyStreak || 0) >= 2 && getPhaseBStage() < 4) {
+          const currentEx = phaseBList[0];
+          if (currentEx && currentEx.progression_note) openPhaseBAdvanceModal(currentEx.progression_note);
+        }
         stageContent = `
         <p style="font-size:var(--t4);font-weight:600;color:var(--text-sub);margin:4px 0">오늘의 준비운동</p>
         ${phaseAList.map((ex, i) => renderCard(ex, i, false)).join('')}`;
@@ -1751,7 +1754,8 @@ function route() {
       } else {
         stageContent = `
         <p style="font-size:var(--t4);font-weight:600;color:var(--text-sub);margin:4px 0">진행 단계 ${getPhaseBStage()}/4</p>
-        ${phaseBList.map((ex, i) => renderCard(ex, i, true)).join('')}`;
+        ${phaseBList.map((ex, i) => renderCard(ex, i, true)).join('')}
+        ${getPhaseBStage() > 1 ? `<button onclick="revertPhaseBStage()" style="margin-top:14px;width:100%;background:none;border:none;color:var(--text-sub);font-size:var(--t4);text-decoration:underline;cursor:pointer">◂ 이전 단계로 돌아가기</button>` : ''}`;
       }
     } else {
       const exList = stage.exercises || [];
