@@ -28373,8 +28373,8 @@
                           "최고점에서 1초 유지 후 천천히 돌아오세요",
                           "12회 · 3세트"
                         ],
-                        "advancement_criteria": "2회 연속 세션 통증 없이 수행",
-                        "video_url": "TBD"
+                        "video_url": "TBD",
+                        "progression_note": "2회 연속 세션 통증 없이 수행"
                       },
                       {
                         "order": 2,
@@ -28391,8 +28391,8 @@
                           "최고점에서 1초 유지 후 천천히 내리세요",
                           "10회 · 3세트 · 양측 교대"
                         ],
-                        "advancement_criteria": "2회 연속 세션 통증 없이 수행",
-                        "video_url": "TBD"
+                        "video_url": "TBD",
+                        "progression_note": "2회 연속 세션 통증 없이 수행"
                       },
                       {
                         "order": 3,
@@ -28409,8 +28409,8 @@
                           "어깨 앞쪽에 밀리는 느낌이 없는지 확인하며 수행하세요",
                           "8회 · 3세트 · 양측 교대"
                         ],
-                        "advancement_criteria": "2회 연속 세션 통증 없이 수행",
-                        "video_url": "TBD"
+                        "video_url": "TBD",
+                        "progression_note": "2회 연속 세션 통증 없이 수행"
                       },
                       {
                         "order": 4,
@@ -28426,8 +28426,8 @@
                           "매 세션 어깨 앞쪽 밀림 여부를 확인하세요",
                           "통증이나 불편감이 생기면 이전 단계로 돌아가세요"
                         ],
-                        "advancement_criteria": "부상 전 볼륨 100% 통증 없이 수행",
-                        "video_url": "TBD"
+                        "video_url": "TBD",
+                        "progression_note": "부상 전 볼륨 100% 통증 없이 수행"
                       }
                     ]
                   }
