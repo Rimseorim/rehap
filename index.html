@@ -598,7 +598,7 @@ const WOD_POOL = [
   { id: 'row',              name: '로우',             reps: '12회' },
 ];
 
-function getTodaySet() { return new Date().getDate() % 2 === 0 ? 'b' : 'a'; }
+function getTodaySet() { return new Date().getDate() % 2 === 0 ? 'a_b' : 'a'; }
 
 function getWodConfig(stageIndex) {
   if (stageIndex <= 0) return { label: '기초재활 중', time: '10분', format: 'AMRAP', load: '부하 없음' };
