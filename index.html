@@ -335,23 +335,6 @@
   </div>
 </div>
 
-<!-- Phase B 업그레이드 모달 -->
-<div id="phase-upgrade-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;align-items:center;justify-content:center;padding:20px">
-  <div style="background:#fff;border-radius:20px;padding:28px 20px;width:100%;max-width:400px">
-    <div style="text-align:center;margin-bottom:16px">
-      <div style="width:56px;height:56px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
-        <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><path d="M8 18L15 25L28 11" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <h2 style="font-size:18px;font-weight:700;color:#2C2C2C;margin:0 0 8px">Phase B로 넘어갈 준비가 됐어요</h2>
-      <p style="font-size:13px;color:#666;margin:0">가동성이 안정됐으니 이제 저항 운동을 추가합니다</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px">
-      <button onclick="confirmPhaseUpgrade()" style="background:#2C2C2C;color:#fff;border:none;border-radius:12px;padding:16px;font-size:15px;font-weight:600;cursor:pointer">Phase B 시작하기</button>
-      <button onclick="document.getElementById('phase-upgrade-modal').style.display='none'" style="background:#f5f5f5;border:none;border-radius:12px;padding:14px;font-size:14px;color:#666;cursor:pointer">다음에 하기</button>
-    </div>
-  </div>
-</div>
-
 <!-- Phase B 세부단계 진급 모달 -->
 <div id="phaseb-advance-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;align-items:center;justify-content:center;padding:20px">
   <div style="background:#fff;border-radius:20px;padding:28px 20px;width:100%;max-width:400px">
@@ -493,8 +476,7 @@ function getPhaseKey() {
   if (mv && ps && ca) return `${mv}-${ps}-${ca}`;
   return '_default';
 }
-function getCurrentPhase() { return (getPhaseData()[getPhaseKey()] || {}).phase || 'A'; }
-function getPhaseStats() { return getPhaseData()[getPhaseKey()] || { phase: null, sessionCount: 0, comfortableCount: 0, lastSessionDate: null, firstSessionDate: null, retestLog: [] }; }
+function getPhaseStats() { return getPhaseData()[getPhaseKey()] || { sessionCount: 0, comfortableCount: 0, phaseBStage: 1, lastSessionDate: null, firstSessionDate: null, retestLog: [] }; }
 function isPhaseSet() { return !!getPhaseData()[getPhaseKey()]; }
 function updatePhaseStats(updates) {
   const d = getPhaseData(); const k = getPhaseKey();
@@ -541,23 +523,7 @@ function selectFeedback(type) {
   if (type === 'easy') { comfortableCount++; } else { comfortableCount = 0; }
   updatePhaseStats({ sessionCount, comfortableCount, lastSessionDate: today, firstSessionDate: stats.firstSessionDate || today });
   S.sessionFeedbackType = type;
-  if (type === 'easy' && comfortableCount >= 3 && (stats.phase === 'A' || stats.phase === null)) {
-    const m = document.getElementById('phase-upgrade-modal');
-    if (m) { m.style.display = 'flex'; return; }
-  }
   goToComplete();
-}
-
-function confirmPhaseUpgradeAndContinue() {
-  confirmPhaseUpgrade();
-  goToComplete();
-}
-
-function confirmPhaseUpgrade() {
-  const m = document.getElementById('phase-upgrade-modal');
-  if (m) m.style.display = 'none';
-  updatePhaseStats({ phase: 'B', phaseBStage: 1, comfortableCount: 0 });
-  showToast('Phase B로 업그레이드됐어요!');
 }
 
 /* ── Phase B 세부단계(1~4) 진급 ── */
@@ -1633,9 +1599,8 @@ function cause() {
 
 function session_feedback() {
   const stats = getPhaseStats();
-  const phase = stats.phase || 'A';
   const sessionCount = stats.sessionCount || 0;
-  const phaseLabel = phase === 'A' ? 'Phase A · 가동성·등척성 위주' : 'Phase B · 저항·기능 동작 위주';
+  const phaseLabel = `진행 단계 ${getPhaseBStage()}/4`;
   const feedbackLabels = { hard: '아직 불편하고 힘들었다', ok: '할 만했다', easy: '편하게 됐다' };
   const choices = ['hard', 'ok', 'easy'].map(type => `
     <button onclick="selectFeedback('${type}')" class="choice-btn" style="text-align:left">
@@ -1661,9 +1626,9 @@ function route() {
   const stage  = stages[S.stageIndex];
   const isLast = S.stageIndex === stages.length - 1;
 
-// 현재 Phase 표시 배지 (기초재활 전용)
-  const phaseBadge = (S.stageIndex === 0 && isPhaseSet())
-    ? `<span style="font-size:11px;font-weight:700;color:#fff;background:var(--accent);border-radius:6px;padding:2px 8px;margin-left:6px">Phase ${getCurrentPhase()}${getCurrentPhase() === 'B' ? ` · ${getPhaseBStage()}/4단계` : ''}</span>`
+// 진행 단계 배지 (기초재활, phase_b 있는 cause 전용)
+  const phaseBadge = (S.stageIndex === 0 && stage.phase_b && stage.phase_b.length > 0)
+    ? `<span style="font-size:11px;font-weight:700;color:#fff;background:var(--accent);border-radius:6px;padding:2px 8px;margin-left:6px">진행 단계 ${getPhaseBStage()}/4</span>`
     : '';
 
   const stageIndicator = stages.map((st, i) => {
@@ -1716,30 +1681,9 @@ function route() {
       <p style="margin:0;font-size:var(--t4);color:var(--text-sub);line-height:1.6">${tip.body}</p>
     </div>`).join('');
   } else {
-    // Phase A/B + set(a/b) 필터링 (기초재활 stageIndex=0, phase 필드 있는 경우만)
+    // Phase A(매일)/Phase B(4단계 진급, 독립 진행) — phase_a/phase_b 필드 있는 경우만
     const usesPhaseAB = !!(stage.phase_a || stage.phase_b);
-    const inPhaseB = usesPhaseAB && S.stageIndex === 0 && getCurrentPhase() === 'B';
-    let exList;
-    if (usesPhaseAB && S.stageIndex === 0) {
-      if (inPhaseB) {
-        exList = (stage.phase_b || []).filter(ex => ex.order === getPhaseBStage());
-      } else {
-        const todaySet = getTodaySet();
-        const aList = stage.phase_a || [];
-        const setFiltered = aList.filter(ex => !ex.set || ex.set === todaySet);
-        exList = setFiltered.length > 0 ? setFiltered : aList;
-      }
-    } else {
-      exList = stage.exercises || [];
-      if (S.stageIndex === 0 && isPhaseSet()) {
-        const currentPhase = getCurrentPhase();
-        const todaySet = getTodaySet();
-        const phaseFiltered = exList.filter(ex => !ex.phase || ex.phase === currentPhase);
-        const setFiltered = phaseFiltered.filter(ex => !ex.set || ex.set === todaySet);
-        exList = setFiltered.length > 0 ? setFiltered : (phaseFiltered.length > 0 ? phaseFiltered : exList);
-      }
-    }
-    stageContent = exList.map((ex, exIdx) => {
+    const renderCard = (ex, exIdx, showProgression) => {
       const howSteps = (ex.how || []).map((s, i) => `
         <div style="display:flex;gap:10px;align-items:flex-start;margin-top:8px">
           <span style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#2C2C2C;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">${i+1}</span>
@@ -1767,14 +1711,33 @@ function route() {
           <summary style="font-size:var(--t4);color:var(--text-sub);cursor:pointer;list-style:none">▸ 왜 이 운동인가</summary>
           <p class="why-text" style="margin-top:8px">${ex.why}</p>
         </details>
-        ${inPhaseB && ex.progression_note ? `
+        ${showProgression && ex.progression_note ? `
         <div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px">
           <p style="margin:0;font-size:var(--t4);font-weight:600;color:var(--text-sub)">진급 기준</p>
           <p style="margin:4px 0 0;font-size:var(--t4);color:var(--text)">${ex.progression_note}</p>
         </div>
         ${getPhaseBStage() < 4 ? `<button onclick="openPhaseBAdvanceModal(this.dataset.note)" data-note="${ex.progression_note.replace(/"/g,'&quot;')}" style="margin-top:10px;width:100%;background:none;border:1.5px solid var(--accent);color:var(--accent);border-radius:10px;padding:12px;font-size:var(--t4);font-weight:600;cursor:pointer">다음 단계로</button>` : ''}` : ''}
       </div>`;
-    }).join('');
+    };
+
+    if (usesPhaseAB && S.stageIndex === 0) {
+      const todaySet = getTodaySet();
+      const aList = stage.phase_a || [];
+      const setFiltered = aList.filter(ex => !ex.set || ex.set === todaySet);
+      const phaseAList = setFiltered.length > 0 ? setFiltered : aList;
+      const phaseBList = (stage.phase_b || []).filter(ex => ex.order === getPhaseBStage());
+
+      stageContent = `
+        ${phaseAList.length ? `
+        <p style="font-size:var(--t4);font-weight:600;color:var(--text-sub);margin:4px 0">오늘의 준비운동</p>
+        ${phaseAList.map((ex, i) => renderCard(ex, i, false)).join('')}` : ''}
+        ${phaseBList.length ? `
+        <p style="font-size:var(--t4);font-weight:600;color:var(--text-sub);margin:20px 0 4px">진행 단계 ${getPhaseBStage()}/4</p>
+        ${phaseBList.map((ex, i) => renderCard(ex, i, true)).join('')}` : ''}`;
+    } else {
+      const exList = stage.exercises || [];
+      stageContent = exList.map((ex, exIdx) => renderCard(ex, exIdx, false)).join('');
+    }
   }
 
   return `
@@ -1875,16 +1838,9 @@ function complete() {
   // 피드백 기반 넛지 (기초재활 완료 시)
   const nudgeMsg = (() => {
     if (!needsRetest || !isPhaseSet()) return '';
-    const ps = getPhaseStats();
-    const phase = ps.phase || 'A';
-    const sess = ps.sessionCount || 0;
-    const comfortable = ps.comfortableCount || 0;
-    const readyForB = phase === 'A' && sess >= 3 && comfortable >= 3;
-    const readyForTest = phase === 'B' && comfortable >= 3;
-    if (readyForB) return `<p class="t4" style="margin-top:8px;color:#16a34a;font-weight:600">Phase B로 넘어갈 준비가 됐어요!</p>`;
+    const readyForTest = getPhaseBStage() >= 4;
     if (readyForTest) return `<p class="t4" style="margin-top:8px;color:#16a34a;font-weight:600">회복테스트로 넘어갈 준비가 됐어요!</p>`;
-    if (phase === 'B') return `<p class="t4" style="margin-top:8px;color:var(--text-sub)">아직 Phase B를 더 하는 걸 권장해요</p>`;
-    return `<p class="t4" style="margin-top:8px;color:var(--text-sub)">아직 Phase A를 더 하는 걸 권장해요</p>`;
+    return `<p class="t4" style="margin-top:8px;color:var(--text-sub)">아직 진행 단계를 더 밟는 걸 권장해요</p>`;
   })();
 
   return `
