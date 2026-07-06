@@ -1233,7 +1233,7 @@
           ]
         },
         {
-          "id": "low_back",
+          "id": "lower-back",
           "name": "허리",
           "causes": [
             {
@@ -7770,7 +7770,7 @@
           ]
         },
         {
-          "id": "low_back",
+          "id": "lower-back",
           "name": "허리",
           "causes": [
             {
@@ -9395,7 +9395,7 @@
       "name": "데드리프트",
       "pain_sites": [
         {
-          "id": "low_back",
+          "id": "lower-back",
           "name": "허리",
           "causes": [
             {
@@ -18176,50 +18176,6 @@
           ]
         },
         {
-          "id": "low_back",
-          "name": "허리",
-          "causes": [
-            {
-              "id": "cause-a",
-              "label": "원인 A",
-              "tag": "보상 패턴",
-              "name": "광배근 약화에 의한 요추 과신전 보상",
-              "description": "광배근이 충분히 강하지 않으면 풀업 당기는 힘을 보충하기 위해 무의식적으로 허리를 젖혀 반동을 씁니다. 자세는 괜찮아 보여도 실제 당기는 순간 요추가 개입됩니다. 광배근을 직접 강화해야 보상 패턴이 사라집니다.",
-              "priority_note": "스트릭 데드행 홀드와 스캡 풀업으로 광배근을 먼저 강화합니다.",
-              "route": {
-                "stages": [
-                  {
-                    "id": "stage-1",
-                    "name": "기초재활",
-                    "phase_a": [],
-                    "phase_a_b": [],
-                    "phase_b": []
-                  }
-                ]
-              }
-            },
-            {
-              "id": "cause-b",
-              "label": "원인 B",
-              "tag": "근력 부족",
-              "name": "코어 약화 (매달린 자세에서 요추 과신전)",
-              "description": "매달리는 순간 코어가 약하면 중력에 의해 허리가 자연스럽게 젖혀집니다. 풀업 동작 전체에서 요추가 계속 과신전 상태로 유지되어 통증이 생깁니다.",
-              "priority_note": "hanging hollow body 30초가 가능해질 때까지 풀업 볼륨을 줄입니다.",
-              "route": {
-                "stages": [
-                  {
-                    "id": "stage-1",
-                    "name": "기초재활",
-                    "phase_a": [],
-                    "phase_a_b": [],
-                    "phase_b": []
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        {
           "id": "lower-back",
           "name": "허리",
           "causes": [
@@ -26356,7 +26312,7 @@
           ]
         },
         {
-          "id": "low_back",
+          "id": "lower-back",
           "name": "허리",
           "causes": [
             {
