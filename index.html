@@ -347,7 +347,7 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px">
       <button onclick="confirmPhaseBAdvance()" style="background:#2C2C2C;color:#fff;border:none;border-radius:12px;padding:16px;font-size:15px;font-weight:600;cursor:pointer">다음 단계로 진급하기</button>
-      <button onclick="document.getElementById('phaseb-advance-modal').style.display='none'" style="background:#f5f5f5;border:none;border-radius:12px;padding:14px;font-size:14px;color:#666;cursor:pointer">아직 아니에요</button>
+      <button onclick="dismissPhaseBAdvance()" style="background:#f5f5f5;border:none;border-radius:12px;padding:14px;font-size:14px;color:#666;cursor:pointer">아직 아니에요</button>
     </div>
   </div>
 </div>
@@ -455,6 +455,7 @@ const S = {
   isRedFlagDanger: false,
   retestMode: false,
   sessionFeedbackType: null,
+  phasePage: 'a',
 };
 
 /* ── 사용자 ── */
@@ -523,6 +524,15 @@ function selectFeedback(type) {
   if (type === 'easy') { comfortableCount++; } else { comfortableCount = 0; }
   updatePhaseStats({ sessionCount, comfortableCount, lastSessionDate: today, firstSessionDate: stats.firstSessionDate || today });
   S.sessionFeedbackType = type;
+  if (type === 'easy' && S.stageIndex === 0 && getPhaseBStage() < 4) {
+    const c = getCause();
+    const phaseB = c && c.route && c.route.stages[0].phase_b;
+    const currentEx = (phaseB || []).find(ex => ex.order === getPhaseBStage());
+    if (currentEx && currentEx.progression_note) {
+      openPhaseBAdvanceModal(currentEx.progression_note);
+      return;
+    }
+  }
   goToComplete();
 }
 
@@ -540,6 +550,12 @@ function confirmPhaseBAdvance() {
   const next = Math.min(getPhaseBStage() + 1, 4);
   updatePhaseStats({ phaseBStage: next });
   showToast(`${next}단계로 진급했어요!`);
+  goToComplete();
+}
+function dismissPhaseBAdvance() {
+  const m = document.getElementById('phaseb-advance-modal');
+  if (m) m.style.display = 'none';
+  goToComplete();
 }
 
 /* ── 대체 WOD 카드 ── */
@@ -1640,6 +1656,7 @@ function route() {
   }).join('');
 
   let stageContent;
+  let bottomButton = null;
   if (stage.type === 'reassessment') {
     const checklist = stage.checklist || [];
     const items = checklist.map((item, i) => {
@@ -1715,8 +1732,7 @@ function route() {
         <div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px">
           <p style="margin:0;font-size:var(--t4);font-weight:600;color:var(--text-sub)">진급 기준</p>
           <p style="margin:4px 0 0;font-size:var(--t4);color:var(--text)">${ex.progression_note}</p>
-        </div>
-        ${getPhaseBStage() < 4 ? `<button onclick="openPhaseBAdvanceModal(this.dataset.note)" data-note="${ex.progression_note.replace(/"/g,'&quot;')}" style="margin-top:10px;width:100%;background:none;border:1.5px solid var(--accent);color:var(--accent);border-radius:10px;padding:12px;font-size:var(--t4);font-weight:600;cursor:pointer">다음 단계로</button>` : ''}` : ''}
+        </div>` : ''}
       </div>`;
     };
 
@@ -1727,13 +1743,16 @@ function route() {
       const phaseAList = setFiltered.length > 0 ? setFiltered : aList;
       const phaseBList = (stage.phase_b || []).filter(ex => ex.order === getPhaseBStage());
 
-      stageContent = `
-        ${phaseAList.length ? `
+      if (S.phasePage !== 'b') {
+        stageContent = `
         <p style="font-size:var(--t4);font-weight:600;color:var(--text-sub);margin:4px 0">오늘의 준비운동</p>
-        ${phaseAList.map((ex, i) => renderCard(ex, i, false)).join('')}` : ''}
-        ${phaseBList.length ? `
-        <p style="font-size:var(--t4);font-weight:600;color:var(--text-sub);margin:20px 0 4px">진행 단계 ${getPhaseBStage()}/4</p>
-        ${phaseBList.map((ex, i) => renderCard(ex, i, true)).join('')}` : ''}`;
+        ${phaseAList.map((ex, i) => renderCard(ex, i, false)).join('')}`;
+        bottomButton = `<button class="btn-primary" style="margin-top:24px" onclick="goToPhaseB()">다음</button>`;
+      } else {
+        stageContent = `
+        <p style="font-size:var(--t4);font-weight:600;color:var(--text-sub);margin:4px 0">진행 단계 ${getPhaseBStage()}/4</p>
+        ${phaseBList.map((ex, i) => renderCard(ex, i, true)).join('')}`;
+      }
     } else {
       const exList = stage.exercises || [];
       stageContent = exList.map((ex, exIdx) => renderCard(ex, exIdx, false)).join('');
@@ -1751,7 +1770,7 @@ function route() {
       <span style="font-size:var(--t2);font-weight:var(--w2)">${stage.name}</span>${phaseBadge}
     </div>
     ${stageContent}
-    ${stage.type === 'reassessment' ? '' : `<button class="btn-primary" style="margin-top:24px" onclick="${isLast ? "goToComplete()" : 'nextStage()'}">
+    ${stage.type === 'reassessment' ? '' : bottomButton || `<button class="btn-primary" style="margin-top:24px" onclick="${isLast ? "goToComplete()" : 'nextStage()'}">
       ${isLast ? '루트 완료' : '이 단계 완료'}
     </button>`}`;
 }
@@ -1928,7 +1947,8 @@ function goToMovement()        { go('movement'); }
 function goToQuestion()        { go('question'); }
 function goToTest()            { go('test'); }
 function goToCause()           { go('cause'); }
-function goToRoute()           { go('route'); }
+function goToRoute()           { S.phasePage = 'a'; go('route'); }
+function goToPhaseB()          { S.phasePage = 'b'; render(); }
 function goToComplete()        { go('complete'); }
 function goToSessionFeedback() { go('session_feedback'); }
 function goToRecoveryTest()    { go('recovery_test'); }
