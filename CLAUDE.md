@@ -50,10 +50,10 @@
 
 ## 배포
 
-- **플랫폼**: Railway (`motivated-prosperity` 프로젝트)
 - **레포**: `github.com/Rimseorim/rehap` (main 브랜치 push → 자동 배포)
-- **URL**: `web-production-28002.up.railway.app`
-- main 브랜치에 push하면 Railway가 자동 배포
+- **프론트엔드(`index.html`, 실제 서비스 화면)**: GitHub Pages — `rimseorim.github.io/rehap/`
+- **백엔드(auth, records API)**: Railway (`motivated-prosperity` 프로젝트) — `web-production-28002.up.railway.app`. 루트(`/`)는 `{"status":"ok"}` 헬스체크만 반환, index.html은 서빙하지 않음
+- main 브랜치에 push하면 두 쪽 다 자동 배포
 
 ## 주요 결정사항
 
