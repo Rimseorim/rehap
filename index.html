@@ -174,15 +174,6 @@
     }
     .complete-wrap { text-align: center; padding: 12px 0; animation: fade-up 0.4s 0.2s ease both; }
 
-    /* Password toggle */
-    .pwd-wrap { position: relative; }
-    .pwd-wrap input { width: 100%; padding-right: 44px; }
-    .pwd-toggle {
-      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-      background: none; border: none; cursor: pointer; color: var(--text-sub); font-size: 18px; padding: 4px;
-    }
-
-
     /* Toast */
     #toast {
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
@@ -622,19 +613,6 @@ function wodCard() {
 
 const API = 'https://web-production-28002.up.railway.app';
 
-/* ── 비밀번호 토글 ── */
-function togglePwd(id) {
-  const inp = document.getElementById(id);
-  const btn = inp.parentElement.querySelector('.pwd-toggle i');
-  if (inp.type === 'password') {
-    inp.type = 'text';
-    btn.className = 'ti ti-eye-off';
-  } else {
-    inp.type = 'password';
-    btn.className = 'ti ti-eye';
-  }
-}
-
 /* ── 화면 꺼짐 방지 ── */
 let _wakeLock = null;
 async function acquireWakeLock() {
@@ -663,62 +641,6 @@ async function apiPost(path, body) {
   const data = await res.json();
   if (!res.ok) throw new Error('이메일 또는 비밀번호가 올바르지 않습니다.');
   return data;
-}
-
-const DEMO_ACCOUNTS = [
-  { email: 'kim@rehab.com',  password: '1234', nickname: '김크파' },
-  { email: 'lee@rehab.com',  password: '1234', nickname: '이바벨' },
-  { email: 'park@rehab.com', password: '1234', nickname: '박무산' },
-  { email: 'choi@rehab.com', password: '1234', nickname: '최올림' },
-  { email: 'jung@rehab.com', password: '1234', nickname: '정케틀' },
-];
-
-async function doLogin(e) {
-  e.preventDefault();
-  const email = document.getElementById('inp-email').value;
-  const password = document.getElementById('inp-password').value;
-  const errEl = document.getElementById('auth-error');
-
-  // 데모 계정 먼저 체크 (백엔드 없이도 작동)
-  const demo = DEMO_ACCOUNTS.find(a => a.email === email && a.password === password);
-  if (demo) {
-    saveUser({ token: 'demo', nickname: demo.nickname });
-    goHome();
-    return;
-  }
-
-  const btn = e.submitter;
-  btn.disabled = true; btn.textContent = '로그인 중...';
-  try {
-    const data = await apiPost('/auth/login', { email, password });
-    saveUser(data);
-    goHome();
-  } catch(err) {
-    errEl.textContent = '이메일 또는 비밀번호가 올바르지 않습니다.';
-    showToast('로그인에 실패했습니다.');
-  } finally {
-    btn.disabled = false; btn.textContent = '로그인';
-  }
-}
-
-async function doSignup(e) {
-  e.preventDefault();
-  const email = document.getElementById('inp-email').value;
-  const password = document.getElementById('inp-password').value;
-  const nickname = document.getElementById('inp-nickname').value;
-  const errEl = document.getElementById('auth-error');
-  const btn = e.submitter;
-  btn.disabled = true; btn.textContent = '가입 중...';
-  try {
-    const data = await apiPost('/auth/signup', { email, password, nickname });
-    saveUser(data);
-    goHome();
-  } catch(err) {
-    errEl.textContent = err.message;
-    showToast('회원가입에 실패했습니다.');
-  } finally {
-    btn.disabled = false; btn.textContent = '가입하기';
-  }
 }
 
 function logout() { clearUser(); render(); }
@@ -961,7 +883,7 @@ const LABEL = {
 
 function updateProgress(screen) {
   const bar = el('progress-bar');
-  if (['landing', 'home', 'login', 'signup', 'my_records'].includes(screen)) { bar.style.display = 'none'; return; }
+  if (['landing', 'home', 'login', 'my_records'].includes(screen)) { bar.style.display = 'none'; return; }
   bar.style.display = 'block';
   let pct, label;
   if ((screen === 'route' || screen === 'complete' || screen === 'session_feedback' || screen === 'recovery_test' || screen === 'recovery_complete') && S.causeId) {
@@ -986,7 +908,7 @@ function updateProgress(screen) {
 
 /* ── 렌더 ── */
 function render() {
-  const publicScreens = ['login', 'signup'];
+  const publicScreens = ['login'];
   if (S.screen === 'cause') saveRehabRecord(true);
   if (!USER && !publicScreens.includes(S.screen)) {
     S.screen = 'login';
@@ -995,7 +917,7 @@ function render() {
   window.scrollTo(0, 0);
   if (['route', 'test'].includes(S.screen)) acquireWakeLock();
   else releaseWakeLock();
-  const screens = { landing, home, login, signup, my_records, pain_site, movement, question, test, recovery_test, recovery_complete, cause, session_feedback, route, danger, complete, coming_soon };
+  const screens = { landing, home, login, my_records, pain_site, movement, question, test, recovery_test, recovery_complete, cause, session_feedback, route, danger, complete, coming_soon };
   el('main-screen').innerHTML = (screens[S.screen] || landing)();
   const scrollableScreens = ['route', 'my_records', 'home', 'test', 'recovery_test'];
   el('main-screen').classList.toggle('scrollable', scrollableScreens.includes(S.screen));
@@ -1379,28 +1301,6 @@ function login() {
       </div>
     </div>
 `;
-}
-
-function signup() {
-  return `
-    <div style="display:flex;align-items:center;gap:8px;padding:8px 0">
-      <button onclick="goToLogin()" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-sub);padding:0">←</button>
-      <h1 style="font-size:var(--t1);font-weight:700;color:var(--dark);margin:0">회원가입</h1>
-    </div>
-    <form class="card" style="display:flex;flex-direction:column;gap:12px" onsubmit="doSignup(event)">
-      <input id="inp-email" type="email" placeholder="이메일" required
-        style="padding:12px;border:1px solid var(--border);border-radius:8px;font-size:var(--t3);outline:none">
-      <input id="inp-nickname" type="text" placeholder="닉네임" required
-        style="padding:12px;border:1px solid var(--border);border-radius:8px;font-size:var(--t3);outline:none">
-      <div class="pwd-wrap">
-        <input id="inp-password" type="password" placeholder="비밀번호" required
-          style="padding:12px;border:1px solid var(--border);border-radius:8px;font-size:var(--t3);outline:none">
-        <button type="button" class="pwd-toggle" onclick="togglePwd('inp-password')"><i class="ti ti-eye"></i></button>
-      </div>
-      <p id="auth-error" style="color:var(--danger);font-size:var(--t4);margin:0"></p>
-      <button type="submit" class="btn-primary">가입하기</button>
-    </form>
-    <button class="btn-primary" style="background:transparent;color:var(--text-sub);border:1px solid var(--border)" onclick="goToLogin()">이미 계정이 있어요</button>`;
 }
 
 const PAIN_ICONS = { knee: '🦵', 'lower-back': '🦴', ankle: '🦶', shoulder: '💪', wrist: '🤝', elbow: '🦾', hip: '🦯', chest: '🫀' };
@@ -1945,7 +1845,6 @@ function go(screen) {
 // 어디로 가는지 한눈에 보이도록 go() 대신 이 함수들을 사용
 function goHome()              { go('home'); }
 function goToLogin()           { go('login'); }
-function goToSignup()          { go('signup'); }
 function goToPainSite()        { go('pain_site'); }
 function goToMovement()        { go('movement'); }
 function goToQuestion()        { go('question'); }
