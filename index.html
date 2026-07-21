@@ -1185,6 +1185,11 @@ function lfStartDemo() {
       {id:8,type:'crossfit',date:d(-20),title:'',wods:[{content:'Deadlift 5×5',record:'',weights:[{movement:'Deadlift',weight:'110',unit:'kg'}]}],diary:''},
     ]);
   }
+  LAST_RECORD = {
+    id: 'demo', movement_id: 'squat', pain_site_id: 'knee', cause_id: 'cause-a',
+    stage_index: 0, updated_at: new Date().toISOString(),
+    _stageName: '기초 재활', _totalStages: 3, _atCause: false,
+  };
   goHome();
 }
 
