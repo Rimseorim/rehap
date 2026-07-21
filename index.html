@@ -639,7 +639,7 @@ async function apiPost(path, body) {
     body: JSON.stringify(body)
   });
   const data = await res.json();
-  if (!res.ok) throw new Error('이메일 또는 비밀번호가 올바르지 않습니다.');
+  if (!res.ok) throw new Error('요청 처리에 실패했습니다.');
   return data;
 }
 
@@ -663,7 +663,9 @@ async function resumeRecord(movementId, painSiteId, causeId, stageIndex) {
 
 async function deleteRecord(id) {
   if (!confirm('기록을 삭제할까요?')) return;
-  await apiPost('/records/delete', { token: USER.token, record_id: id });
+  try {
+    await apiPost('/records/delete', { token: USER.token, record_id: id });
+  } catch(e) { showToast('기록 삭제에 실패했습니다.'); return; }
   try {
     const records = await fetch(`${API}/records/mine?token=${USER.token}`).then(r => r.json());
     LAST_RECORD = records.length ? records[records.length - 1] : null;
