@@ -1780,7 +1780,6 @@ function complete() {
             ? '모든 단계를 마쳤습니다. 꾸준히 유지하세요.'
             : `${currentStageName} 단계를 마쳤습니다.`}
         </p>
-        ${currentStageName === '기초 재활' ? `<p class="t4" style="margin-top:8px;color:var(--text-sub);line-height:1.6">이 동작은 최소 3일 이상 반복해야 효과가 나타납니다.<br>내일 또 해주세요.</p>` : ''}
         ${currentStageName === '기초 재활' ? nudgeMsg : ''}
       </div>
       ${rehabProgressBar()}
@@ -1789,8 +1788,8 @@ function complete() {
       ? `<button class="btn-primary" onclick="goToRoute()">${currentStageName} 루틴 다시 보기</button>
          <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="reset()">처음으로 돌아가기</button>`
       : needsRetest
-      ? `<button class="btn-primary" onclick="goRetest()">지금 바로 테스트하기</button>
-         <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="goHome()">내일 다시 오기</button>
+      ? `<button class="btn-primary" onclick="goHome()">내일 다시 오기</button>
+         <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="goRetest()">지금 바로 테스트하기</button>
          <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="goToRoute()">이 단계 운동 다시 보기</button>`
       : `<button class="btn-primary" onclick="goNextStageFromComplete()">다음 단계 시작</button>
          <button class="btn-primary" style="background:var(--text-sub);margin-top:8px" onclick="goToRoute()">이 단계 운동 다시 보기</button>
