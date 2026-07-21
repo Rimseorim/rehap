@@ -685,8 +685,14 @@ async function goMyRecords() {
 }
 
 function my_records() {
-  const movementNames = { 'squat': '스쿼트', 'lunge': '런지', 'deadlift': '데드리프트' };
-  const painNames = { knee: '무릎', 'lower-back': '허리', ankle: '발목', shoulder: '어깨', wrist: '손목' };
+  const movementNames = {
+    'squat': '스쿼트', 'lunge': '런지', 'deadlift': '데드리프트',
+    'pullup': '풀업', 'kipping': '키핑', 'press-vertical': '수직 프레스', 'press-horizontal': '수평 프레스', 'row': '로우'
+  };
+  const painNames = {
+    knee: '무릎', 'lower-back': '허리', ankle: '발목',
+    shoulder: '어깨', wrist: '손목', elbow: '팔꿈치', hip: '고관절', chest: '흉근'
+  };
   const causeTag = (movementId, painSiteId, causeId) => {
     const ps = BUNDLED[movementId]?.pain_sites?.find(p => p.id === painSiteId);
     return ps?.causes?.find(c => c.id === causeId)?.tag || '';
@@ -1195,7 +1201,7 @@ function home() {
   };
   const painNames = {
     knee: '무릎', 'lower-back': '허리', ankle: '발목',
-    shoulder: '어깨', wrist: '손목', elbow: '팔꿈치', hip: '고관절'
+    shoulder: '어깨', wrist: '손목', elbow: '팔꿈치', hip: '고관절', chest: '흉근'
   };
 
   const hour = new Date().getHours();
