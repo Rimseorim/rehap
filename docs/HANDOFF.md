@@ -1,28 +1,26 @@
-# HANDOFF - 2026-07-07 17:15
+# HANDOFF - 2026-07-22 20:00
 
 ## 완료
-- `data/phase-exercises.json`의 Phase A(홀짝 세트)/Phase B(4단계 진급) 149건을 `index.html` BUNDLED에 실제 병합 (`7335a04`)
-- 병합 중 발견된 고아 데이터(pullup/vertical-press/kipping shoulder cause-a — 실제 앱엔 cause-dp/case1~4/cause-d만 존재) 제거
-- Phase A/B UI 설계를 두 차례 재작업 끝에 최종 확정 + 구현:
-  - `getTodaySet()` 'a'/'b' → 'a'/'a_b' 수정 (`d45cc96`)
-  - 예전 "3회 편했다 → Phase B 전환 모달" 게이트 제거, A/B를 독립 트랙으로 (`893014e`)
-  - 최종 UI: Phase A(준비운동) → "다음" → Phase B(진행단계) 2단계 순차 페이지 (`5f0957e`)
-  - 진급 판단 시점을 세션 직후 → 다음 세션 시작 시점으로 이동 (다음날 통증 반영), "이전 단계로 돌아가기" 링크 추가 (`de819a6`)
-- 전 과정 Playwright로 렌더링/카드 개수/모달/스테이지 전이 스모크 테스트 완료
-- push 완료, 배포 확인: 실제 서비스는 GitHub Pages(`rimseorim.github.io/rehap/`)이고 Railway(`web-production-28002.up.railway.app`)는 백엔드 API 헬스체크 전용이었음을 발견 — CLAUDE.md에 반영 (`7f18a38`), push 완료
+- 1단계 완료 화면: 개편 전 남은 고정 "3일 반복" 문구 삭제, "내일 다시 오기"/"지금 바로 테스트하기" 버튼 순서·스타일 정리 (`dc526fa`)
+- 내 기록/홈 화면 동작·부위 이름 매핑 누락 보완 (풀업/키핑/프레스/로우, 팔꿈치/고관절/흉근 등 원본 id 노출 문제) (`9ac1bb0`)
+- 기록 저장/삭제 실패 시 안내 문구 정정 + `deleteRecord()` 실패 처리 누락(catch 없음) 수정 (`b0013a6`)
+- 흉근 수평프레스 감별질문 병원진료(danger) 카드 순서 불일치 수정 (`f93301b`)
+- 전체 동작/부위 감별질문 스캔 → 병원진료 카드가 첫번째/중간에 있던 3건(데드리프트-허리, 스쿼트-허리, 스쿼트-발목) 모두 마지막 순서로 통일 (`965410d`)
+- 데모 모드에서 "재활 진행 중" 카드/"오늘의 대체 WOD" 카드가 안 보이던 문제 수정 — `lfStartDemo()`뿐 아니라 `init()`에서도 `USER.token==='demo'`일 때 `LAST_RECORD` 채우도록 추가 (`fc1bee6`, `3b78eb6`)
 
 ## 진행중
-없음. 요청된 작업 전부 완료 및 배포 반영 확인됨.
+- 없음 (데모 WOD 카드 노출 수정 후 사용자 확인 대기 중이었음 — 다음 세션에서 실제로 보이는지 확인부터 시작)
 
 ## 대기
-없음.
+- Task #1 카카오 로그인 실제 연동 — REST API 키 미발급/미전달 상태로 중단. `developers.kakao.com`에서 앱 생성 → Redirect URI(`https://web-production-28002.up.railway.app/auth/kakao/callback`) 등록 → 키 전달 필요. 받으면 `backend/routers/auth.py` 네이버 패턴대로 카카오 라우트 추가 + `index.html`의 `kakaoLogin()` 교체
+- Task #2 구글 로그인 실제 연동 — 카카오와 동일 패턴, OAuth 앱 등록 필요 (미시작)
+- Task #3 개인정보처리방침/이용약관 문서 작성 및 연결 — 로그인 화면 "동의합니다" 문구뿐, 실제 문서 없음. 카카오/구글 심사에도 필요 (미시작)
+- Task #4 실기기로 전체 흐름 완주 테스트 (미시작) — 이번 세션에서 고친 항목들(내 기록 매핑, 감별질문 순서, 완료 화면 버튼 순서) 포함해서 확인 필요
+- (낮은 우선순위) 홈 "오늘의 대체 WOD" 카드 "시작하기" 버튼이 토스트만 뜨고 실제 기능 없음 (`index.html:610` 부근) — 완성할지/숨길지 결정 필요
 
 ## 결정사항 / 주의
-- Phase A/B는 예전 "블록 전환" 개념이 아니라 **독립된 두 트랙**: Phase A(홀짝 날 준비운동, 항상 노출) + Phase B(4단계 진급, 자체 진행). 향후 관련 로직 건드릴 때 이 모델 전제로 작업할 것.
-- 진급 판단은 "즉시 반응"이 아니라 "지연 반응"(다음 세션에서 판단) 패턴 — 재활 앱 특성상 통증이 다음날 나타날 수 있음을 항상 고려.
-- `data/phase-exercises.json`을 앞으로 또 수정/검증할 일이 있으면 pain-site id뿐 아니라 **cause id도 BUNDLED와 대조** 필수 (이번에 어깨 cause-a 고아 데이터를 뒤늦게 발견한 원인).
-- 배포 주소 구분: 프론트엔드=GitHub Pages, 백엔드(auth/records)=Railway. 둘 다 main push 시 자동 배포.
-- 관련 메모리 파일: `project_phase_ab_merge_status.md`, `feedback_no_unilateral_defer.md`, `project_shoulder_cause_framework.md` (모두 이번 세션에 갱신됨)
+- `.claude/settings.local.json` 로컬 변경분은 이번 세션 작업과 무관, 커밋하지 않음 (계속 유지되는 관례)
+- 데모 계정(`token:'demo'`)은 백엔드 기록 조회를 스킵하므로, 데모 관련 UI 요소를 새로 추가할 때는 `init()`과 `lfStartDemo()` 양쪽에 데모용 더미 데이터를 다 채워야 함 — 한쪽만 채우면 "새로고침 후 재진입" 시나리오에서 안 보이는 버그 재발 가능
 
 ## 다음 세션 권장 첫 프롬프트
 `/resume`
