@@ -826,7 +826,13 @@ async function init() {
   }
 
   MANIFEST = BUNDLED['manifest'];
-  if (USER && USER.token !== 'demo') {
+  if (USER && USER.token === 'demo') {
+    LAST_RECORD = {
+      id: 'demo', movement_id: 'squat', pain_site_id: 'knee', cause_id: 'cause-a',
+      stage_index: 0, updated_at: new Date().toISOString(),
+      _stageName: '기초 재활', _totalStages: 3, _atCause: false,
+    };
+  } else if (USER && USER.token !== 'demo') {
     try {
       const records = await fetch(`${API}/records/mine?token=${USER.token}`).then(r => r.json());
       LAST_RECORD = records.length ? records[records.length - 1] : null;
