@@ -547,69 +547,7 @@ function revertPhaseBStage() {
   render();
 }
 
-/* ── 대체 WOD 카드 ── */
-const WOD_EXCLUDED = {
-  knee:             ['squat', 'lunge'],
-  'lower-back':     ['deadlift', 'row', 'press-vertical', 'press-horizontal'],
-  shoulder:         ['pullup', 'kipping', 'press-vertical', 'press-horizontal'],
-  wrist:            ['pullup', 'kipping', 'press-vertical', 'press-horizontal'],
-  ankle:            ['squat', 'lunge'],
-  hip:              ['squat', 'lunge', 'deadlift'],
-  elbow:            ['pullup', 'kipping', 'row'],
-  chest:            ['press-horizontal'],
-};
-const WOD_POOL = [
-  { id: 'squat',            name: '스쿼트',           reps: '15회' },
-  { id: 'lunge',            name: '런지',             reps: '10회/측' },
-  { id: 'deadlift',         name: '데드리프트',        reps: '10회' },
-  { id: 'pullup',           name: '풀업',             reps: '5회' },
-  { id: 'kipping',          name: '키핑 풀업',         reps: '10회' },
-  { id: 'press-vertical',   name: '오버헤드 프레스',   reps: '12회' },
-  { id: 'press-horizontal', name: '푸시업',           reps: '15회' },
-  { id: 'row',              name: '로우',             reps: '12회' },
-];
-
 function getTodaySet() { return new Date().getDate() % 2 === 0 ? 'a_b' : 'a'; }
-
-function getWodConfig(stageIndex) {
-  if (stageIndex <= 0) return { label: '기초재활 중', time: '10분', format: 'AMRAP', load: '부하 없음' };
-  if (stageIndex === 1) return { label: '재평가 중',  time: '15분', format: 'For Time', load: '경량' };
-  return { label: '운동복귀',   time: '',     format: '정상 WOD',  load: '' };
-}
-
-function wodCard() {
-  if (!LAST_RECORD) return '';
-  const painSiteId = LAST_RECORD.pain_site_id;
-  const stageIndex = LAST_RECORD.stage_index || 0;
-  const excluded = WOD_EXCLUDED[painSiteId] || [];
-  const available = WOD_POOL.filter(m => !excluded.includes(m.id));
-  const todaySet = getTodaySet();
-  const setA = available.filter((_, i) => i % 2 === 0);
-  const setB = available.filter((_, i) => i % 2 === 1);
-  const pool = todaySet === 'a' ? (setA.length >= 2 ? setA : available) : (setB.length >= 2 ? setB : available);
-  const picks = pool.slice(0, 3);
-  if (picks.length === 0) return '';
-  const cfg = getWodConfig(stageIndex);
-  const timeLabel = cfg.time ? ` · ${cfg.time}` : '';
-  const loadLabel = cfg.load ? ` <span style="font-size:11px;color:var(--text-sub)">${cfg.load}</span>` : '';
-
-  const exList = picks.map(e =>
-    `<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)">
-      <span style="font-size:var(--t3);font-weight:600">${e.name}</span>
-      <span style="font-size:var(--t4);color:var(--text-sub)">${e.reps}</span>
-    </div>`
-  ).join('');
-  return `
-    <div class="card" style="margin-top:12px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span style="font-size:var(--t3);font-weight:700;color:var(--dark)">오늘의 대체 WOD</span>
-        <span style="font-size:var(--t4);color:var(--accent);font-weight:600">${cfg.format}${timeLabel}</span>
-      </div>
-      <p style="font-size:var(--t4);color:var(--text-sub);margin:0 0 8px">${cfg.label}${loadLabel}</p>
-      ${exList}
-      <button class="btn-primary" style="margin-top:14px;padding:12px" onclick="showToast('WOD를 시작합니다!')">시작하기</button>
-    </div>`;
-}
 
 const API = 'https://web-production-28002.up.railway.app';
 
@@ -1278,7 +1216,6 @@ function home() {
     rehab: `
       ${header}
       ${lastCard}
-      ${wodCard()}
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
         <button class="btn-primary" style="padding:16px;font-size:var(--t2)" onclick="goToPainSite()">지금 시작하기</button>
         <button class="btn-primary" style="background:var(--dark-light);padding:14px" onclick="goMyRecords()">내 기록 보기</button>
