@@ -1936,6 +1936,10 @@ function selectTestResult(next, outcome) {
     S.testHistory.push(S.testId);
     S.testId = next.slice(5);
     goToTest();
+  } else if (next.startsWith('q:')) {
+    S.questionHistory.push(S.questionId);
+    S.questionId = next.slice(2);
+    goToQuestion();
   } else if (next === 'danger') {
     goToDanger();
   }
