@@ -1435,8 +1435,35 @@ function rehabProgressBar() {
   return `<div style="display:flex;width:100%;gap:4px;overflow:visible">${items}</div>`;
 }
 
+const EXTRA_DANGER_SIGNS = {
+  shoulder: {
+    title: '저항할 때 팔이 갑자기 뚝 떨어져요',
+    sub: '팔을 바깥으로 돌린 상태를 유지하지 못하는 경우'
+  },
+  ankle: {
+    title: '종아리 한쪽만 눈에 띄게 부었어요',
+    sub: '양쪽을 비교했을 때 확실히 차이 나는 경우'
+  },
+  'lower-back': {
+    title: '양쪽 다리에 동시에 저림이나 힘빠짐이 있어요',
+    sub: '사타구니·엉덩이 안쪽 감각이 둔하거나 대소변 조절이 갑자기 안 되는 경우 포함'
+  }
+};
+
+function dangerSignItem(title, sub) {
+  return `
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <span style="color:var(--danger);font-weight:700;flex-shrink:0;font-size:16px">!</span>
+        <div>
+          <p style="margin:0;font-size:var(--t4);font-weight:600;color:var(--danger)">${title}</p>
+          <p style="margin:3px 0 0;font-size:var(--t4);color:var(--text-sub)">${sub}</p>
+        </div>
+      </div>`;
+}
+
 function cause() {
   const c = getCause();
+  const extraSign = EXTRA_DANGER_SIGNS[S.painSiteId];
   return `
     ${contextBar()}
     <div>
@@ -1448,20 +1475,9 @@ function cause() {
       <p class="t3">${c.description}${glossaryToggle(c.description)}</p>
     </div>
     <div style="background:var(--danger-bg);border:1px solid var(--danger);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px">
-      <div style="display:flex;gap:10px;align-items:flex-start">
-        <span style="color:var(--danger);font-weight:700;flex-shrink:0;font-size:16px">!</span>
-        <div>
-          <p style="margin:0;font-size:var(--t4);font-weight:600;color:var(--danger)">관절이 눈에 띄게 부어있어요</p>
-          <p style="margin:3px 0 0;font-size:var(--t4);color:var(--text-sub)">운동 후뿐 아니라 지금도 부어있는 경우</p>
-        </div>
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start">
-        <span style="color:var(--danger);font-weight:700;flex-shrink:0;font-size:16px">!</span>
-        <div>
-          <p style="margin:0;font-size:var(--t4);font-weight:600;color:var(--danger)">만지면 열감이 느껴져요</p>
-          <p style="margin:3px 0 0;font-size:var(--t4);color:var(--text-sub)">다른 쪽 관절과 비교했을 때 확실히 따뜻함</p>
-        </div>
-      </div>
+      ${dangerSignItem('관절이 눈에 띄게 부어있어요', '운동 후뿐 아니라 지금도 부어있는 경우')}
+      ${dangerSignItem('만지면 열감이 느껴져요', '다른 쪽 관절과 비교했을 때 확실히 따뜻함')}
+      ${extraSign ? dangerSignItem(extraSign.title, extraSign.sub) : ''}
       <p style="margin:4px 0 0;font-size:var(--t4);color:var(--danger);font-weight:600">위 항목에 해당된다면 재활 전 전문의 진단을 먼저 받으세요.</p>
     </div>
     <button class="btn-primary" onclick="goToRoute()">재활 루트 보기</button>`;
