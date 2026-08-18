@@ -1556,6 +1556,11 @@ function route() {
         ? `<p style="margin:0 0 10px;font-size:var(--t4);color:var(--text-sub)">지난 시도: ${mo}/${da} · 통과</p>`
         : `<p style="margin:0 0 10px;font-size:var(--t4);color:var(--text-sub)">지난 시도: ${mo}/${da} · 1단계 보강 후 재도전</p>`;
     })() : '';
+    const repeatedFail = lastRetest && lastRetest.passed === false;
+    const escalateNote = '그래도 낫지 않으면 원인 진단이 다를 수 있습니다. 통증 위치·패턴을 다시 확인해 해당 검사를 받아보세요.';
+    const failNoteText = repeatedFail && !/해당 검사|다른 원인/.test(stage.fail_note)
+      ? `${stage.fail_note} ${escalateNote}`
+      : stage.fail_note;
     stageContent = `
     ${retestNote}
     <div class="card">
@@ -1563,7 +1568,7 @@ function route() {
       ${items}
       <div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px">
         <p style="margin:0;font-size:var(--t4);color:var(--accent)">✓ ${stage.pass_note}</p>
-        <p style="margin:4px 0 0;font-size:var(--t4);color:var(--danger)">✗ ${stage.fail_note}</p>
+        <p style="margin:4px 0 0;font-size:var(--t4);color:var(--danger)">✗ ${failNoteText}</p>
       </div>
     </div>
     ${allChecked
