@@ -1566,9 +1566,13 @@ function route() {
         <p style="margin:4px 0 0;font-size:var(--t4);color:var(--danger)">✗ ${stage.fail_note}</p>
       </div>
     </div>
-    <button class="btn-primary" onclick="${isLast ? 'completeReassessment(true)' : 'completeReassessment(false)'}" ${allChecked ? '' : 'disabled'} style="margin-top:24px;${allChecked ? '' : 'opacity:0.4;pointer-events:none'}">
+    ${allChecked
+      ? `<button class="btn-primary" onclick="${isLast ? 'completeReassessment(true)' : 'completeReassessment(false)'}" style="margin-top:24px">
       ${isLast ? '루트 완료' : '이 단계 완료'}
-    </button>`;
+    </button>`
+      : `<button class="btn-primary" style="margin-top:24px;background:var(--text-sub)" onclick="jumpToStage(0)">
+      1단계로 돌아가기
+    </button>`}`;
   } else if (stage.type === 'tips') {
     stageContent = (stage.tips || []).map(tip => `
     <div class="card" style="display:flex;flex-direction:column;gap:6px">
