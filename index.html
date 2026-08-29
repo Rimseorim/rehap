@@ -31,7 +31,7 @@
     body {
       font-family: 'Pretendard', -apple-system, sans-serif;
       background: var(--bg); color: var(--text);
-      height: 100vh; overflow: hidden; display: flex; justify-content: center;
+      height: 100vh; height: 100dvh; overflow: hidden; display: flex; justify-content: center;
       word-break: keep-all;
     }
     .app { width: 100%; max-width: 480px; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
@@ -871,8 +871,7 @@ function render() {
   else releaseWakeLock();
   const screens = { landing, home, login, my_records, pain_site, movement, question, test, recovery_test, recovery_complete, cause, session_feedback, route, danger, complete, coming_soon };
   el('main-screen').innerHTML = (screens[S.screen] || landing)();
-  const scrollableScreens = ['route', 'my_records', 'home', 'test', 'recovery_test'];
-  el('main-screen').classList.toggle('scrollable', scrollableScreens.includes(S.screen));
+  el('main-screen').classList.add('scrollable');
   const tabBar = el('tab-bar');
   if (S.screen === 'home') {
     tabBar.style.display = 'flex';
