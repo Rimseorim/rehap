@@ -1537,7 +1537,7 @@ function cause() {
     <div class="card" style="display:flex;flex-direction:column;gap:10px">
       <span class="cause-tag">${c.tag}</span>
       <h2 class="t2">${c.name}</h2>
-      <p class="t3">${c.description}${glossaryToggle(c.description)}</p>
+      <p class="t3">${c.description}</p>
     </div>
     <div style="background:var(--danger-bg);border:1px solid var(--danger);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px">
       ${dangerSignItem('관절이 눈에 띄게 부어있어요', '운동 후뿐 아니라 지금도 부어있는 경우')}
@@ -1653,7 +1653,7 @@ function route() {
       return `
       <div class="exercise-card">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-          <h3 style="margin:0">${ex.name}${glossaryToggle((ex.why||'') + ' ' + (ex.cue||''))}</h3>
+          <h3 style="margin:0">${ex.name}</h3>
           <button onclick="openVideoModal('${ex.video_url||''}')" style="flex-shrink:0;background:var(--dark);color:white;border:none;border-radius:6px;padding:5px 10px;font-size:var(--t4);font-weight:600;cursor:pointer">▶ 영상</button>
         </div>
         <span class="sets-text">${ex.sets}</span>
