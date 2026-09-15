@@ -364,6 +364,7 @@
 <script>
 /* ── 진행 저장 ── */
 function saveProgress() {
+  if (S.screen === 'danger') { localStorage.removeItem('rehab_progress'); return; }
   if (S.screen !== 'home') localStorage.setItem('rehab_progress', JSON.stringify(S));
 }
 function loadProgress() {
