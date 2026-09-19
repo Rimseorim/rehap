@@ -1272,7 +1272,7 @@ function home() {
       ${header}
       ${lastCard}
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
-        <button class="btn-primary" style="padding:16px;font-size:var(--t2)" onclick="goToPainSite()">지금 시작하기</button>
+        <button class="btn-primary" style="padding:16px;font-size:var(--t2)" onclick="startFresh()">지금 시작하기</button>
         <button class="btn-primary" style="background:var(--dark-light);padding:14px" onclick="goMyRecords()">내 기록 보기</button>
       </div>
       <p style="font-size:11px;color:var(--text-sub);text-align:center;line-height:1.5;margin-top:12px">본 서비스는 의료 진단·치료를 대체하지 않는 참고용 재활 정보입니다.</p>
@@ -1898,6 +1898,17 @@ function go(screen) {
 function goHome()              { go('home'); }
 function goToLogin()           { go('login'); }
 function goToPainSite()        { go('pain_site'); }
+function startFresh() {
+  localStorage.removeItem('rehab_progress');
+  Object.assign(S, {
+    painSiteId: null, painIntensity: null, movementId: null, questionId: null,
+    testId: null, causeId: null, stageIndex: 0, checkedItems: [], stepDepth: 0,
+    maxPctReached: 0, questionHistory: [], testHistory: [], isRedFlagDanger: false,
+    retestMode: false, sessionFeedbackType: null, phasePage: 'a',
+  });
+  DATA = null;
+  goToPainSite();
+}
 function goToMovement()        { go('movement'); }
 function goToQuestion()        { go('question'); }
 function goToTest()            { go('test'); }
