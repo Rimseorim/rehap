@@ -1509,10 +1509,16 @@ const EXTRA_DANGER_SIGNS = {
     title: "펴는 순간 '뚝' 소리와 함께 팔꿈치 앞쪽이 부었어요",
     sub: '이두근이 위쪽으로 뭉쳐 올라오거나 멍이 심하게 드는 경우'
   },
-  chest: {
-    title: "미는 순간 '뚝' 소리와 함께 가슴이 심하게 멍들었어요",
-    sub: '팔을 안쪽으로 모으는 힘이 갑자기 빠지는 경우 포함'
-  }
+  chest: [
+    {
+      title: "미는 순간 '뚝' 소리와 함께 가슴이 심하게 멍들었어요",
+      sub: '팔을 안쪽으로 모으는 힘이 갑자기 빠지는 경우 포함'
+    },
+    {
+      title: '운동 중 가슴이 조이거나 숨이 차요',
+      sub: '식은땀·어지러움·왼팔로 뻗치는 통증이 함께 있는 경우 즉시 중단하고 병원이나 응급실로'
+    }
+  ]
 };
 
 function dangerSignItem(title, sub) {
@@ -1528,7 +1534,8 @@ function dangerSignItem(title, sub) {
 
 function cause() {
   const c = getCause();
-  const extraSign = EXTRA_DANGER_SIGNS[S.painSiteId];
+  const extraSignRaw = EXTRA_DANGER_SIGNS[S.painSiteId];
+  const extraSigns = extraSignRaw ? (Array.isArray(extraSignRaw) ? extraSignRaw : [extraSignRaw]) : [];
   return `
     ${contextBar()}
     <div>
@@ -1542,7 +1549,7 @@ function cause() {
     <div style="background:var(--danger-bg);border:1px solid var(--danger);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px">
       ${dangerSignItem('관절이 눈에 띄게 부어있어요', '운동 후뿐 아니라 지금도 부어있는 경우')}
       ${dangerSignItem('만지면 열감이 느껴져요', '다른 쪽 관절과 비교했을 때 확실히 따뜻함')}
-      ${extraSign ? dangerSignItem(extraSign.title, extraSign.sub) : ''}
+      ${extraSigns.map(s => dangerSignItem(s.title, s.sub)).join('')}
       <p style="margin:4px 0 0;font-size:var(--t4);color:var(--danger);font-weight:600">위 항목에 해당된다면 재활 전 전문의 진단을 먼저 받으세요.</p>
     </div>
     <button class="btn-primary" onclick="goToRoute()">재활 루트 보기</button>`;
