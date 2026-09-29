@@ -33,7 +33,7 @@
 - 사용자가 다른 AI 반박 문구를 붙여 오면 무조건 수용하지 말고 항목별로 수용/부분수용/불수용 판단 (이번에도 오류 지적 다수: 오버그립 정의 오류, 명치 위치, 훅그립 무관 등)
 - 반영은 해당 cause만 수정하는 스크립트(python, Write로 파일 생성 후 Bash 실행). **`merge_phase_ab_into_bundled.py` 실행 금지**(전체 덮어쓰기, 실제로 사고 발생, 이제 `--force-overwrite-all` 필요). bundled id: vertical-press→press-vertical, horizontal-press→press-horizontal
 - 데이터 동기화 상태: index.html, data/phase-exercises.json, 검수판 3곳의 Phase A/B가 09-29 기준 같음. 앞으로 문구를 고칠 때 3곳을 함께 갱신할 것
-- `lunge/ankle/cause-a-mild` 삭제 완료(원인 152→151개): 2026-06-23 b91df94에서 cause-a로 통합했으나 원인 정의가 잔해로 남아 도달 불가였음. index.html·data/movements/lunge.json(검사 분기 pass_next도 cause-a로)·pt_review_전체동작.md·RETEST_CONTENT_REVIEW.md·검수판(v7)에서 제거. 복구는 b91df94 이전 커밋에서. `docs/need/retest_templates.txt`·`transform_stages.py`·감별 로직 Artifact(08-29 버전)에는 잔해가 남아 있을 수 있음(미확인)
+- `lunge/ankle/cause-a-mild` 삭제 완료(원인 152→151개): 2026-06-23 b91df94에서 cause-a로 통합했으나 원인 정의가 잔해로 남아 도달 불가였음. index.html·data/movements/lunge.json(검사 분기 pass_next도 cause-a로)·pt_review_전체동작.md·RETEST_CONTENT_REVIEW.md·검수판(v7)에서 제거. 복구는 b91df94 이전 커밋에서. `docs/need/retest_templates.txt`·`transform_stages.py`에는 잔해가 남아 있을 수 있음(미확인, 과거 생성물·스크립트라 그대로 둠). 감별 로직 문서·Artifact는 09-29 재생성으로 반영됨
 - 미해결: 검수 요청 범위(물리치료사=원인·처방 이유, 코치=큐·방법·단계) 안내 문구를 `VIDEO_REVIEW_RULES.md`에 넣을지 미결정. 규칙 파일·검수판만 외부에 넘길 예정이므로 미결 항목(벽 발목 5cm/8cm, "양성", "외측"·"배측굴곡" 처리)을 파일에 "결정/미결"로 적어야 함
 - 이번 세션 중 auto mode 안전성 검사기가 일시 장애로 Bash/Write를 막은 적 있음(복구됨). 터미널이 오후 3시 17분경 한 번 꺼졌으나 원인 미확인
 - 운동명: 표준명 그대로, 대시·괄호 뒤 목적·단계 표기 삭제. 용어 표기: 의학·해부 용어=쉬운 말(원어), 운동·기술 용어=용어(쉬운 말), "날개뼈"로 통일
