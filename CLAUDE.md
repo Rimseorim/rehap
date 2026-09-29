@@ -61,3 +61,5 @@
 
 - 앱 데이터는 `index.html` 내부 BUNDLED 데이터 사용. `data/rehab.json`은 미사용.
 - recovery_test 체인(elbow 등): retestMode에서 pass_next 무시하고 outcome만 처리 (의도된 동작)
+- **`scripts/merge_phase_ab_into_bundled.py` 실행 금지** — data/phase-exercises.json으로 index.html의 모든 원인 운동을 덮어써서 index.html 직접 수정분(꼬리표·쉬운 말·내부 메모 제거)이 사라진다 (2026-09-25 bd87c7b에서 발생, 09-29 복구). 운동을 추가·수정할 때는 해당 원인만 `data/phase-exercises.json`과 `index.html` 양쪽에 반영하는 스크립트를 쓴다 (예: `scripts/add_deadlift_shoulder_cause_dp_phase_b.py`). 스크립트는 `--force-overwrite-all` 없이는 실행되지 않는다
+- 운동 문구를 고친 뒤에는 `data/phase-exercises.json`과 `index.html`(BUNDLED)의 Phase A/B가 같은지 확인한다. 원인·루트 검수판 Artifact도 같은 내용이어야 한다

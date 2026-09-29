@@ -5,6 +5,8 @@
   - 스쿼트 `bd87c7b`, 데드리프트·풀업 `e3b61b0`, 키핑 `d1acae6`, 로우 `bc090db`, 수직 프레스 `c48dd5d`, 수평 프레스 `c718323`
   - 스크립트: `scripts/add_{deadlift,pullup,kipping,row,vertical_press,horizontal_press}_shoulder_cause_dp_phase_b.py`
 - 메모리 `project_shoulder_cause_framework` 갱신 (cause-dp Phase B 완료 + 설계 원칙 기록)
+- **사고 복구**: 커밋 `bd87c7b`에서 병합 스크립트가 낡은 data로 index.html을 덮어써 약 70개 원인의 수정분(쉬운 말 65건, 내부 메모 "DB 수록 운동." 15건 노출, 꼬리표 18건, 로우 허리 b 이름 등)이 되돌려진 채 배포돼 있었음. 검수판(=`36db833` 상태)을 기준으로 index.html·data 양쪽을 복구·푸시. 병합 스크립트는 `--force-overwrite-all` 없으면 실행 안 되게 막고 CLAUDE.md에 금지 기록
+- 런지 발목 빈 cue 4건 채움, 밴드 거골 후방 견인 스트레칭 위치 표현("발목 앞쪽 접히는 부위") 4곳 통일, "종아리·발바닥 복합 스트레칭" 6곳을 "발바닥·발가락 스트레칭"으로 정정(스쿼트 발목 a는 종아리 단계가 있어 유지). 검수판 v6 게시(어깨 Phase B 28개·발목 수정 포함)
 - 이전 HANDOFF(2026-09-26)를 `docs/archive/HANDOFF-2026-09-29.md`로 이동
 
 ## 진행중
@@ -29,7 +31,9 @@
 - **cause-dp Phase B 설계 원칙**: 1단계 통증호 밖 패턴 → 2단계 통증 직전 높이까지 통제된 통과(동작·팔 분리, 반동 금지, 내릴 때 2~3초) → 3단계 경부하 → 4단계 도구+부상 전 30~40%. 풀업·키핑 4단계는 "볼륨 점진 복귀"(3단계와 같은 보조 수준·그립 유지, 무보조·오버그립 복귀 문구는 넣지 않음, 기존 풀업 원인들과 동일 구조)
 - 힘 뺀 데드행 대신 액티브 행(날개뼈 내림). 덤벨·풀업 그립은 중립/언더핸드 권장(키핑은 오버핸드 기본이라 미적용). 그립 너비·각도는 수치 확정 대신 기준으로("팔뚝이 바닥과 수직"). 위치는 뼈 기준("가슴뼈 아래쪽, 명치 바로 위"), 젖꼭지 라인·"명치 아래" 부적합
 - 사용자가 다른 AI 반박 문구를 붙여 오면 무조건 수용하지 말고 항목별로 수용/부분수용/불수용 판단 (이번에도 오류 지적 다수: 오버그립 정의 오류, 명치 위치, 훅그립 무관 등)
-- 반영은 해당 cause만 수정하는 스크립트(python, Write로 파일 생성 후 Bash 실행). `merge_phase_ab_into_bundled.py`는 전체 덮어써서 index.html 직접 수정분(꼬리표 정리 등)이 사라질 수 있어 쓰지 않음. bundled id: vertical-press→press-vertical, horizontal-press→press-horizontal
+- 반영은 해당 cause만 수정하는 스크립트(python, Write로 파일 생성 후 Bash 실행). **`merge_phase_ab_into_bundled.py` 실행 금지**(전체 덮어쓰기, 실제로 사고 발생, 이제 `--force-overwrite-all` 필요). bundled id: vertical-press→press-vertical, horizontal-press→press-horizontal
+- 데이터 동기화 상태: index.html, data/phase-exercises.json, 검수판 3곳의 Phase A/B가 09-29 기준 같음. 앞으로 문구를 고칠 때 3곳을 함께 갱신할 것
+- 미해결: `lunge/ankle/cause-a-mild`(발목 배측굴곡 경미한 제한)만 옛 형식(`exercises` 3개, Phase A·B 없음). 확장할지 "의도된 구조"로 규칙 파일에 적을지 미결정. 검수 요청 범위(물리치료사=원인·처방 이유, 코치=큐·방법·단계) 안내 문구를 `VIDEO_REVIEW_RULES.md`에 넣을지 미결정. 규칙 파일·검수판만 외부에 넘길 예정이므로 미결 항목(벽 발목 5cm/8cm, "양성", "외측"·"배측굴곡" 처리)을 파일에 "결정/미결"로 적어야 함
 - 이번 세션 중 auto mode 안전성 검사기가 일시 장애로 Bash/Write를 막은 적 있음(복구됨). 터미널이 오후 3시 17분경 한 번 꺼졌으나 원인 미확인
 - 운동명: 표준명 그대로, 대시·괄호 뒤 목적·단계 표기 삭제. 용어 표기: 의학·해부 용어=쉬운 말(원어), 운동·기술 용어=용어(쉬운 말), "날개뼈"로 통일
 - 검수판 Artifact: 영상 검수판 v49 `https://claude.ai/artifact/3S2juJAfWMDJG2yWoo1pDe`, 원인·루트 검수판 `https://claude.ai/artifact/YG6sHXLeqdYs4HzsAaYVRg`. 게시 시 "최신 read → 전체 파일 Read" 후 publish

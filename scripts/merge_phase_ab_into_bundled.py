@@ -1,5 +1,18 @@
+"""[실행 금지] data/phase-exercises.json으로 index.html의 모든 원인 운동(Phase A/B)을 덮어쓴다.
+
+index.html에서 직접 고친 내용(꼬리표 삭제, 쉬운 말 표기, 내부 메모 제거 등)이 전부 사라진다.
+2026-09-25 커밋 bd87c7b에서 실행돼 약 70개 원인의 수정분이 되돌려졌고, 2026-09-29에 복구했다.
+
+새 운동을 넣을 때는 이 스크립트 대신, 해당 원인만 data/phase-exercises.json과 index.html
+양쪽에 넣는 스크립트(예: add_deadlift_shoulder_cause_dp_phase_b.py)를 쓴다.
+정말 전체 덮어쓰기가 필요하면 먼저 data 파일을 index.html과 동기화한 뒤 --force-overwrite-all 을 붙인다.
+"""
 import json
 import re
+import sys
+
+if "--force-overwrite-all" not in sys.argv:
+    sys.exit("중단: 이 스크립트는 index.html의 직접 수정분을 전부 덮어씁니다. 파일 상단 설명을 읽으세요.")
 
 INDEX_PATH = "index.html"
 PHASE_PATH = "data/phase-exercises.json"
