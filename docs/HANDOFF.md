@@ -22,7 +22,7 @@
 - 한글/영어 운동명 통일 판단(사용자가 유튜브·네이버로 확인 후 결정). 의학용어 포함 운동명 개수 미집계
 - 방법(how) 5요소 작성 기준 보류
 - 진급 기준(`progression_note`) 문구 "상위 결함 검사 프로토콜(감별 진단)로 리턴…"이 Phase B 카드에 렌더링됨 → 쉬운 말로 수정 필요
-- 상대 검수자에게 줄 것: `VIDEO_REVIEW_RULES.md`, 영상 검수판 링크, 원인·루트 검수판(현재 비공개라 공유 설정 필요). 원인·루트 검수판은 이번 Phase B 28개 운동(7동작×4) 미반영 상태라 갱신 필요 여부 판단. 감별 로직 문서(`https://claude.ai/code/artifact/ba2c3e4d-e4d1-4dca-bfec-a0dbd8b1f4d1`)는 2026-08-29 버전이라 갱신 필요
+- 상대 검수자에게 줄 것: `VIDEO_REVIEW_RULES.md`, 영상 검수판 링크, 원인·루트 검수판(v7, 09-29 기준 최신이며 어깨 Phase B 28개 포함, 비공개라 공유 설정 필요), 감별 로직 문서(`docs/pt_review_전체동작.md` + Artifact `https://claude.ai/artifact/PzPPazFBk6Chg9aC6GDG3J` v3, 09-29 최신 index.html 기준 재생성, 생성 스크립트 `scripts/generate_pt_review_doc.py`). 감별 로직 Artifact는 링크 공유 상태라 보는 사람은 공유 메뉴에서 게시 버전 고정(pin)을 옮기기 전까지 예전 버전이 보일 수 있음
 - 운동 video_url 미등록: 이번 Phase B 28개 포함 대부분 `TBD`. 데드리프트 `test-valgus` 영상 미해결
 - 용어사전 설계 문서 2개(`docs/superpowers/specs|plans/2026-06-08-glossary-toggle-*`) 삭제 여부 미정
 - PT/전문의 임상 검수 — 여전히 유일한 진짜 배포 블로커. 특히 이번 cause-dp Phase B(통증호 통과·그립·궤적 큐)는 임상 검수 대상. Railway 백엔드·로그인 이관 방향 미결정
