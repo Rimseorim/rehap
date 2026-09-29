@@ -1,45 +1,45 @@
-# HANDOFF - 2026-09-29 19:28
+# HANDOFF - 2026-09-29 21:25
 
 ## 완료
-- **어깨 cause-dp Phase B 7동작 전체 완료** (런지는 어깨 통증 부위 없음). data/phase-exercises.json + index.html BUNDLED 양쪽 반영, 동작별 4개씩 검증, 전부 push됨 (main `36db833..c718323`)
+- **어깨 cause-dp Phase B 7동작 전체 완료** (런지는 어깨 통증 부위 없음). data/phase-exercises.json + index.html BUNDLED 양쪽 반영, 동작별 4개씩 검증, 전부 push됨
   - 스쿼트 `bd87c7b`, 데드리프트·풀업 `e3b61b0`, 키핑 `d1acae6`, 로우 `bc090db`, 수직 프레스 `c48dd5d`, 수평 프레스 `c718323`
   - 스크립트: `scripts/add_{deadlift,pullup,kipping,row,vertical_press,horizontal_press}_shoulder_cause_dp_phase_b.py`
-- 메모리 `project_shoulder_cause_framework` 갱신 (cause-dp Phase B 완료 + 설계 원칙 기록)
-- **사고 복구**: 커밋 `bd87c7b`에서 병합 스크립트가 낡은 data로 index.html을 덮어써 약 70개 원인의 수정분(쉬운 말 65건, 내부 메모 "DB 수록 운동." 15건 노출, 꼬리표 18건, 로우 허리 b 이름 등)이 되돌려진 채 배포돼 있었음. 검수판(=`36db833` 상태)을 기준으로 index.html·data 양쪽을 복구·푸시. 병합 스크립트는 `--force-overwrite-all` 없으면 실행 안 되게 막고 CLAUDE.md에 금지 기록
-- 런지 발목 빈 cue 4건 채움, 밴드 거골 후방 견인 스트레칭 위치 표현("발목 앞쪽 접히는 부위") 4곳 통일, "종아리·발바닥 복합 스트레칭" 6곳을 "발바닥·발가락 스트레칭"으로 정정(스쿼트 발목 a는 종아리 단계가 있어 유지). 검수판 v6 게시(어깨 Phase B 28개·발목 수정 포함)
-- 이전 HANDOFF(2026-09-26)를 `docs/archive/HANDOFF-2026-09-29.md`로 이동
+- **사고 복구** (`dd8851e`): 커밋 `bd87c7b`에서 병합 스크립트가 낡은 data로 index.html을 덮어써 약 70개 원인의 수정분(쉬운 말 65건, 내부 메모 "DB 수록 운동." 15건 노출, 꼬리표 18건, 로우 허리 b 이름 등)이 되돌려진 채 배포돼 있었음. 검수판(=`36db833` 상태)을 기준으로 index.html·data 양쪽을 복구·푸시하고 배포 페이지 해시 일치까지 확인. `merge_phase_ab_into_bundled.py`는 `--force-overwrite-all` 없으면 실행 안 되게 막고 CLAUDE.md에 금지 기록
+- 런지 발목 빈 cue 4건 채움, 밴드 거골 후방 견인 스트레칭 위치 표현("발목 앞쪽 접히는 부위") 4곳 통일, "종아리·발바닥 복합 스트레칭" 6곳을 "발바닥·발가락 스트레칭"으로 정정(스쿼트 발목 a는 종아리 단계가 있어 유지, 근거: 스쿼트 발목 b why "아킬레스건 직접 신장 최소화" 설계 의도)
+- **`lunge/ankle/cause-a-mild` 삭제**(원인 152→151개, 전체 Phase A 8·B 4 통일): 2026-06-23 `b91df94`에서 cause-a로 통합했으나 정의가 잔해로 남아 도달 불가였음. index.html·data/movements/lunge.json·pt_review 문서·검수판에서 제거. 복구는 `b91df94` 이전 커밋에서
+- **원인·루트 검수판 v7** 게시: 어깨 Phase B 28개·발목 수정·`cause-a-mild` 삭제 반영(검수판과 index.html 운동 문구 차이 0건). 비공개라 넘기기 전 공유 설정 필요
+- **감별 로직 문서 재생성**: `docs/pt_review_전체동작.md`를 최신 index.html에서 생성(`scripts/generate_pt_review_doc.py`, 옛 8/29 문서를 한 줄도 안 다르게 재현하는 것 검증). Artifact v3 `https://claude.ai/artifact/PzPPazFBk6Chg9aC6GDG3J` 갱신. **링크 공유 상태라 보는 사람은 공유 메뉴에서 게시 버전 고정(pin)을 옮기기 전까지 예전 버전이 보임 — 사용자가 직접 옮겨야 함**
+- `docs/VIDEO_REVIEW_RULES.md` 갱신(`211c02d`): "확정된 검사 판정 기준"(토마스 검사 침대 면, 균형 눈 감고 10초), "미결 — 판단 요청"(벽 발목 5cm/8cm), "반영 대상" 5곳으로 정정("원인·루트 검수판은 스크립트 재생성 가능"이라는 옛 문장은 사실과 달라 수동 미러로 수정)
+- 메모리 갱신: `project_shoulder_cause_framework`(cause-dp 완료+원칙), `project_merge_script_incident`(신규), `project_phase_ab_merge_status`·`project_cause_route_board_rules_todo`(경고·cause-a-mild 삭제 반영)
+- main 푸시: 이번 handoff 커밋 전까지 전부 push됨
 
 ## 진행중
-- **재활 운동명 뒤 꼬리표 정리** (이월, 중단 지점 = 잔여 약 29개를 짝 단위 목록으로 제시하기 전)
-  - 범위 밖 잔여: "— 무게 점진 복귀/도입" 계열 b4, "— 와이드 스탠스"·"— Full ROM" 등이 붙은 b2·b3, 키핑 손목 b·c·d b1 "데드 행 (매달리기만)" 등. 이번 정리에 넣을지 미결정
-  - 다음 스텝: 짝(이름 겹침) 단위로 목록 제시 → 결정 후 index.html·검수판 양쪽 반영. 별도로 "2단계와 동일" 같은 앞 단계 번호 참조 문구를 8동작 전체에서 검색(로우 허리 b3 1건만 수정, 나머지 미검색), 로우 허리 b1 why "고관절 굴곡근" 쉬운 말 표기 수정
+- **재활 운동명 뒤 꼬리표 정리** (이월, 중단 지점 = 부류별 목록을 사용자에게 보여 주기 전)
+  - 현재 잔여: 대시·콜론·화살표가 붙은 운동명 123개(고유 이름 112개, 전체 운동 1812개 중). 이전에 "약 29개"라 한 것은 마지막 단계 이름만 센 값
+  - 부류: (1) 단계 표기 — "— 무게 점진 복귀", "— 와이드 스탠스/정상 스탠스/Full ROM"(덤벨 RDL 계열, 이름 겹침이라 짝 단위 결정 필요), (2) 이 원인 전용 목적 설명 — "버드독 — 과부하 회복 후방 사슬 협응", "글루트 브릿지 — 복합 안정화 기초" 등 허리·고관절 계열, (3) 원어가 낀 이름 — "Posterior Capsule Stretch — …", "Prone Shoulder Slides (W→Y 이동)" 등(쉬운 말 규칙도 걸림)
+  - 다음 스텝: 123개를 위 세 부류로 나눈 전체 목록을 채팅에 보여 주고 부류별 승인 → 삭제 시 why에 목적이 없으면 한 문장 보충 → index.html·data·검수판(·감별 로직 문서는 이름 무관) 동기화. "2단계와 동일" 같은 앞 단계 번호 참조 문구를 8동작 전체에서 검색(로우 허리 b3 1건만 수정, 나머지 미검색), 로우 허리 b1 why "고관절 굴곡근" 쉬운 말 표기 수정
 - **데드리프트 모션 검수** 시작 전 (이월): 무릎(`test-valgus`/`test-valgus-lateral`) → 허리 → 어깨 → 손목 → 고관절 순
 
 ## 대기
-- 원인명 규칙 적용: 152개 원인명 중 "배측굴곡"·"외측"·"테스트"에 걸리는 목록 정리 후 승인 받기
-- "양성" 표현 약 43곳 잔존(전체 정리 여부 미결정), 런지 발목 안정성 재검사 목적문 "외측 인대", "견갑골(어깨뼈)"→"날개뼈" 전수 변경(미실시). 이번 cause-dp Phase B 신규 문구는 "날개뼈"로 작성함
-- 벽 발목 가동성 운동 시작 거리 5cm vs 검사 8cm 의도 여부 판단 필요
-- 한글/영어 운동명 통일 판단(사용자가 유튜브·네이버로 확인 후 결정). 의학용어 포함 운동명 개수 미집계
-- 방법(how) 5요소 작성 기준 보류
-- 진급 기준(`progression_note`) 문구 "상위 결함 검사 프로토콜(감별 진단)로 리턴…"이 Phase B 카드에 렌더링됨 → 쉬운 말로 수정 필요
-- 상대 검수자에게 줄 것: `VIDEO_REVIEW_RULES.md`, 영상 검수판 링크, 원인·루트 검수판(v7, 09-29 기준 최신이며 어깨 Phase B 28개 포함, 비공개라 공유 설정 필요), 감별 로직 문서(`docs/pt_review_전체동작.md` + Artifact `https://claude.ai/artifact/PzPPazFBk6Chg9aC6GDG3J` v3, 09-29 최신 index.html 기준 재생성, 생성 스크립트 `scripts/generate_pt_review_doc.py`). 감별 로직 Artifact는 링크 공유 상태라 보는 사람은 공유 메뉴에서 게시 버전 고정(pin)을 옮기기 전까지 예전 버전이 보일 수 있음
-- 운동 video_url 미등록: 이번 Phase B 28개 포함 대부분 `TBD`. 데드리프트 `test-valgus` 영상 미해결
+- 원인명 규칙 적용(원인 151개): 사용자 노출 문구 기준 "배측굴곡" 62곳, "외측" 82곳, "테스트" 25곳이 쉬운 말 규칙에 걸림. 목록 정리 후 승인 받기
+- "양성" 표현 42곳(고유 문구 14개) 잔존 — 처리 방향(통과/실패, "증상이 재현됨" 등) 미결정, 결정하면 규칙 파일에 한 줄 추가. "견갑골" 189곳(고유 64개) → "날개뼈" 전수 변경 미실시. 진급 기준 문구 "상위 결함 검사 프로토콜(감별 진단)로 리턴…" 7곳이 화면에 렌더링됨 → 쉬운 말 수정 필요
+- 한글/영어 운동명 통일 판단(사용자가 유튜브·네이버로 확인 후 결정), 방법(how) 5요소 작성 기준 보류
+- 영상 검수판(v49 `https://claude.ai/artifact/3S2juJAfWMDJG2yWoo1pDe`)의 체크 상태는 사용자 브라우저 localStorage라 Claude가 못 읽음 — 필요하면 콘솔 명령으로 체크된 id를 꺼내 전달(Artifact 소스에서 저장 키 확인 필요)
+- 운동 video_url 미등록: 1812개 중 1787개 `TBD`. 데드리프트 `test-valgus` 영상 미해결
 - 용어사전 설계 문서 2개(`docs/superpowers/specs|plans/2026-06-08-glossary-toggle-*`) 삭제 여부 미정
-- PT/전문의 임상 검수 — 여전히 유일한 진짜 배포 블로커. 특히 이번 cause-dp Phase B(통증호 통과·그립·궤적 큐)는 임상 검수 대상. Railway 백엔드·로그인 이관 방향 미결정
+- 외부 전달 예정: `VIDEO_REVIEW_RULES.md` + 검수판(원인·루트 v7, 영상 v49). 감별 로직 Artifact 공유 pin 이동은 사용자 몫
+- PT/전문의 임상 검수 — 여전히 유일한 진짜 배포 블로커. 이번 어깨 cause-dp Phase B(통증 구간 통과·그립·궤적 큐)와 발목 스트레칭 처방 적합성도 검수 대상. Railway 백엔드·로그인 이관 방향 미결정
 
 ## 결정사항 / 주의
-- **cause-dp Phase B 설계 원칙**: 1단계 통증호 밖 패턴 → 2단계 통증 직전 높이까지 통제된 통과(동작·팔 분리, 반동 금지, 내릴 때 2~3초) → 3단계 경부하 → 4단계 도구+부상 전 30~40%. 풀업·키핑 4단계는 "볼륨 점진 복귀"(3단계와 같은 보조 수준·그립 유지, 무보조·오버그립 복귀 문구는 넣지 않음, 기존 풀업 원인들과 동일 구조)
-- 힘 뺀 데드행 대신 액티브 행(날개뼈 내림). 덤벨·풀업 그립은 중립/언더핸드 권장(키핑은 오버핸드 기본이라 미적용). 그립 너비·각도는 수치 확정 대신 기준으로("팔뚝이 바닥과 수직"). 위치는 뼈 기준("가슴뼈 아래쪽, 명치 바로 위"), 젖꼭지 라인·"명치 아래" 부적합
-- 사용자가 다른 AI 반박 문구를 붙여 오면 무조건 수용하지 말고 항목별로 수용/부분수용/불수용 판단 (이번에도 오류 지적 다수: 오버그립 정의 오류, 명치 위치, 훅그립 무관 등)
-- 반영은 해당 cause만 수정하는 스크립트(python, Write로 파일 생성 후 Bash 실행). **`merge_phase_ab_into_bundled.py` 실행 금지**(전체 덮어쓰기, 실제로 사고 발생, 이제 `--force-overwrite-all` 필요). bundled id: vertical-press→press-vertical, horizontal-press→press-horizontal
-- 데이터 동기화 상태: index.html, data/phase-exercises.json, 검수판 3곳의 Phase A/B가 09-29 기준 같음. 앞으로 문구를 고칠 때 3곳을 함께 갱신할 것
-- `lunge/ankle/cause-a-mild` 삭제 완료(원인 152→151개): 2026-06-23 b91df94에서 cause-a로 통합했으나 원인 정의가 잔해로 남아 도달 불가였음. index.html·data/movements/lunge.json(검사 분기 pass_next도 cause-a로)·pt_review_전체동작.md·RETEST_CONTENT_REVIEW.md·검수판(v7)에서 제거. 복구는 b91df94 이전 커밋에서. `docs/need/retest_templates.txt`·`transform_stages.py`에는 잔해가 남아 있을 수 있음(미확인, 과거 생성물·스크립트라 그대로 둠). 감별 로직 문서·Artifact는 09-29 재생성으로 반영됨
-- 미해결: 검수 요청 범위(물리치료사=원인·처방 이유, 코치=큐·방법·단계) 안내 문구를 `VIDEO_REVIEW_RULES.md`에 넣을지 미결정. 규칙 파일·검수판만 외부에 넘길 예정이므로 미결 항목(벽 발목 5cm/8cm, "양성", "외측"·"배측굴곡" 처리)을 파일에 "결정/미결"로 적어야 함
-- 이번 세션 중 auto mode 안전성 검사기가 일시 장애로 Bash/Write를 막은 적 있음(복구됨). 터미널이 오후 3시 17분경 한 번 꺼졌으나 원인 미확인
+- **규칙 파일 작성 원칙**: 검수자가 조사하다 보면 알게 되는 것(삭제된 원인, 이름 예외, 미등록 건수, 특정 원인 전용 설계 원칙)은 넣지 않는다. 특정 원인 원칙을 규칙에 넣으면 다른 모든 루트도 그렇게 맞춰야 하므로 넣지 않음. 조사로 알 수 없는 것(값을 정한 근거, 전문가만 답할 수 있는 미결 질문)만 넣는다. 검수 요청 범위 안내(물리치료사=원인·처방 이유, 코치=큐·방법·단계)는 규칙 파일에 넣지 않고 채팅으로 전달하기로 함
+- **cause-dp Phase B 설계**: 1단계 통증 구간 밖 패턴 → 2단계 통증 직전 높이까지 통제된 통과(동작·팔 분리, 반동 금지, 내릴 때 2~3초) → 3단계 경부하 → 4단계 도구+부상 전 30~40%. 풀업·키핑 4단계는 "볼륨 점진 복귀"(3단계와 같은 보조 수준·그립 유지, 무보조·오버그립 복귀 문구 없음). 힘 뺀 데드행 대신 액티브 행. 덤벨·풀업은 중립/언더핸드 그립 권장(키핑은 오버핸드 기본이라 미적용). 그립 너비·각도는 수치 대신 기준으로("팔뚝이 바닥과 수직"), 위치는 뼈 기준("가슴뼈 아래쪽, 명치 바로 위"; 젖꼭지 라인·"명치 아래" 부적합)
+- 사용자가 다른 AI 반박 문구를 붙여 오면 무조건 수용하지 말고 항목별로 수용/부분수용/불수용 판단 (이번에도 오류 지적 다수). 내 이전 권고가 틀릴 수 있으니 근거를 확인하고, 사용자가 반박하면 다시 조사해 뒤집는 것도 허용
+- **`merge_phase_ab_into_bundled.py` 실행 금지**(전체 덮어쓰기, 실제 사고 발생). 반영은 해당 cause만 수정하는 스크립트(python, Write로 파일 생성 후 Bash 실행)로. bundled id: vertical-press→press-vertical, horizontal-press→press-horizontal. `index.html`은 한 줄 minified라 Edit 불가 → python으로 BUNDLED JSON 파싱 후 수정·재직렬화. 스크립트는 `scripts/`에 둘 것(임시 폴더는 사라짐)
+- **데이터 동기화 5곳**: index.html, data/phase-exercises.json, 원인·루트 검수판, 영상 검수판, 감별 로직 문서(스크립트 재생성). 운동 문구를 고치면 앞 3곳이 같은지 확인. 푸시 전 마커 문자열(`DB 수록 운동` 등) 개수로 회귀 확인
+- 원인·루트 검수판 수정 방법: Artifact read(저장된 HTML의 `<script id="data">` JSON 파싱, 라운드트립 동일 확인됨) → 수정 → 스켈레톤(`<head>…<body>`) 제거 후 publish. 감별 로직 Artifact는 `<script id="source-md">`의 마크다운만 교체하면 되며, publish 전에 저장 파일을 끝까지 Read해야 함
 - 운동명: 표준명 그대로, 대시·괄호 뒤 목적·단계 표기 삭제. 용어 표기: 의학·해부 용어=쉬운 말(원어), 운동·기술 용어=용어(쉬운 말), "날개뼈"로 통일
-- 검수판 Artifact: 영상 검수판 v49 `https://claude.ai/artifact/3S2juJAfWMDJG2yWoo1pDe`, 원인·루트 검수판 `https://claude.ai/artifact/YG6sHXLeqdYs4HzsAaYVRg`. 게시 시 "최신 read → 전체 파일 Read" 후 publish
-- `index.html`은 한 줄 minified라 Edit 불가 → python으로 BUNDLED JSON 파싱 후 수정·재직렬화. 스크립트는 세션 임시 폴더에 두면 사라지므로 `scripts/`에 둠
-- push는 main 자동 배포. 이번 handoff 커밋은 아직 push 안 함
+- 이번 세션 중 auto mode 안전성 검사기가 일시 장애로 Bash/Write를 막았다가 복구됨. 터미널이 오후 3시 17분경 한 번 꺼졌으나 원인 미확인
+- push는 main 자동 배포. 이번 handoff 커밋은 아직 push 안 함(문서만 변경)
 
 ## 다음 세션 권장 첫 프롬프트
 `/resume`
