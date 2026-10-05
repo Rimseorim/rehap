@@ -1,57 +1,44 @@
-# HANDOFF - 2026-10-05 21:20
+# HANDOFF - 2026-10-05 22:27
 
 ## 완료
-- [x] 규칙서(`docs/VIDEO_REVIEW_RULES.md`)에 운동 방식 용어 표·how·cue 말투 규칙 반영, 「일괄 적용한 표기 (2026-10-05)」 표 추가
-- [x] 견갑골·어깨뼈·견갑 → 날개뼈 통일 322곳, 조사 교정 (`scripts/unify_scapula_term.py`, `scripts/unify_scapula_short.py`)
-- [x] 운동 방식 용어 풀이: 끝범위·브레이싱·릴리즈·숄더 패킹·PAILs/RAILs (`scripts/annotate_mode_terms.py`), 패시브·액티브 행·등척성·편심성 문구 (`scripts/rewrite_mode_terms.py`)
-- [x] 본문 고유 700문장 고쳐쓰기: 위치·근육 원어 풀이, how·cue 부정문 → 긍정문, 내부 메모 말투, 단계 번호 참조, 양성 (`scripts/apply_rewrite_map.py`)
-- [x] 이름: 검사 제목 49종("[원어] 검사 — [확인 대상]"), 원인명 21종, 운동명 29종. 이름에서 뺀 운동 방식 정보가 없던 18곳은 cue에 한 문장 보충
-- [x] `index.html`·`data/phase-exercises.json` 동시 적용, 감별 로직 문서(`docs/pt_review_전체동작.md`) 재생성, 전부 push됨
-
-- [x] 정본을 읽고 쓰는 단일 창구 `scripts/rehab_data.py` 와 이음새 점검 `scripts/check_seams.py` 추가 (2026-10-05 실행 결과: 실패 0, 주의 2). 정본은 `index.html` 의 BUNDLED 하나이고, 나머지는 사본이다
-
-- [x] 첫 로딩 개선: 문서 머리에서 화면 설정·글꼴 링크를 데이터 스크립트 앞으로 옮김, Pretendard 를 조각 방식(`pretendard-dynamic-subset.min.css`, v1.3.9 고정)으로 교체. 안드로이드 가상 기기 크롬·느린 4G 기준 글자 글꼴 3,066KB → 329KB, 글꼴 도착 20.9초 → 약 4초, 로딩 완료 21.0초 → 7.8초. 화면 밀림 점수는 0.037 → 0.028 (글꼴이 바뀌는 순간의 밀림은 남아 있고, 시점이 앞당겨졌다)
+- [x] 규칙서 `docs/VIDEO_REVIEW_RULES.md` 갱신: 운동 방식 용어 표·how·cue 말투 규칙, 「일괄 적용한 표기 (2026-10-05)」 표
+- [x] 문구 일괄 수정 (index.html 정본 기준, 전부 배포됨)
+  - 견갑골·어깨뼈·견갑 → 날개뼈 322곳 (`scripts/unify_scapula_term.py`, `scripts/unify_scapula_short.py`)
+  - 운동 방식 용어 풀이·문구 (`scripts/annotate_mode_terms.py`, `scripts/rewrite_mode_terms.py`)
+  - 본문 고유 700문장: 원어 풀이, how·cue 부정문 → 긍정문, 내부 메모 말투, 단계 번호 참조, 양성 (`scripts/apply_rewrite_map.py`)
+  - 이름: 검사 제목 49·원인명 21·운동명 29. 이름에서 뺀 운동 방식 정보가 없던 18곳은 cue 에 한 문장 보충
+- [x] SSOT 구조: 정본 = `index.html` 의 BUNDLED 하나
+  - 읽기·쓰기 창구 `scripts/rehab_data.py`, 이음새 점검 `scripts/check_seams.py`(현재 실패 0·주의 1)
+  - `data/phase-exercises.json` 은 `scripts/export_phase_exercises.py` 로 정본에서 생성 (동작 id·원인·문구 정본과 일치, 예전 `phase_a_b` 13묶음 제거)
+  - 커밋 전 자동 점검 `.githooks/pre-commit` (clone 후 `git config core.hooksPath .githooks` 1회), 레포 CLAUDE.md 에 절차 명시
+- [x] 첫 로딩 개선: 머리 순서(화면 설정·글꼴 링크를 데이터 앞으로), Pretendard 조각 방식(v1.3.9), 아이콘 글꼴 761KB → 사용 7종 인라인 스타일 2.8KB (`scripts/build_icon_css.py`). 가상 기기·느린 4G 기준 글꼴 3,066KB → 329KB, 로딩 완료 21.0초 → 7.8초 (아이콘 교체 전 측정)
+- [x] 검수판 3개 새 링크 게시 (이 계정 소유·비공개, 공유 설정 필요). 영상 칸은 썸네일 42장 + 새 탭 링크
+  - 원인·루트 `https://claude.ai/artifact/PByrDU27N6ncm77pgkgzpc`
+  - 영상 `https://claude.ai/artifact/8ch1bjjonBHwXTGQmBiagm`
+  - 감별 로직 `https://claude.ai/artifact/3bTkWenYGR4f3PwRSpE8mE`
+- [x] 로컬 백업 `C:\dev\backups\bodycheck\rehap-20261005-2220.bundle`(레포 전체, `git clone <bundle>`) + `rehap-files-20261005-2220.zip`. dev-root `.gitignore` 로 원격 제외
+- [x] 바탕화면 메모: `보류한 이름.txt`, `재검사 질문.txt`
 
 ## 진행중
-- [x] 사본 Artifact 3개를 2026-10-05 정본 기준으로 새 링크에 다시 게시함 (검수자 계정 소유, 비공개 — 볼 사람에게 공유 설정 필요)
-  - 원인·루트 검수판 `https://claude.ai/artifact/PByrDU27N6ncm77pgkgzpc`
-  - 영상 검수판 `https://claude.ai/artifact/8ch1bjjonBHwXTGQmBiagm`
-  - 재활 감별 로직 `https://claude.ai/artifact/3bTkWenYGR4f3PwRSpE8mE`
-  - 만든 방법: 기존 페이지의 화면 코드는 그대로 두고 데이터만 `index.html` BUNDLED에서 다시 채움. 옛 정본(`1455ddb`)으로 같은 방식으로 만들면 기존 원인·루트 검수판과 동일함을 확인
-  - 옛 링크(`YG6sHXLeqdYs4HzsAaYVRg`, `3S2juJAfWMDJG2yWoo1pDe`, `PzPPazFBk6Chg9aC6GDG3J`)는 옛 내용 그대로다. 새 링크는 주소가 달라 브라우저에 저장된 체크 상태가 넘어오지 않는다
-  - 옛 영상 검수판은 주의문(note) 5곳이 정본과 달랐는데 새 링크에서는 정본과 같다
-  - 아티팩트 화면은 다른 사이트를 안에 띄우는 것(유튜브 iframe)과 외부 이미지(유튜브 썸네일)를 막는다. 그래서 영상 칸이 깨진 프레임으로 보였다. 새 영상 검수판은 그 칸에 미리보기 그림(유튜브 썸네일 42장을 페이지 안에 넣음)과 재생 표시를 두고, 누르면 유튜브가 새 탭에서 열리게 바꿨다. 영상 42개 자체는 모두 공개·퍼가기 허용 상태임을 확인함 (저작권·삭제 문제 아님)
+- [ ] 검수판 3개는 2026-10-05 21:2x 정본 기준이다: 중단 지점 = 그 뒤 정본 변경(아이콘·사본 데이터)은 화면 문구와 무관해 재게시 안 함 / 다음 스텝 = 정본 문구가 바뀌면 scratchpad 의 `build_mirrors.py` 방식(화면 코드 유지, 데이터만 BUNDLED 에서 채움)으로 같은 링크에 다시 게시. scratchpad 는 세션 종료 시 사라지므로 필요하면 스크립트를 레포 `scripts/` 로 옮길 것
 
 ## 대기
-- [ ] **백엔드 서버가 없다 (2026-10-05 22:17 확인)**: `https://web-production-28002.up.railway.app` 의 모든 경로가 Railway 의 404 "Application not found" 를 돌려준다. 앱 코드는 아직 이 주소로 로그인·기록 저장을 보낸다. Railway 프로젝트(`motivated-prosperity`)는 협업자 계정이라 이 계정에서는 보이지 않는다. 협업자에게 서비스가 삭제·이름 변경·중지됐는지, 계정·기록 데이터가 남아 있는지 확인 필요
-- [x] 로컬 백업: `C:\dev\backups\bodycheck\rehap-20261005-2220.bundle`(레포 전체 이력, `git clone <bundle>` 로 복원) + `rehap-files-20261005-2220.zip`(index.html·data·docs·backend). 서버 데이터는 서버가 없어 받지 못함
-- [ ] 이음새 점검에서 나온 주의 2건 (`python scripts/check_seams.py`)
-  - 전용 재검사 22개가 화면에 나오지 않는다. `goRetest` 가 "그 원인으로 실패하는 첫 검사"를 고르는데, 목록에서 감별용 검사가 먼저 나와 통과·실패가 같은 원인을 가리키는 전용 재검사(`…-retest` 등)는 뽑히지 않는다. 전용 재검사를 우선하도록 코드를 고칠지, 22개를 지울지 결정 필요
-  - `data/phase-exercises.json` 이 정본과 어긋나 있다. 동작 id 3개가 다르고(`back-squat`·`vertical-press`·`horizontal-press` ↔ 정본의 `squat`·`press-vertical`·`press-horizontal`), 정본에만 있는 원인 2개(런지 발목 `cause-d`, 스쿼트 발목 `cause-e`), 사본에만 있는 `phase_a_b` 13묶음, 원인 설명·우선순위·이름·태그 104곳이 다르다. 운동 1,788개 자체는 같다. 이 파일을 정본에서 자동 생성하는 파일로 바꿀지 결정 필요
-- [ ] 아이콘 글꼴(`@tabler/icons-webfont@latest`)이 761KB 로 남은 글꼴 무게의 70%다. 버전도 고정돼 있지 않다. 쓰는 아이콘만 SVG 로 넣거나 버전을 고정하는 방안 검토
-- [ ] 화면 밀림은 실제 폰(갤럭시)에서는 확인하지 못했다. 측정은 PC 크롬의 폰 조건 흉내와 안드로이드 가상 기기로 했다
-- [ ] 임상 확인이 필요한 문구
-  - PAILs/RAILs 라벨 풀이, "양성(증상이 나타남)"
-  - "견갑 레트랙션·우울 각인"의 "우울"을 날개뼈 내리기의 오역으로 보고 "날개뼈 모으기(레트랙션)·내리기를 몸에 익힙니다"로 고침
-  - "손목 젖힘(배측굴곡)을 제한하는 신전근을 스트레칭합니다" — 신전근이 배측굴곡을 제한한다는 서술 자체가 맞는지
-  - "전방경사가 과도하면"에 주체 "골반의"를 보충함
-  - "손목 신전근·굴곡근 편심성 운동 (3~5초 버티기)"를 "손목 신전근·굴곡근 운동 (3~5초 천천히 내리기)"로 바꿈
-- [x] 보류한 이름 18개는 고치지 않고 그대로 둔다 (2026-10-05 검수자 결정 — 다시 묻지 않는다). 아래는 참고용 목록이며 괄호 안은 적용하지 않은 후보
-  - 검사: 저항성 손목 신전 검사 — 신전근 건병증 확인(손목 펴는 근육 과부하 확인) / 저항성 손목 굴곡 검사 — 굴곡근/TFCC 확인(손목 굽히는 근육·연골 확인) / 앉아서 햄스트링 부하 검사 — 좌골결절 통증(엉덩이 아래 통증 확인) / 발목 굽힘(배측굴곡) 검사(대시 뒤 확인 대상 미정 — 발목 앞쪽 충돌 확인에도 쓰임) / 고관절 굽힘(굴곡) 검사(— 고관절 가동성 확인)
-  - 원인: 고관절 신전 가동성 부족 → 요추 과신전 보상 / 광배근·흉추 경직 / 후방 관절낭·회전근개 경직 / 손목 신전 가동성 부족 / 햄스트링 부착부 건병증 (좌골결절 통증) / 아치 페이즈 요추 과신전 / 천장관절 부하 불균형 / 요추-골반-상지 신경근 조절력 부족 / 요추-골반-상지 신경근 조절 실패 / 광배근 약화에 의한 요추 과신전 보상 / 대둔근·내전근 활성 저하 / 굴곡·신전 모두에서 통증
-  - 운동: 고관절 굴곡근 락백 (내용은 고관절 굽힘 범위 운동이라 "네발기기 락백"이 후보)
-- [ ] 표에 없는 의학 용어(회전근개·전거근·승모근·신전·굴곡·내회전 등)는 본문·이름 모두 미처리
-- [ ] 영상: 서로 다른 검사에 같은 영상 14건, 타임스탬프는 검사 147개 중 5개, 운동 영상 1812개 중 1787개 미등록 — 실제 재생 확인이 필요해 손대지 않음
-- [ ] 영문이 낀 운동명 111종의 한글/영어 통일 (검색 확인 후 결정)
-- [ ] `index.html`과 `data/phase-exercises.json`의 운동명 차이: index에만 16개, data에만 21개 (이번 작업 전부터 있던 차이)
-- [ ] `backend/auth.py`의 토큰 서명 키가 코드에 문자열로 들어 있음 (공개 레포)
+- [ ] **[급함] 백엔드 서버 부재**: `https://web-production-28002.up.railway.app` 전 경로가 Railway 404 "Application not found". 운영 앱의 카카오·네이버·구글 로그인과 기록 저장이 동작하지 않는다(데모·브라우저 저장은 동작). Railway 프로젝트 `motivated-prosperity` 는 협업자 계정. 서버 상태와 계정·기록 데이터 잔존 여부를 협업자에게 확인
+- [ ] 전용 재검사 22개가 화면에 나오지 않음 (`goRetest` 가 목록의 첫 감별 검사를 고름). 질문 메모 = 바탕화면 `재검사 질문.txt`, 협업자 답 대기 (사용자: "답이 오면 한다")
+- [ ] 첫 화면이 로그인 — 사용자 결정으로 보류(패스)
+- [ ] 성공 기준 측정 장치 — 사용자: 추후 회의
+- [ ] 임상 검수(PT) — 사용자: 추후. 확인 필요 문구: PAILs/RAILs 라벨 풀이, 양성(증상이 나타남), "우울"→"내리기" 해석, 손목 신전근이 배측굴곡을 제한한다는 서술, "골반의" 보충, 손목 편심성 운동명 변경
+- [ ] `backend/auth.py` 서명 키가 코드에 문자열로 있음 (공개 레포, 협업자와 협의)
+- [ ] 실제 갤럭시에서의 화면 밀림 미확인 (무선 adb 무응답). 아이콘 교체 후 배포본 재측정 안 함
+- [ ] 표에 없는 의학 용어(회전근개·전거근·신전·굴곡 등), 영문 낀 운동명 111종, 영상 미등록 1,787칸·같은 영상 14건 — 손대지 않음
 
 ## 결정사항 / 주의
-- 고쳐쓰기는 고유 문자열 단위의 "old → new" 표를 만든 뒤 `scripts/apply_rewrite_map.py`로 검증(숫자 보존·괄호 짝·풀이 중복)하고 index·data에 함께 적용한다. 여럿이 나눠 작업할 때도 정본은 직접 고치지 않고 표만 만든다 (`index.html`이 한 줄짜리라 동시에 고치면 서로 덮어쓴다)
-- 표기 기준은 규칙서의 「일괄 적용한 표기 (2026-10-05)」 표. 괄호 풀이는 필드마다 첫 등장에만, 앞뒤 문맥이 뜻을 설명하면 붙이지 않음
-- how·cue 긍정문 전환에서 "닿지 않아도 괜찮습니다" 같은 서술형 부정과 "통증 없이"·"반동 없이"는 금지 표현이 아니라 그대로 둠
-- "모빌리티" 6곳은 "앵클 모빌리티 20회"처럼 운동 이름을 가리켜 풀이를 붙이지 않음
-- `scripts/merge_phase_ab_into_bundled.py` 실행 금지 유지. main push는 GitHub Pages·Railway 자동 배포
+- 보류한 이름 18개는 그대로 둔다 (사용자 결정, 다시 묻지 않음)
+- 데이터는 `index.html` 에서만 고친다 → `export_phase_exercises.py` · `generate_pt_review_doc.py` 로 사본 재생성 → `check_seams.py`. `merge_phase_ab_into_bundled.py` 실행 금지
+- 일괄 문구 수정은 고유 문자열 "old → new" 표 → `apply_rewrite_map.py`(숫자·괄호·풀이 중복 검증) 순. 병렬 작업자도 정본을 직접 고치지 않는다
+- main push = GitHub Pages 자동 배포. 레포 루트 `.nopush`(자동 push 차단)·`.autopush-hold`(`.claude/settings.local.json` 제외)는 미추적 로컬 마커
+- 아티팩트 화면은 iframe·외부 이미지를 막는다 → 영상은 링크·인라인 썸네일로
+- Pretendard 원본 글꼴이 PC 에 설치돼 있어 PC 크롬 측정은 글꼴 다운로드가 재현되지 않는다 → `local()` 제거 또는 가상 기기로 측정
 
 ## 다음 세션 권장 첫 프롬프트
 `/resume`
