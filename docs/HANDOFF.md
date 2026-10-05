@@ -23,6 +23,8 @@
   - 아티팩트 화면은 다른 사이트를 안에 띄우는 것(유튜브 iframe)과 외부 이미지(유튜브 썸네일)를 막는다. 그래서 영상 칸이 깨진 프레임으로 보였다. 새 영상 검수판은 그 칸에 미리보기 그림(유튜브 썸네일 42장을 페이지 안에 넣음)과 재생 표시를 두고, 누르면 유튜브가 새 탭에서 열리게 바꿨다. 영상 42개 자체는 모두 공개·퍼가기 허용 상태임을 확인함 (저작권·삭제 문제 아님)
 
 ## 대기
+- [ ] **백엔드 서버가 없다 (2026-10-05 22:17 확인)**: `https://web-production-28002.up.railway.app` 의 모든 경로가 Railway 의 404 "Application not found" 를 돌려준다. 앱 코드는 아직 이 주소로 로그인·기록 저장을 보낸다. Railway 프로젝트(`motivated-prosperity`)는 협업자 계정이라 이 계정에서는 보이지 않는다. 협업자에게 서비스가 삭제·이름 변경·중지됐는지, 계정·기록 데이터가 남아 있는지 확인 필요
+- [x] 로컬 백업: `C:\dev\backups\bodycheck\rehap-20261005-2220.bundle`(레포 전체 이력, `git clone <bundle>` 로 복원) + `rehap-files-20261005-2220.zip`(index.html·data·docs·backend). 서버 데이터는 서버가 없어 받지 못함
 - [ ] 이음새 점검에서 나온 주의 2건 (`python scripts/check_seams.py`)
   - 전용 재검사 22개가 화면에 나오지 않는다. `goRetest` 가 "그 원인으로 실패하는 첫 검사"를 고르는데, 목록에서 감별용 검사가 먼저 나와 통과·실패가 같은 원인을 가리키는 전용 재검사(`…-retest` 등)는 뽑히지 않는다. 전용 재검사를 우선하도록 코드를 고칠지, 22개를 지울지 결정 필요
   - `data/phase-exercises.json` 이 정본과 어긋나 있다. 동작 id 3개가 다르고(`back-squat`·`vertical-press`·`horizontal-press` ↔ 정본의 `squat`·`press-vertical`·`press-horizontal`), 정본에만 있는 원인 2개(런지 발목 `cause-d`, 스쿼트 발목 `cause-e`), 사본에만 있는 `phase_a_b` 13묶음, 원인 설명·우선순위·이름·태그 104곳이 다르다. 운동 1,788개 자체는 같다. 이 파일을 정본에서 자동 생성하는 파일로 바꿀지 결정 필요
