@@ -60,6 +60,28 @@ def save_phase(phase, path=PHASE):
         f.write('\n')
 
 
+PHASE_NOTE = ('Phase A: 매일 계속 (홀수/짝수 날 번갈아, 8개), Phase B: 하루 한 동작씩 (sequence, 4-5개). '
+              '이 파일은 index.html 의 BUNDLED(정본)에서 생성한다. 직접 고치지 말고 scripts/export_phase_exercises.py 를 실행한다.')
+
+
+def export_phase(b):
+    """정본에서 data/phase-exercises.json 의 내용(원인별 Phase A/B 운동)을 만든다."""
+    movs = []
+    for mv in movements(b):
+        sites = []
+        for ps in mv['pain_sites']:
+            cs = []
+            for c in ps.get('causes', []):
+                cause = {k: c[k] for k in ('id', 'label', 'tag', 'name', 'description', 'priority_note') if k in c}
+                cause['route'] = {'stages': [
+                    {k: st[k] for k in ('id', 'name', 'phase_a', 'phase_b', 'recovery_note') if k in st}
+                    for st in c.get('route', {}).get('stages', []) if 'phase_a' in st or 'phase_b' in st]}
+                cs.append(cause)
+            sites.append({'id': ps['id'], 'name': ps['name'], 'causes': cs})
+        movs.append({'id': mv['id'], 'name': mv['name'], 'pain_sites': sites})
+    return {'_schema': 'Phase A/B Exercise Database', '_note': PHASE_NOTE, 'movements': movs}
+
+
 def movements(b):
     for mf in b['manifest']:
         yield b[mf['id']] | {'id': mf['id']}

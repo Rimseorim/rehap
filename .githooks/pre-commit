@@ -1,0 +1,6 @@
+#!/bin/sh
+# 커밋 전 이음새 점검. 처음 한 번만 켜면 된다: git config core.hooksPath .githooks
+python scripts/check_seams.py -q || {
+  echo "이음새 점검에서 [실패]가 나왔습니다. 위 항목을 고친 뒤 다시 커밋해 주세요."
+  exit 1
+}

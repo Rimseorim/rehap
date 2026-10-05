@@ -12,19 +12,21 @@ from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from generate_pt_review_doc import gen  # noqa: E402
-from rehab_data import (causes, exercises, flow, load_bundled, load_phase, pain_sites,  # noqa: E402
-                        roundtrip_ok, tests, text_fields)
+from rehab_data import (causes, exercises, export_phase, flow, load_bundled, load_phase,  # noqa: E402
+                        pain_sites, roundtrip_ok, tests, text_fields)
 
 DOC = 'docs/pt_review_전체동작.md'
 BANNED_CUE = re.compile(r'지 마세요|지 마십시오|지 않게|지 않도록|지 말고|지 맙니다|금지|말 것')
 MODE_IN_NAME = re.compile(r'등척성|등장성|편심성|아이소메트릭|익센트릭')
 fails, warns = [], []
+QUIET = '-q' in sys.argv
 
 
 def report(ok, label, items=(), warn=False):
     items = list(items)
     if ok:
-        print(f'[통과] {label}')
+        if not QUIET:
+            print(f'[통과] {label}')
         return
     (warns if warn else fails).append(label)
     head = '[주의]' if warn else '[실패]'
@@ -86,41 +88,7 @@ def main():
     report(not test_names, '검사 제목에 "테스트"가 없다 ("검사"로 통일)', test_names)
 
     # ---- 정본 ↔ data/phase-exercises.json ----
-    p = load_phase()
-
-    def table(src_movs):
-        out, meta = {}, {}
-        for mv in src_movs:
-            for ps in mv['pain_sites']:
-                for c in ps.get('causes', []):
-                    meta[(mv['id'], ps['id'], c['id'])] = c
-                    for st in c.get('route', {}).get('stages', []):
-                        for k, v in st.items():
-                            if isinstance(v, list) and v and isinstance(v[0], dict) and 'how' in v[0]:
-                                out[(mv['id'], ps['id'], c['id'], st.get('id'), k)] = v
-        return out, meta
-    ti, mi = table([b[m['id']] | {'id': m['id']} for m in b['manifest']])
-    td, md = table(p['movements'])
-    only_i = Counter(k[4] for k in ti if k not in td)
-    only_d = Counter(k[4] for k in td if k not in ti)
-    diff_fields, len_mismatch, same = Counter(), 0, 0
-    for k in ti.keys() & td.keys():
-        a, d = ti[k], td[k]
-        if len(a) != len(d):
-            len_mismatch += 1
-        for x, y in zip(a, d):
-            changed = [f for f in set(x) | set(y) if x.get(f) != y.get(f)]
-            if changed:
-                diff_fields.update(changed)
-            else:
-                same += 1
-    cause_diff = Counter(f for k in mi.keys() & md.keys() for f in ('name', 'tag', 'description', 'priority_note')
-                         if f in md[k] and md[k].get(f) != mi[k].get(f))
-    drift = {'정본에만 있는 묶음': dict(only_i), '사본에만 있는 묶음': dict(only_d), '운동 수가 다른 묶음': len_mismatch,
-             '필드가 다른 운동(필드별)': dict(diff_fields), '원인 정보가 다른 곳(필드별)': dict(cause_diff),
-             '정본에만 있는 원인': len(mi.keys() - md.keys()), '사본에만 있는 원인': len(md.keys() - mi.keys())}
-    clean = not (only_i or only_d or len_mismatch or diff_fields or cause_diff or mi.keys() ^ md.keys())
-    report(clean, f'data/phase-exercises.json 이 정본과 같다 (완전히 같은 운동 {same}개)', [drift], warn=True)
+    report(load_phase() == export_phase(b), 'data/phase-exercises.json 이 정본에서 만든 것과 같다 (다르면 scripts/export_phase_exercises.py 실행)')
 
     # ---- 참고 수치 ----
     no_video = sum(1 for *_, e in ex_all if not str(e.get('video_url', '')).startswith('http'))
