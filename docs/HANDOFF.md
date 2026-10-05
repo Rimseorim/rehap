@@ -9,7 +9,13 @@
 - [x] `index.html`·`data/phase-exercises.json` 동시 적용, 감별 로직 문서(`docs/pt_review_전체동작.md`) 재생성, 전부 push됨
 
 ## 진행중
-- [ ] 사본 Artifact 3개(원인·루트 검수판 `YG6sHXLeqdYs4HzsAaYVRg`, 영상 검수판 `3S2juJAfWMDJG2yWoo1pDe`, 감별 로직 `PzPPazFBk6Chg9aC6GDG3J`)가 옛 내용이다: 중단 지점 = 이번 작업 계정에 편집 권한이 없어 갱신하지 못함 / 다음 스텝 = 소유자 계정에서 최신 `index.html` 기준으로 다시 게시
+- [x] 사본 Artifact 3개를 2026-10-05 정본 기준으로 새 링크에 다시 게시함 (검수자 계정 소유, 비공개 — 볼 사람에게 공유 설정 필요)
+  - 원인·루트 검수판 `https://claude.ai/artifact/PByrDU27N6ncm77pgkgzpc`
+  - 영상 검수판 `https://claude.ai/artifact/8ch1bjjonBHwXTGQmBiagm`
+  - 재활 감별 로직 `https://claude.ai/artifact/3bTkWenYGR4f3PwRSpE8mE`
+  - 만든 방법: 기존 페이지의 화면 코드는 그대로 두고 데이터만 `index.html` BUNDLED에서 다시 채움. 옛 정본(`1455ddb`)으로 같은 방식으로 만들면 기존 원인·루트 검수판과 동일함을 확인
+  - 옛 링크(`YG6sHXLeqdYs4HzsAaYVRg`, `3S2juJAfWMDJG2yWoo1pDe`, `PzPPazFBk6Chg9aC6GDG3J`)는 옛 내용 그대로다. 새 링크는 주소가 달라 브라우저에 저장된 체크 상태가 넘어오지 않는다
+  - 옛 영상 검수판은 주의문(note) 5곳이 정본과 달랐는데 새 링크에서는 정본과 같다
 
 ## 대기
 - [ ] 임상 확인이 필요한 문구
