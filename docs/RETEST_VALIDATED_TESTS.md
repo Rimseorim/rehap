@@ -31,6 +31,7 @@ Empty Can/수평내전·외전저항/내회전저항/굴곡·신전ROM(숄더), 
 test-shoulder-lumbarlock-rom/core/scapula (벽에 등 대고 팔 들기, ROM·코어분리·견갑골 체크).
 **Seated Wall Angel test**(IJSPT 게재, 정식 스코어링 검사)와 동작·메커니즘 거의 동일.
 내용/이름 변경 없이 "Wall Angel" 동작 영상만 매칭해서 추가 가능.
+- 2026-10-06 협업자 답변: 룸바락 자체의 신뢰도·타당도 검증 논문은 찾지 못함(코칭 현장 평가법). 그대로 사용하되 PT 임상 검수에서 확인 → `docs/PT_REVIEW_TODO.md`
 
 ### C. 교체 필요 — 14건 (기존 13건 + 신규 발견 1건)
 - 기존 13건: 위 표 참조.
