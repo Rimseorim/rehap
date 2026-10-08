@@ -2072,11 +2072,14 @@ function completeReassessment(isLast) {
 function goRetest() {
   const tests = getPainSite()?.tests;
   if (!tests?.length) { showToast('테스트 데이터가 없습니다.'); return; }
-  // 이 원인을 양성(통증 재현)으로 직접 확인하는 검사를 우선 사용.
+  // 1순위: 전용 재검사(통과·실패가 모두 이 원인을 가리키는 검사, 회복 확인용).
+  // 2순위: 이 원인을 양성(통증 재현)으로 직접 확인하는 검사.
   // 현재 testId가 이미 그런 검사라면 유지하고, 아니라면(음성/제외 진단으로 도달) 해당 검사로 교체.
   const current = find(tests, S.testId);
   const isConfirm = t => t.fail_next === 'cause:' + S.causeId;
-  if (!current || !isConfirm(current)) {
+  const dedicated = tests.find(t => isConfirm(t) && t.pass_next === t.fail_next);
+  if (dedicated) S.testId = dedicated.id;
+  else if (!current || !isConfirm(current)) {
     const confirmTest = tests.find(isConfirm);
     if (confirmTest) S.testId = confirmTest.id;
     else if (!current) S.testId = (tests.find(t => t.pass_next === 'cause:' + S.causeId) || tests[0]).id;

@@ -148,11 +148,14 @@ def flow(ps):
             continue
         seen.add(x)
         todo += [n for n in nodes.get(x, []) if isinstance(n, str) and (n in nodes or n in cause_ids)]
-    # goRetest: 그 원인으로 실패(fail_next)하는 첫 검사를 재검사로 쓴다. 없으면 통과(pass_next)로 닿는 첫 검사.
+    # goRetest: 전용 재검사(통과·실패 모두 그 원인)가 있으면 그것, 없으면 그 원인으로 실패(fail_next)하는 첫 검사,
+    # 그것도 없으면 통과(pass_next)로 닿는 첫 검사를 재검사로 쓴다.
     retest = {}
     for c in cause_ids:
         tl = ps.get('tests', [])
-        pick = next((t for t in tl if t.get('fail_next') == c), None) or next((t for t in tl if t.get('pass_next') == c), None)
+        pick = (next((t for t in tl if t.get('fail_next') == c and t.get('pass_next') == c), None)
+                or next((t for t in tl if t.get('fail_next') == c), None)
+                or next((t for t in tl if t.get('pass_next') == c), None))
         if pick:
             retest[c] = 'test:' + pick['id']
     return seen, dangling, retest
